@@ -41,6 +41,9 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
         } else if (frame instanceof CloseWebSocketFrame) {
             System.out.println("WebSocket Client received closing");
             ch.close();
+        } else {
+            frame.retain();
+            ctx.fireChannelRead(frame);
         }
     }
 

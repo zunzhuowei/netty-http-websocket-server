@@ -25,8 +25,11 @@ public class WebSocketFrameHandler extends SimpleChannelInboundHandler<WebSocket
             String request = ((TextWebSocketFrame) frame).text();
             ctx.channel().writeAndFlush(new TextWebSocketFrame(request.toUpperCase(Locale.US)));
         } else {
-            String message = "unsupported frame type: " + frame.getClass().getName();
-            throw new UnsupportedOperationException(message);
+            frame.retain();
+            ctx.fireChannelRead(frame);
+
+            //String message = "unsupported frame type: " + frame.getClass().getName();
+            //throw new UnsupportedOperationException(message);
         }
     }
 

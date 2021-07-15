@@ -1,6 +1,11 @@
 package com.hbsoo.test;
 
+import com.hbsoo.websocket.codec.MyProtobufDecoder;
+import com.hbsoo.websocket.codec.MyProtobufEncoder;
+import com.hbsoo.websocket.protocol.ProtoBufMessage;
+import com.hbsoo.websocket.protocol.ServerMessage;
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -84,6 +89,9 @@ public class WebSocketClient {
                             p.addLast(WebSocketClientCompressionHandler.INSTANCE);
                             p.addLast(handler);
                             p.addLast(new WebSocketClientHandler());
+                            p.addLast(new MyProtobufDecoder());
+                            p.addLast(new MyProtobufEncoder());
+                            p.addLast(new ClientProtobufHandler());
                         }
                     });
 
@@ -102,6 +110,19 @@ public class WebSocketClient {
                 } else if ("ping".equals(msg.toLowerCase())) {
                     WebSocketFrame frame = new PingWebSocketFrame(Unpooled.wrappedBuffer(new byte[] { 8, 1, 8, 1 }));
                     ch.writeAndFlush(frame);
+                } else if (msg.toLowerCase().startsWith("bin")) {
+                    ServerMessage serverMessage = new ServerMessage();
+
+                    ProtoBufMessage.UserReq.Builder builder = ProtoBufMessage.UserReq.newBuilder();
+                    builder.setUid(111).setJob("coder");
+                    ProtoBufMessage.UserReq userReq = builder.build();
+                    serverMessage.setProtobuf(userReq);
+                    serverMessage.setMessageType((short) ProtoBufMessage.MessageType.userReq_VALUE);
+
+                    //byte[] bytes = userReq.toByteArray();
+                    //ByteBuf byteBuf = Unpooled.copiedBuffer(bytes);
+                    //BinaryWebSocketFrame frame = new BinaryWebSocketFrame(byteBuf);
+                    ch.writeAndFlush(serverMessage);
                 } else {
                     WebSocketFrame frame = new TextWebSocketFrame(msg);
                     ch.writeAndFlush(frame);

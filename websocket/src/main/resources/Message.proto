@@ -1,0 +1,59 @@
+syntax = "proto3";
+option java_package = "com.hbsoo.websocket.protocol";
+option java_outer_classname = "ProtoBufMessage";
+
+
+enum MessageType {
+  userReq = 0;
+  bookReq = 1;
+  carReq = 2;
+  userResp = 3;
+  bookResp = 4;
+  carResp = 5;
+}
+
+message UserReq {
+  uint64 uid = 1;
+  string userName = 2;
+  Sex sex = 3;
+  string job = 4;
+  repeated BookReq books = 5;
+  repeated CarReq cars = 6;
+}
+message UserResp {
+  CommonResp result = 1;
+}
+
+message BookReq {
+  string name = 1;
+  string author = 2;
+  repeated uint32 pages = 3;
+  map<string,string> ref = 4;
+}
+message BookResp {
+  CommonResp result = 1;
+}
+
+message CarReq {
+  string name = 1;
+  string color = 2;
+}
+message CarResp {
+  CommonResp result = 1;
+}
+
+enum Sex {
+  man = 0;
+  female = 1;
+}
+
+message CommonResp {
+  string message = 1;
+  RespCode  code = 2;
+
+}
+enum RespCode {
+  success = 0;
+  fail = 1;
+}
+
