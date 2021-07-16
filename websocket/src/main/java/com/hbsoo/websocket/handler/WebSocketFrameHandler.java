@@ -1,5 +1,6 @@
 package com.hbsoo.websocket.handler;
 
+import com.hbsoo.websocket.utils.Broadcaster;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -14,6 +15,18 @@ import java.util.Locale;
 @Slf4j
 public class WebSocketFrameHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        Broadcaster.subscribe(ctx.channel());
+        super.channelActive(ctx);
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        Broadcaster.unsubscribe(ctx.channel());
+        super.channelInactive(ctx);
+    }
 
 
     @Override

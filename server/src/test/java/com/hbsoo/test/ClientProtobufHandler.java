@@ -1,6 +1,6 @@
 package com.hbsoo.test;
 
-import com.hbsoo.websocket.protocol.ServerMessage;
+import com.hbsoo.websocket.protocol.WebSocketMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * Created by zun.wei on 2021/7/15.
  */
 @Slf4j
-public class ClientProtobufHandler extends SimpleChannelInboundHandler<ServerMessage> {
+public class ClientProtobufHandler extends SimpleChannelInboundHandler<WebSocketMessage> {
 
 
 
@@ -20,7 +20,7 @@ public class ClientProtobufHandler extends SimpleChannelInboundHandler<ServerMes
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ServerMessage msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, WebSocketMessage msg) throws Exception {
         //Parser<? extends GeneratedMessageV3> parserForType = msg.getParserForType();
         System.out.println("msg = " + msg);
     }
