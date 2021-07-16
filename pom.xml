@@ -12,6 +12,7 @@
         <module>http</module>
         <module>websocket</module>
         <module>commons</module>
+        <module>client</module>
     </modules>
     <packaging>pom</packaging>
 

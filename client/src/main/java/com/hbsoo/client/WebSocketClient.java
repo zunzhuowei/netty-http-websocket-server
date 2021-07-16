@@ -1,5 +1,6 @@
-package com.hbsoo.test;
+package com.hbsoo.client;
 
+import com.hbsoo.client.test.SendMessage;
 import com.hbsoo.websocket.codec.MyProtobufDecoder;
 import com.hbsoo.websocket.codec.MyProtobufEncoder;
 import com.hbsoo.websocket.protocol.ProtoBufMessage;
@@ -23,6 +24,7 @@ import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 
@@ -96,35 +98,11 @@ public class WebSocketClient {
 
             Channel ch = b.connect(uri.getHost(), port).sync().channel();
             handler.handshakeFuture().sync();
-
-            BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-            while (true) {
-                String msg = console.readLine();
-                if (msg == null) {
-                    break;
-                } else if ("bye".equals(msg.toLowerCase())) {
-                    ch.writeAndFlush(new CloseWebSocketFrame());
-                    ch.closeFuture().sync();
-                    break;
-                } else if ("ping".equals(msg.toLowerCase())) {
-                    WebSocketFrame frame = new PingWebSocketFrame(Unpooled.wrappedBuffer(new byte[] { 8, 1, 8, 1 }));
-                    ch.writeAndFlush(frame);
-                } else if (msg.toLowerCase().startsWith("bin")) {
-                    WebSocketMessage webSocketMessage = new WebSocketMessage();
-
-                    ProtoBufMessage.UserReq.Builder builder = ProtoBufMessage.UserReq.newBuilder();
-                    builder.setUid(111).setJob("coder");
-                    ProtoBufMessage.UserReq userReq = builder.build();
-                    webSocketMessage.setProtobuf(userReq);
-                    ch.writeAndFlush(webSocketMessage);
-                } else {
-                    WebSocketFrame frame = new TextWebSocketFrame(msg);
-                    ch.writeAndFlush(frame);
-                }
-            }
+            SendMessage.sendMsg2Server(ch);
         } finally {
             group.shutdownGracefully();
         }
     }
+
 
 }

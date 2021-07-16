@@ -1,4 +1,4 @@
-package com.hbsoo.test;
+package com.hbsoo.client;
 
 import io.netty.channel.*;
 import io.netty.handler.codec.http.FullHttpResponse;
