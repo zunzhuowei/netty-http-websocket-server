@@ -1,8 +1,8 @@
-package com.hbsoo.websocket.codec;
+package com.hbsoo.protobuf.codec;
 
 import com.google.protobuf.GeneratedMessageV3;
 import com.hbsoo.commons.message.MessageHeader;
-import com.hbsoo.websocket.protocol.WebSocketMessage;
+import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandler;

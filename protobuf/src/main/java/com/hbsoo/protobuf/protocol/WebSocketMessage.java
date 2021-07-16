@@ -1,8 +1,9 @@
-package com.hbsoo.websocket.protocol;
+package com.hbsoo.protobuf.protocol;
 
 import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.ProtocolMessageEnum;
 import com.hbsoo.commons.message.MessageHeader;
-import com.hbsoo.websocket.conf.MessageTypeHandleMapper;
+import com.hbsoo.protobuf.conf.MessageTypeHandleMapper;
 import lombok.Data;
 
 /**
@@ -34,7 +35,8 @@ public class WebSocketMessage<T extends GeneratedMessageV3> {
         this.protobuf = protobufMsg;
         MessageTypeHandleMapper.msgMapping.forEach((key, value) -> {
             if (protobufMsg.getClass() == value.getClass()) {
-                this.header.setMessageType((short) key.getNumber());
+                ProtocolMessageEnum messageEnum = (ProtocolMessageEnum) key;
+                this.header.setMessageType((short) messageEnum.getNumber());
             }
         });
         this.header.setMessageLength((short) (this.protobuf.toByteArray().length));

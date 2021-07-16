@@ -1,8 +1,8 @@
-package com.hbsoo.websocket.message;
+package com.hbsoo.protobuf.message;
 
 
 import com.google.protobuf.GeneratedMessageV3;
-import com.hbsoo.websocket.protocol.WebSocketMessage;
+import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import io.netty.channel.ChannelHandlerContext;
 
 /**

@@ -1,12 +1,11 @@
 package com.hbsoo.client;
 
 import com.hbsoo.client.test.SendMessage;
-import com.hbsoo.websocket.codec.MyProtobufDecoder;
-import com.hbsoo.websocket.codec.MyProtobufEncoder;
+import com.hbsoo.protobuf.codec.MyProtobufDecoder;
+import com.hbsoo.protobuf.codec.MyProtobufEncoder;
+import com.hbsoo.protobuf.conf.MessageTypeHandleMapper;
 import com.hbsoo.websocket.protocol.ProtoBufMessage;
-import com.hbsoo.websocket.protocol.WebSocketMessage;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -23,9 +22,6 @@ import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URI;
 
 /**
@@ -36,6 +32,8 @@ public class WebSocketClient {
     static final String URL = System.getProperty("url", "ws://127.0.0.1:8080/websocket");
 
     public static void main(String[] args) throws Exception {
+        MessageTypeHandleMapper.init(ProtoBufMessage.class,
+                ProtoBufMessage.MessageType::values);
         URI uri = new URI(URL);
         String scheme = uri.getScheme() == null? "ws" : uri.getScheme();
         final String host = uri.getHost() == null? "127.0.0.1" : uri.getHost();
@@ -90,7 +88,7 @@ public class WebSocketClient {
                             p.addLast(WebSocketClientCompressionHandler.INSTANCE);
                             p.addLast(handler);
                             p.addLast(new WebSocketClientHandler());
-                            p.addLast(new MyProtobufDecoder());
+                            p.addLast(new MyProtobufDecoder(ProtoBufMessage.MessageType::forNumber));
                             p.addLast(new MyProtobufEncoder());
                             p.addLast(new ClientProtobufHandler());
                         }

@@ -1,8 +1,8 @@
 package com.hbsoo.start;
 
 import com.hbsoo.http.conf.UriHandlerMapper;
-import com.hbsoo.http.controller.HttpController;
-import com.hbsoo.websocket.conf.MessageTypeHandleMapper;
+import com.hbsoo.protobuf.conf.MessageTypeHandleMapper;
+import com.hbsoo.websocket.protocol.ProtoBufMessage;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -20,7 +20,9 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         UriHandlerMapper.init();
-        MessageTypeHandleMapper.init();
+        MessageTypeHandleMapper.init(ProtoBufMessage.class,
+                ProtoBufMessage.MessageType::values
+                ,"com.hbsoo.websocket.message");
 
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup(10);

@@ -13,6 +13,7 @@
         <module>websocket</module>
         <module>commons</module>
         <module>client</module>
+        <module>protobuf</module>
     </modules>
     <packaging>pom</packaging>
 

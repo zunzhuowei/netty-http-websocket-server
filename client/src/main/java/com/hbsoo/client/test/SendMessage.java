@@ -1,7 +1,7 @@
 package com.hbsoo.client.test;
 
+import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import com.hbsoo.websocket.protocol.ProtoBufMessage;
-import com.hbsoo.websocket.protocol.WebSocketMessage;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.CloseWebSocketFrame;

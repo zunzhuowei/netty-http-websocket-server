@@ -1,9 +1,9 @@
-package com.hbsoo.websocket.utils;
+package com.hbsoo.protobuf.utils;
 
 import com.google.protobuf.GeneratedMessageV3;
-import com.hbsoo.websocket.message.IWebSocketMessageHandler;
-import com.hbsoo.websocket.conf.MessageTypeHandleMapper;
-import com.hbsoo.websocket.protocol.WebSocketMessage;
+import com.hbsoo.protobuf.conf.MessageTypeHandleMapper;
+import com.hbsoo.protobuf.message.IWebSocketMessageHandler;
+import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
 

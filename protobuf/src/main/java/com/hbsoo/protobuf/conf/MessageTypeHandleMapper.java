@@ -1,56 +1,59 @@
-package com.hbsoo.websocket.conf;
+package com.hbsoo.protobuf.conf;
 
 import com.google.protobuf.GeneratedMessageV3;
+import com.google.protobuf.ProtocolMessageEnum;
 import com.hbsoo.commons.utils.PackageUtil;
-import com.hbsoo.websocket.message.IWebSocketMessageHandler;
-import com.hbsoo.websocket.protocol.ProtoBufMessage;
+import com.hbsoo.protobuf.message.IWebSocketMessageHandler;
 import lombok.extern.slf4j.Slf4j;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.lang.reflect.*;
+import java.util.*;
+import java.util.function.Supplier;
 
 /**
  * Created by zun.wei on 2021/7/16.
- * 消息处理映射关系维护, 消息类型与消息的映射关系；消息类型和消息处理器映射关系
  */
 @Slf4j
 public final class MessageTypeHandleMapper {
 
+
     /**
-     * 消息字典
+     * 消息类型与消息字典
      */
-    public static final Map<ProtoBufMessage.MessageType, GeneratedMessageV3> msgMapping = new HashMap<>();
+    public static final Map<Object, GeneratedMessageV3> msgMapping = new HashMap<>();
     /**
-     * 消息路由字典
+     * 消息路由处理器字典
      */
     public static final Map<Class<? extends GeneratedMessageV3>, IWebSocketMessageHandler> msgRouter = new HashMap<>();
 
     /**
      * 初始化消息映射关系
+     *
+     * @param protoBufClazz         protoBuf 协议类 class
+     * @param protoMsgTypesFunction protoBuf 协议枚举消息类型数组函数 .values();
+     * @param scanMessageHandlerPackage 消息处理器扫描路径
+     * @param <ProtoBuf>            protoBuf 协议类
+     * @param <ProtoMsgType>        protoBuf 协议枚举消息类型
      */
-    public static void init() {
+    public static <ProtoBuf, ProtoMsgType extends ProtocolMessageEnum> void init
+    (Class<ProtoBuf> protoBufClazz, Supplier<ProtoMsgType[]> protoMsgTypesFunction, String... scanMessageHandlerPackage)
+            throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         /** 解码器消息类型注册 */
-        //msgMapping.put(ProtoBufMessage.MessageType.userReq, ProtoBufMessage.UserReq.getDefaultInstance());
-        //msgMapping.put(ProtoBufMessage.MessageType.userResp, ProtoBufMessage.UserResp.getDefaultInstance());
-        initDecodeMapping();
-
+        initDecodeMapping(protoBufClazz, protoMsgTypesFunction.get());
         /** 消息处理器路由注册 */
-        //msgRouter.put(ProtoBufMessage.UserReq.class, new UserReqMessageHandler());
-        initMessageRouter();
+        initMessageRouter(scanMessageHandlerPackage);
     }
 
     /**
      *   解码器消息类型注册
      */
-    private static void initDecodeMapping() {
+    private static <ProtoBuf, ProtoMsgType extends ProtocolMessageEnum> void initDecodeMapping(
+            Class<ProtoBuf> protoBufClazz,
+            ProtoMsgType[] protoMsgTypes
+    ) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         log.info("\n\n==== 开始扫描消息类型与消息的关联 ====");
-        Class<?>[] innerClazzArray = ProtoBufMessage.class.getDeclaredClasses();
+        Class<?>[] innerClazzArray = protoBufClazz.getDeclaredClasses();
+
         for (Class<?> innerClazz : innerClazzArray) {
             if (null == innerClazz ||
                     !GeneratedMessageV3.class.isAssignableFrom(innerClazz)) {
@@ -62,13 +65,13 @@ public final class MessageTypeHandleMapper {
             String clazzName = innerClazz.getSimpleName();
             clazzName = clazzName.toLowerCase();
 
-            for (ProtoBufMessage.MessageType msgCode : ProtoBufMessage.MessageType.values()) {
+            for (ProtoMsgType msgCode : protoMsgTypes) {
                 if (null == msgCode) {
                     continue;
                 }
 
                 // 获取消息编码
-                String strMsgCode = msgCode.name();
+                String strMsgCode = msgCode.toString();
                 strMsgCode = strMsgCode.replaceAll("_", "");
                 strMsgCode = strMsgCode.toLowerCase();
 
@@ -89,7 +92,7 @@ public final class MessageTypeHandleMapper {
         }
 
         log.info("\n\n==== 开始检查消息类型与消息的关联 ====");
-        for (ProtoBufMessage.MessageType messageType : ProtoBufMessage.MessageType.values()) {
+        for (ProtoMsgType messageType : protoMsgTypes) {
             GeneratedMessageV3 messageV3 = msgMapping.get(messageType);
             if (Objects.isNull(messageV3)) {
                 log.warn("[{}] message type un mapping!", messageType);
@@ -102,13 +105,19 @@ public final class MessageTypeHandleMapper {
     /**
      * 消息处理器路由注册
      */
-    private static void initMessageRouter() {
+    private static void initMessageRouter(String... scanHandlerPackage) {
+        for (String packagePath :scanHandlerPackage){
+            initMessageRouter(packagePath);
+        }
+    }
+
+    private static void initMessageRouter(String scanHandlerPackage) {
         log.info("\n\n==== 开始扫描消息与消息处理器的关联 ====");
 
         // 获取包名称
-        final String packageName = IWebSocketMessageHandler.class.getPackage().getName();
+        //final String packageName = IWebSocketMessageHandler.class.getPackage().getName();
         // 获取 IWebSocketMessageHandler 所有的实现类
-        Set<Class<?>> clazzSet = PackageUtil.listSubClazz(packageName, true, IWebSocketMessageHandler.class);
+        Set<Class<?>> clazzSet = PackageUtil.listSubClazz(scanHandlerPackage, true, IWebSocketMessageHandler.class);
 
         for (Class<?> handlerClazz : clazzSet) {
             if (null == handlerClazz ||

@@ -1,6 +1,6 @@
 package com.hbsoo.websocket.handler;
 
-import com.hbsoo.websocket.utils.Broadcaster;
+import com.hbsoo.protobuf.utils.Broadcaster;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;

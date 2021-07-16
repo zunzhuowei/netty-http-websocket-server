@@ -1,7 +1,7 @@
 package com.hbsoo.websocket.handler;
 
-import com.hbsoo.websocket.protocol.WebSocketMessage;
-import com.hbsoo.websocket.utils.WebSocketMessageHandlerRouter;
+import com.hbsoo.protobuf.protocol.WebSocketMessage;
+import com.hbsoo.protobuf.utils.WebSocketMessageHandlerRouter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;

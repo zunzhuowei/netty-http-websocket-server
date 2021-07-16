@@ -1,14 +1,15 @@
 package com.hbsoo.websocket.message;
 
+import com.hbsoo.protobuf.message.IWebSocketMessageHandler;
+import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import com.hbsoo.websocket.protocol.ProtoBufMessage;
-import com.hbsoo.websocket.protocol.WebSocketMessage;
-import com.hbsoo.websocket.utils.Broadcaster;
+import com.hbsoo.protobuf.utils.Broadcaster;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
  * Created by zun.wei on 2021/7/16.
  */
-public class UserReqMessageHandler implements IWebSocketMessageHandler<ProtoBufMessage.UserReq>{
+public class UserReqMessageHandler implements IWebSocketMessageHandler<ProtoBufMessage.UserReq> {
 
 
     @Override

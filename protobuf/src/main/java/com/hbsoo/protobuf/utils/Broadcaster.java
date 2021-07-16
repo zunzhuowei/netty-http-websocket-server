@@ -1,7 +1,7 @@
-package com.hbsoo.websocket.utils;
+package com.hbsoo.protobuf.utils;
 
 import com.google.protobuf.GeneratedMessageV3;
-import com.hbsoo.websocket.protocol.WebSocketMessage;
+import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import io.netty.channel.Channel;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;

@@ -1,6 +1,6 @@
 package com.hbsoo.client;
 
-import com.hbsoo.websocket.protocol.WebSocketMessage;
+import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
