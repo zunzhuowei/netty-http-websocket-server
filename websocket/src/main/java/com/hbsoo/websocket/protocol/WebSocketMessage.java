@@ -1,8 +1,8 @@
 package com.hbsoo.websocket.protocol;
 
-import ch.qos.logback.core.boolex.EvaluationException;
 import com.google.protobuf.GeneratedMessageV3;
-import com.hbsoo.commons.MessageHeader;
+import com.hbsoo.commons.message.MessageHeader;
+import com.hbsoo.websocket.conf.MessageTypeHandleMapper;
 import lombok.Data;
 
 /**
@@ -32,7 +32,7 @@ public class WebSocketMessage<T extends GeneratedMessageV3> {
 
     public void setProtobuf(T protobufMsg) {
         this.protobuf = protobufMsg;
-        MessageTypeMapping.msgMapping.forEach((key, value) -> {
+        MessageTypeHandleMapper.msgMapping.forEach((key, value) -> {
             if (protobufMsg.getClass() == value.getClass()) {
                 this.header.setMessageType((short) key.getNumber());
             }

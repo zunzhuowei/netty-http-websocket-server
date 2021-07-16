@@ -2,7 +2,7 @@ package com.hbsoo.websocket.utils;
 
 import com.google.protobuf.GeneratedMessageV3;
 import com.hbsoo.websocket.message.IWebSocketMessageHandler;
-import com.hbsoo.websocket.protocol.MessageTypeMapping;
+import com.hbsoo.websocket.conf.MessageTypeHandleMapper;
 import com.hbsoo.websocket.protocol.WebSocketMessage;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ public final class WebSocketMessageHandlerRouter {
     public static <T extends GeneratedMessageV3> void
     handleMessage(ChannelHandlerContext ctx, WebSocketMessage<T> webSocketMessage) {
         T protobuf = webSocketMessage.getProtobuf();
-        IWebSocketMessageHandler messageHandler = MessageTypeMapping.msgRouter.get(protobuf.getClass());
+        IWebSocketMessageHandler messageHandler = MessageTypeHandleMapper.msgRouter.get(protobuf.getClass());
         if (Objects.isNull(messageHandler)) {
             log.warn("protobuf message class for {} message handler is not exist!", protobuf.getClass());
             return;

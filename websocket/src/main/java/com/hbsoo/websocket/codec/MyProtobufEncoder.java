@@ -1,7 +1,7 @@
 package com.hbsoo.websocket.codec;
 
 import com.google.protobuf.GeneratedMessageV3;
-import com.hbsoo.commons.MessageHeader;
+import com.hbsoo.commons.message.MessageHeader;
 import com.hbsoo.websocket.protocol.WebSocketMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

@@ -2,8 +2,8 @@ package com.hbsoo.websocket.codec;
 
 import com.google.protobuf.GeneratedMessageV3;
 import com.google.protobuf.Parser;
-import com.hbsoo.commons.MessageHeader;
-import com.hbsoo.websocket.protocol.MessageTypeMapping;
+import com.hbsoo.commons.message.MessageHeader;
+import com.hbsoo.websocket.conf.MessageTypeHandleMapper;
 import com.hbsoo.websocket.protocol.ProtoBufMessage;
 import com.hbsoo.websocket.protocol.WebSocketMessage;
 import io.netty.buffer.ByteBuf;
@@ -11,8 +11,6 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
-import io.netty.handler.codec.protobuf.ProtobufDecoder;
-import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -25,9 +23,6 @@ import java.util.Objects;
 @ChannelHandler.Sharable
 public class MyProtobufDecoder extends MessageToMessageDecoder<BinaryWebSocketFrame> {
 
-    static {
-        MessageTypeMapping.init();
-    }
 
     @Override
     protected void decode(ChannelHandlerContext ctx, BinaryWebSocketFrame msg, List<Object> out) throws Exception {
@@ -61,7 +56,7 @@ public class MyProtobufDecoder extends MessageToMessageDecoder<BinaryWebSocketFr
         byte[] datas = new byte[protoBufLength];
         byteBuf.readBytes(datas);
 
-        GeneratedMessageV3 instance = MessageTypeMapping.msgMapping.get(type);
+        GeneratedMessageV3 instance = MessageTypeHandleMapper.msgMapping.get(type);
         if (Objects.isNull(instance)) {
             log.warn("ProtoBufMessage.MessageType [{}] is not register", type);
             msg.release();

@@ -1,4 +1,4 @@
-package com.hbsoo.commons;
+package com.hbsoo.commons.message;
 
 import lombok.Data;
 

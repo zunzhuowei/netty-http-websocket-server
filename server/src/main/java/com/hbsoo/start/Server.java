@@ -1,6 +1,8 @@
 package com.hbsoo.start;
 
+import com.hbsoo.http.conf.UriHandlerMapper;
 import com.hbsoo.http.controller.HttpController;
+import com.hbsoo.websocket.conf.MessageTypeHandleMapper;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -17,7 +19,8 @@ public class Server {
     static final int PORT = Integer.parseInt(System.getProperty("port", "8080"));
 
     public static void main(String[] args) throws Exception {
-        HttpController.init();
+        UriHandlerMapper.init();
+        MessageTypeHandleMapper.init();
 
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup(10);
