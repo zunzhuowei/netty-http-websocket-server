@@ -2,12 +2,14 @@ package com.hbsoo.protobuf.conf;
 
 import com.google.protobuf.GeneratedMessageV3;
 import com.google.protobuf.ProtocolMessageEnum;
+import com.hbsoo.commons.message.MagicNum;
 import com.hbsoo.commons.utils.PackageUtil;
 import com.hbsoo.protobuf.message.IWebSocketMessageHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.*;
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -25,32 +27,40 @@ public final class MessageTypeHandleMapper {
      * 消息路由处理器字典
      */
     public static final Map<Class<? extends GeneratedMessageV3>, IWebSocketMessageHandler> msgRouter = new HashMap<>();
+    /**
+     * 消息魔法头与消息类型 .forNumber(Integer i) 的映射关系
+     */
+    public static final Map<Short, Function<Integer, ? extends ProtocolMessageEnum>> magicNumMsgTypeMap = new HashMap<>();
 
     /**
      * 初始化消息映射关系
      *
-     * @param protoBufClazz         protoBuf 协议类 class
-     * @param protoMsgTypesFunction protoBuf 协议枚举消息类型数组函数 .values();
-     * @param scanMessageHandlerPackage 消息处理器扫描路径
-     * @param <ProtoBuf>            protoBuf 协议类
-     * @param <ProtoMsgType>        protoBuf 协议枚举消息类型
      */
-    public static <ProtoBuf, ProtoMsgType extends ProtocolMessageEnum> void init
-    (Class<ProtoBuf> protoBufClazz, Supplier<ProtoMsgType[]> protoMsgTypesFunction, String... scanMessageHandlerPackage)
-            throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        /** 解码器消息类型注册 */
-        initDecodeMapping(protoBufClazz, protoMsgTypesFunction.get());
-        /** 消息处理器路由注册 */
-        initMessageRouter(scanMessageHandlerPackage);
+    public static void init(MessageConfig... messageConfig) {
+        if (messageConfig.length < 1) {
+            log.warn("===============websocket消息未配置================");
+            return;
+        }
+        for (MessageConfig config : messageConfig) {
+            MagicNum magicNum = config.getMagicNum();
+            Class protoBufClazz = config.getProtoBufClazz();
+            Function protoMsgTypesForNumberFunction = config.getProtoMsgTypesForNumberFunction();
+            Supplier protoMsgTypesValuesFunction = config.getProtoMsgTypesValuesFunction();
+            String[] scanMessageHandlerPackagePath = config.getScanMessageHandlerPackagePath();
+
+            /** 解码器消息类型注册 */
+            initDecodeMapping(protoBufClazz, (ProtocolMessageEnum[]) protoMsgTypesValuesFunction.get());
+            /** 消息处理器路由注册 */
+            initMessageRouter(scanMessageHandlerPackagePath);
+            magicNumMsgTypeMap.put(magicNum.magicNum, protoMsgTypesForNumberFunction);
+        }
     }
 
     /**
      *   解码器消息类型注册
      */
     private static <ProtoBuf, ProtoMsgType extends ProtocolMessageEnum> void initDecodeMapping(
-            Class<ProtoBuf> protoBufClazz,
-            ProtoMsgType[] protoMsgTypes
-    ) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+            Class<ProtoBuf> protoBufClazz, ProtoMsgType[] protoMsgTypes) {
         log.info("\n\n==== 开始扫描消息类型与消息的关联 ====");
         Class<?>[] innerClazzArray = protoBufClazz.getDeclaredClasses();
 
@@ -135,17 +145,20 @@ public final class MessageTypeHandleMapper {
                         !currMethod.getName().equals("handle")) {
                     continue;
                 }
-
+                // 获取参数类型列表
                 Type[] genericParameterTypes = currMethod.getGenericParameterTypes();
                 if (genericParameterTypes.length < 2) {
                     continue;
                 }
-
-                Type[] actualTypeArguments = ((ParameterizedType) currMethod.getGenericParameterTypes()[1]).getActualTypeArguments();
+                // 获取方法中第二个参数的泛型实际参数类型列表
+                Type[] actualTypeArguments = ((ParameterizedType) currMethod.getGenericParameterTypes()[1])
+                        .getActualTypeArguments();
+                // 比较实际泛型中第一个参数类型
                 if (actualTypeArguments[0] == GeneratedMessageV3.class) {
                     continue;
                 }
 
+                // 获取泛型中第一个参数的实际类型名
                 String typeName = actualTypeArguments[0].getTypeName();
                 try {
                     Class<?> aClass = Class.forName(typeName);
@@ -176,7 +189,7 @@ public final class MessageTypeHandleMapper {
                 IWebSocketMessageHandler<?> newHandler = (IWebSocketMessageHandler<?>) handlerClazz.newInstance();
 
                 log.info("{} <==> {}", cmdClazz.getName(), handlerClazz.getName());
-
+                // 设置 protobuf 消息类型class 与 protobuf消息处理器的映射关系
                 msgRouter.put((Class) cmdClazz, newHandler);
             } catch (Exception ex) {
                 // 记录错误日志

@@ -16,7 +16,7 @@ public class UserReqMessageHandler implements IWebSocketMessageHandler<ProtoBufM
     public void handle(ChannelHandlerContext ctx, WebSocketMessage<ProtoBufMessage.UserReq> webSocketMessage) {
         ProtoBufMessage.UserReq protobuf = webSocketMessage.getProtobuf();
 
-        WebSocketMessage<ProtoBufMessage.UserResp> resp = new WebSocketMessage<>();
+        WebSocketMessage<ProtoBufMessage.UserResp> resp = WebSocketMessage.newCommonMessage(ProtoBufMessage.UserResp.class);
         ProtoBufMessage.UserResp.Builder builder = ProtoBufMessage.UserResp.newBuilder();
         builder.setResult(ProtoBufMessage.CommonResp.newBuilder().setCode(ProtoBufMessage.RespCode.success).setMessage("ok").build());
         resp.setProtobuf(builder.build());

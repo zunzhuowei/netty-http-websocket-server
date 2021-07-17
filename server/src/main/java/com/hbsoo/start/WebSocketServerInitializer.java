@@ -3,8 +3,8 @@ package com.hbsoo.start;
 import com.hbsoo.http.handler.HttpProtoHandler;
 import com.hbsoo.protobuf.codec.MyProtobufDecoder;
 import com.hbsoo.protobuf.codec.MyProtobufEncoder;
-import com.hbsoo.websocket.handler.ProtobufHandler;
-import com.hbsoo.websocket.handler.WebSocketFrameHandler;
+import com.hbsoo.protobuf.handler.ProtobufHandler;
+import com.hbsoo.protobuf.handler.WebSocketFrameHandler;
 import com.hbsoo.websocket.protocol.ProtoBufMessage;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -35,7 +35,7 @@ public class WebSocketServerInitializer extends ChannelInitializer<SocketChannel
         pipeline.addLast(new WebSocketServerProtocolHandler(WEBSOCKET_PATH, null, true));
         pipeline.addLast(new HttpProtoHandler(WEBSOCKET_PATH));
         pipeline.addLast(new WebSocketFrameHandler());
-        pipeline.addLast(new MyProtobufDecoder(ProtoBufMessage.MessageType::forNumber));
+        pipeline.addLast(new MyProtobufDecoder());
         pipeline.addLast(new MyProtobufEncoder());
         pipeline.addLast(new ProtobufHandler());
     }

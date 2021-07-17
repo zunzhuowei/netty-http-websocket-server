@@ -1,6 +1,9 @@
 package com.hbsoo.start;
 
+import com.hbsoo.commons.message.MagicNum;
+import com.hbsoo.game.protocol.GameProtocol;
 import com.hbsoo.http.conf.UriHandlerMapper;
+import com.hbsoo.protobuf.conf.MessageConfig;
 import com.hbsoo.protobuf.conf.MessageTypeHandleMapper;
 import com.hbsoo.websocket.protocol.ProtoBufMessage;
 import io.netty.bootstrap.ServerBootstrap;
@@ -20,9 +23,20 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         UriHandlerMapper.init();
-        MessageTypeHandleMapper.init(ProtoBufMessage.class,
-                ProtoBufMessage.MessageType::values
-                ,"com.hbsoo.websocket.message");
+        MessageTypeHandleMapper.init(
+                new MessageConfig<ProtoBufMessage,ProtoBufMessage.MessageType>()
+                        .setMagicNum(MagicNum.COMMON)
+                        .setProtoBufClazz(ProtoBufMessage.class)
+                        .setProtoMsgTypesValuesFunction(ProtoBufMessage.MessageType::values)
+                        .setProtoMsgTypesForNumberFunction(ProtoBufMessage.MessageType::forNumber)
+                        .setScanMessageHandlerPackagePath("com.hbsoo.websocket.message"),
+                new MessageConfig<GameProtocol,GameProtocol.MessageType>()
+                        .setMagicNum(MagicNum.GAME)
+                        .setProtoBufClazz(GameProtocol.class)
+                        .setProtoMsgTypesValuesFunction(GameProtocol.MessageType::values)
+                        .setProtoMsgTypesForNumberFunction(GameProtocol.MessageType::forNumber)
+                        .setScanMessageHandlerPackagePath("com.hbsoo.game.message")
+        );
 
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup(10);

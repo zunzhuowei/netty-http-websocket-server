@@ -1,0 +1,32 @@
+syntax = "proto3";
+option java_package = "com.hbsoo.game.protocol";
+option java_outer_classname = "GameProtocol";
+
+
+enum MessageType {
+  LOGIN_CMD = 0;
+  LOGIN_CMD_RESP = 1;
+}
+
+message LoginCmd {
+  uint64 uid = 1;
+  string userName = 2;
+  string sessionKey = 3;
+
+}
+message LoginCmdResp {
+    CommonResp result = 1;
+}
+
+
+
+
+message CommonResp {
+  string message = 1;
+  RespCode  code = 2;
+}
+enum RespCode {
+  SUCCESS = 0;
+  FAIL = 1;
+}
+

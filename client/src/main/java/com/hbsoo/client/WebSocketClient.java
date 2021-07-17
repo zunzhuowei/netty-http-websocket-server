@@ -1,8 +1,11 @@
 package com.hbsoo.client;
 
 import com.hbsoo.client.test.SendMessage;
+import com.hbsoo.commons.message.MagicNum;
+import com.hbsoo.game.protocol.GameProtocol;
 import com.hbsoo.protobuf.codec.MyProtobufDecoder;
 import com.hbsoo.protobuf.codec.MyProtobufEncoder;
+import com.hbsoo.protobuf.conf.MessageConfig;
 import com.hbsoo.protobuf.conf.MessageTypeHandleMapper;
 import com.hbsoo.websocket.protocol.ProtoBufMessage;
 import io.netty.bootstrap.Bootstrap;
@@ -32,8 +35,21 @@ public class WebSocketClient {
     static final String URL = System.getProperty("url", "ws://127.0.0.1:8080/websocket");
 
     public static void main(String[] args) throws Exception {
-        MessageTypeHandleMapper.init(ProtoBufMessage.class,
-                ProtoBufMessage.MessageType::values);
+        MessageTypeHandleMapper.init(
+                new MessageConfig<ProtoBufMessage,ProtoBufMessage.MessageType>()
+                .setMagicNum(MagicNum.COMMON)
+                        .setProtoBufClazz(ProtoBufMessage.class)
+                        .setProtoMsgTypesValuesFunction(ProtoBufMessage.MessageType::values)
+                        .setProtoMsgTypesForNumberFunction(ProtoBufMessage.MessageType::forNumber)
+                        .setScanMessageHandlerPackagePath("com.hbsoo.websocket.message"),
+                new MessageConfig<GameProtocol,GameProtocol.MessageType>()
+                        .setMagicNum(MagicNum.GAME)
+                        .setProtoBufClazz(GameProtocol.class)
+                        .setProtoMsgTypesValuesFunction(GameProtocol.MessageType::values)
+                        .setProtoMsgTypesForNumberFunction(GameProtocol.MessageType::forNumber)
+                        .setScanMessageHandlerPackagePath("com.hbsoo.game.message")
+        );
+
         URI uri = new URI(URL);
         String scheme = uri.getScheme() == null? "ws" : uri.getScheme();
         final String host = uri.getHost() == null? "127.0.0.1" : uri.getHost();
@@ -88,7 +104,7 @@ public class WebSocketClient {
                             p.addLast(WebSocketClientCompressionHandler.INSTANCE);
                             p.addLast(handler);
                             p.addLast(new WebSocketClientHandler());
-                            p.addLast(new MyProtobufDecoder(ProtoBufMessage.MessageType::forNumber));
+                            p.addLast(new MyProtobufDecoder());
                             p.addLast(new MyProtobufEncoder());
                             p.addLast(new ClientProtobufHandler());
                         }

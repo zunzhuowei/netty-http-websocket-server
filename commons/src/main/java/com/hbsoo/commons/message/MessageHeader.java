@@ -8,14 +8,27 @@ import lombok.Data;
 @Data
 public final class MessageHeader {
 
-    public static final short HeaderLength = 6;
+    /**
+     * 消息头长度
+     */
+    public static final short HEADER_LENGTH = 8;
 
-    private short magicNum = 0xf9f; //= byteBuf.readShort();
-    private short messageLength; // = byteBuf.readShort();
+    /**
+     * 魔法数据头
+     */
+    private MagicNum magicNum = MagicNum.COMMON; //= byteBuf.readShort();
+    /**
+     * 消息长度 = 消息头 + 消息体; 大端序
+     */
+    private int messageLength; // = byteBuf.readInt();
+    /**
+     * 消息类型
+     */
     private short messageType; // = byteBuf.readShort();
 
-    public short getMessageLength() {
-        return (short) (this.messageLength + HeaderLength);
+
+    public void setMessageLength(int messageLength) {
+        this.messageLength = messageLength + HEADER_LENGTH;
     }
 
 }

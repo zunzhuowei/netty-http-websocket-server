@@ -21,15 +21,14 @@ public class MyProtobufEncoder extends MessageToMessageEncoder<WebSocketMessage>
 
     @Override
     protected void encode(ChannelHandlerContext ctx, WebSocketMessage msg, List<Object> out) throws Exception {
-        //Parser<? extends GeneratedMessageV3> parserForType = msg.getParserForType();
         GeneratedMessageV3 protobuf = msg.getProtobuf();
         MessageHeader header = msg.getHeader();
-        short magicNum = header.getMagicNum();
-        short messageLength = header.getMessageLength();
+        short magicNum = header.getMagicNum().magicNum;
+        int messageLength = header.getMessageLength();
         short messageType = header.getMessageType();
         byte[] bytes = protobuf.toByteArray();
         ByteBuf buffer = Unpooled.buffer(messageLength);
-        buffer.writeShort(magicNum).writeShort(messageLength)
+        buffer.writeShort(magicNum).writeInt(messageLength)
                 .writeShort(messageType).writeBytes(bytes);
         BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(buffer);
         out.add(binaryWebSocketFrame);

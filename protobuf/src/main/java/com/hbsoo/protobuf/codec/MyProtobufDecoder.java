@@ -1,6 +1,7 @@
 package com.hbsoo.protobuf.codec;
 
 import com.google.protobuf.*;
+import com.hbsoo.commons.message.MagicNum;
 import com.hbsoo.commons.message.MessageHeader;
 import com.hbsoo.protobuf.conf.MessageTypeHandleMapper;
 import com.hbsoo.protobuf.protocol.WebSocketMessage;
@@ -22,55 +23,70 @@ import java.util.function.Function;
 @ChannelHandler.Sharable
 public class MyProtobufDecoder extends MessageToMessageDecoder<BinaryWebSocketFrame> {
 
-
-    private final Function<Integer,? extends ProtocolMessageEnum> messageTypeEnumForNumberFunction;
-
-    public MyProtobufDecoder(Function<Integer,? extends ProtocolMessageEnum> messageTypeEnumForNumberFunction) {
-        this.messageTypeEnumForNumberFunction = messageTypeEnumForNumberFunction;
-    }
+    //ProtobufDecoder;
+    //ProtobufEncoder;
 
     @Override
     protected void decode(ChannelHandlerContext ctx, BinaryWebSocketFrame msg, List<Object> out) throws Exception {
         ByteBuf byteBuf = msg.content();
         int readableBytes = byteBuf.readableBytes();
-        if (readableBytes < MessageHeader.HeaderLength) {
-            log.warn("error message");
+        //判断可读消息长度
+        if (readableBytes < MessageHeader.HEADER_LENGTH) {
+            log.warn("decode message exception, ByteBuf readableBytes is [{}],there is less than header length[{}]",
+                    readableBytes, MessageHeader.HEADER_LENGTH);
+            return;
+        }
+        short magicNum = byteBuf.getShort(0);//magicNum
+        int messageLength = byteBuf.getInt(2);//messageLength
+        short messageType = byteBuf.getShort(6);//messageType
+        //TODO不同的魔法头使用不同的 protobuf 消息类型
+        Function<Integer, ? extends ProtocolMessageEnum> messageTypeEnumForNumberFunction
+                = MessageTypeHandleMapper.magicNumMsgTypeMap.get(magicNum);
+        if (Objects.isNull(messageTypeEnumForNumberFunction)) {
+            log.warn("decode message exception,unknow magic number [{}]", magicNum);
             ctx.channel().closeFuture().sync();
             return;
         }
-        byteBuf.getShort(0);//magicNum
-        short messageLength = byteBuf.getShort(2);//messageLength
-        short messageType = byteBuf.getShort(4);//messageType
-        int protoBufLength = messageLength - MessageHeader.HeaderLength;
-        if (readableBytes < protoBufLength || messageLength < 0) {
-            log.warn("error message 2");
+        if (messageLength < 0) {
+            log.warn("decode message exception,protoBuf message length less than 0");
             ctx.channel().closeFuture().sync();
             return;
         }
+        int protoBufLength = messageLength - MessageHeader.HEADER_LENGTH;
+        if (readableBytes < protoBufLength) {
+            log.warn("decode message exception,ByteBuf readableBytes is [{}],there is less than protoBuf message length [{}]",
+                    readableBytes, protoBufLength);
+            return;
+        }
+
+        // 查询映射到的枚举消息类型
         ProtocolMessageEnum type = messageTypeEnumForNumberFunction.apply((int) messageType);
         //ProtoBufMessage.MessageType type = ProtoBufMessage.MessageType.forNumber(messageType);
         if (Objects.isNull(type)) {
-            log.warn("error message 3");
+            log.warn("decode message exception,protoBuf message type [{}] not found", messageType);
+            ctx.channel().closeFuture().sync();
             return;
         }
+        // 读出缓冲区中的消息头
         byteBuf.readShort();//magicNum
-        byteBuf.readShort();//messageLength
+        byteBuf.readInt();//messageLength
         byteBuf.readShort();//messageType
 
-        //ProtobufDecoder;
-        //ProtobufEncoder;
+        // 读出 protobuf 消息体
         byte[] datas = new byte[protoBufLength];
         byteBuf.readBytes(datas);
 
+        // 获取消息类型映射到的消息实例
         GeneratedMessageV3 instance = MessageTypeHandleMapper.msgMapping.get(type);
         if (Objects.isNull(instance)) {
             log.warn("ProtoBufMessage.MessageType [{}] is not register", type);
             return;
         }
+        // 获取类型解析器
         Parser<? extends GeneratedMessageV3> parserForType = instance.getParserForType();
+        // 解析 protobuf 消息体
         GeneratedMessageV3 messageV31 = parserForType.parseFrom(datas);
-        WebSocketMessage webSocketMessage = new WebSocketMessage();
-        //webSocketMessage.setMessageType(messageType);
+        WebSocketMessage webSocketMessage = new WebSocketMessage(MagicNum.getMagicNum(magicNum));
         webSocketMessage.setProtobuf(messageV31);
         out.add(webSocketMessage);
 

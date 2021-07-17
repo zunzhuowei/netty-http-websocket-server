@@ -1,5 +1,8 @@
 package com.hbsoo.client.test;
 
+import com.google.protobuf.GeneratedMessageV3;
+import com.hbsoo.commons.message.MagicNum;
+import com.hbsoo.game.protocol.GameProtocol;
 import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import com.hbsoo.websocket.protocol.ProtoBufMessage;
 import io.netty.buffer.Unpooled;
@@ -37,13 +40,19 @@ public class SendMessage {
                 WebSocketFrame frame = new PingWebSocketFrame(Unpooled.wrappedBuffer(new byte[] { 8, 1, 8, 1 }));
                 ch.writeAndFlush(frame);
             } else if (msg.toLowerCase().startsWith("bin")) {
-                WebSocketMessage webSocketMessage = new WebSocketMessage();
-
+                WebSocketMessage<ProtoBufMessage.UserReq> webSocketMessage = WebSocketMessage.newCommonMessage(ProtoBufMessage.UserReq.class);
                 ProtoBufMessage.UserReq.Builder builder = ProtoBufMessage.UserReq.newBuilder();
                 builder.setUid(111).setJob("coder");
                 ProtoBufMessage.UserReq userReq = builder.build();
                 webSocketMessage.setProtobuf(userReq);
                 ch.writeAndFlush(webSocketMessage);
+
+                WebSocketMessage<GameProtocol.LoginCmd> webSocketMessage2 = WebSocketMessage.newGameMessage(GameProtocol.LoginCmd.class);
+                GameProtocol.LoginCmd.Builder builder1 = GameProtocol.LoginCmd.newBuilder();
+                builder1.setUid(123).setUserName("张三").setSessionKey("zzzzzzzzzzzz");
+                GameProtocol.LoginCmd build = builder1.build();
+                webSocketMessage2.setProtobuf(build);
+                ch.writeAndFlush(webSocketMessage2);
             } else {
                 WebSocketFrame frame = new TextWebSocketFrame(msg);
                 ch.writeAndFlush(frame);

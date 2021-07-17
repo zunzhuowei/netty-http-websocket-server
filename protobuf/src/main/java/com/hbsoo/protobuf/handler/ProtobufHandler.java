@@ -1,4 +1,4 @@
-package com.hbsoo.websocket.handler;
+package com.hbsoo.protobuf.handler;
 
 import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import com.hbsoo.protobuf.utils.WebSocketMessageHandlerRouter;
