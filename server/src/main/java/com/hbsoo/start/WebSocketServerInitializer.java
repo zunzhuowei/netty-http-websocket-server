@@ -22,8 +22,8 @@ public class WebSocketServerInitializer extends ChannelInitializer<SocketChannel
     private final String WEBSOCKET_PATH;
 
 
-    public WebSocketServerInitializer(String sslCtx) {
-        this.WEBSOCKET_PATH = sslCtx;
+    public WebSocketServerInitializer(String path) {
+        this.WEBSOCKET_PATH = path;
     }
 
     @Override
