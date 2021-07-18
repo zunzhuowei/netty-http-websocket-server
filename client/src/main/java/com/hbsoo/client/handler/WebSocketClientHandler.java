@@ -1,5 +1,6 @@
-package com.hbsoo.client;
+package com.hbsoo.client.handler;
 
+import com.hbsoo.client.sender.SendMessage;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.websocketx.*;

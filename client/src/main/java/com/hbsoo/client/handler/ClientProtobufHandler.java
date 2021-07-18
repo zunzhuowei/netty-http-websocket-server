@@ -1,4 +1,4 @@
-package com.hbsoo.client;
+package com.hbsoo.client.handler;
 
 import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import io.netty.channel.ChannelHandlerContext;

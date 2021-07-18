@@ -50,6 +50,9 @@ public class WebSocketMessage<T extends GeneratedMessageV3> {
      * @return WebSocketMessage
      */
     public static <T extends GeneratedMessageV3> WebSocketMessage<T> newCommonMessage(Class<T> tClass) {
+        return newCommonMessage();
+    }
+    public static <T extends GeneratedMessageV3> WebSocketMessage<T> newCommonMessage() {
         return new WebSocketMessage<>();
     }
     /**
@@ -58,6 +61,9 @@ public class WebSocketMessage<T extends GeneratedMessageV3> {
      * @return WebSocketMessage
      */
     public static <T extends GeneratedMessageV3> WebSocketMessage<T> newGameMessage(Class<T> tClass) {
+        return newGameMessage();
+    }
+    public static <T extends GeneratedMessageV3> WebSocketMessage<T> newGameMessage() {
         return new WebSocketMessage<>(MagicNum.GAME);
     }
 
