@@ -14,28 +14,28 @@ public class MainScene implements Serializable {
     /**
      * 公告
      */
-    private LinkedList<String> notices = new LinkedList<>();
+    public LinkedList<String> notices = new LinkedList<>();
 
 
     /**
      * 在该场景的玩家
      */
-    private Set<User> users = new HashSet<>();
+    public Set<User> users = new HashSet<>();
+
 
     /**
-     * 加入主场景
-     * @param users 用户
+     * 创建房间
      */
-    public void join(User... users) {
-        this.users.addAll(Arrays.asList(users));
+    public boolean createRoom(User user, String roomName) {
+        return user.createRoom(roomName);
     }
 
     /**
-     * 移除主场景
-     * @param users 用户
+     * 加入房间
      */
-    public boolean remove(User... users) {
-        return this.users.removeAll(Arrays.asList(users));
+    public void joinRoom(User user) {
+        user.joinRoom();
     }
+
 
 }

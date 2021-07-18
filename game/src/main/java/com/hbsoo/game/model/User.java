@@ -6,6 +6,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * Created by zun.wei on 2021/7/18.
@@ -40,12 +41,23 @@ public class User implements Serializable {
      */
     private Channel channel;
 
+    /**
+     * 会话秘钥
+     */
+    private String sessionKey;
+
+    /**
+     * 金币数量
+     */
+    private Long goldNum;
 
     /**
      * 创建房间
      */
-    public void createRoom() {
-
+    public boolean createRoom(String roomName) {
+        long no = new Random().nextLong();
+        GameRoom gameRoom = new GameRoom(no, roomName);
+        return GameRoomHall.createGameRoom(gameRoom);
     }
 
     /**
@@ -60,16 +72,12 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(icon, user.icon) &&
-                Objects.equals(phone, user.phone) &&
-                Objects.equals(channel, user.channel);
+        return Objects.equals(id, user.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, icon, phone, channel);
+        return Objects.hash(id);
     }
 
 

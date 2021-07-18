@@ -45,6 +45,8 @@ public class WebSocketClient {
     public static class Client {
         final String URL = System.getProperty("url", "ws://127.0.0.1:8080/websocket");
 
+        EventLoopGroup group = new NioEventLoopGroup();
+
         /**
          * 链接服务器
          */
@@ -94,7 +96,6 @@ public class WebSocketClient {
                 sslCtx = null;
             }
 
-            EventLoopGroup group = new NioEventLoopGroup();
             try {
                 // Connect with V13 (RFC 6455 aka HyBi-17). You can change it to V08 or V00.
                 // If you change it to V00, ping is not supported and remember to change
@@ -126,10 +127,14 @@ public class WebSocketClient {
 
                 Channel ch = b.connect(uri.getHost(), port).sync().channel();
                 handler.handshakeFuture().sync();
-                new SendMessage(ch).sendMsg2Server();
+                new SendMessage(ch, this).sendMsg2Server();
             } finally {
-                group.shutdownGracefully();
+                //group.shutdownGracefully();
             }
+        }
+
+        public void shutdown() {
+            group.shutdownGracefully();
         }
     }
 

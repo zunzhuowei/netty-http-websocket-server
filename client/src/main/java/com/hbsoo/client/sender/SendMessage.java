@@ -30,8 +30,10 @@ public final class SendMessage {
 
     private final ScheduledThreadPoolExecutor executor;
     private Channel channel;
+    private final WebSocketClient.Client oldClient;
 
-    public SendMessage(Channel channel) {
+    public SendMessage(Channel channel, WebSocketClient.Client client) {
+        this.oldClient = client;
         this.channel = channel;
         this.executor = new ScheduledThreadPoolExecutor(1);
         // heartbeat
@@ -58,18 +60,31 @@ public final class SendMessage {
                 boolean success = channelFuture.isSuccess();
                 if (!success) {
                     final EventLoop loop = channelFuture.channel().eventLoop();
-                    loop.schedule(() -> {
-                        WebSocketClient.Client client = new WebSocketClient.Client();
-                        try {
-                            client.connect();
-                            executor.shutdown();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }, 0, TimeUnit.SECONDS);
+                    loop.schedule(() -> reconnectServer(), 0, TimeUnit.SECONDS);
                 }
             }
         });
+    }
+
+    /**
+     * 重连服务器
+     */
+    public Runnable reconnectServer() {
+        return () -> {
+            try {
+                // 关闭旧链接
+                closeChannel();
+                // 打开新链接
+                WebSocketClient.Client client = new WebSocketClient.Client();
+                client.connect();
+                // 创建新管道成功则关闭旧客户端
+                oldClient.shutdown();
+                // 关闭线程池
+                executor.shutdown();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        };
     }
 
     /**
@@ -111,27 +126,31 @@ public final class SendMessage {
     /**
      * 发送消息到服务端
      */
-    public void sendMsg2Server() throws IOException, InterruptedException {
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
-            String msg = console.readLine();
-            if (msg == null || msg.trim().equals("")) {
-                break;
-            } else if ("bye".equals(msg.toLowerCase())) {
-                closeChannel();
-                break;
-            } else if ("ping".equals(msg.toLowerCase())) {
-                heartbeat();
-            } else if (msg.toLowerCase().startsWith("text")) {
-                sendTextMsg(msg);
-            } else {
-                List<GeneratedMessageV3> protobuf = ProtobufTestMsg.protobuf(msg);
-                if (protobuf.isEmpty()) {
-                    System.out.println("没有发现消息类型");
-                    continue;
+    public void sendMsg2Server() {
+        try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in))) {
+            while (true) {
+                try {
+                    String msg = console.readLine();
+                    if (msg == null || msg.trim().equals("")) {
+                        break;
+                    } else if ("bye".equals(msg.toLowerCase())) {
+                        closeChannel();
+                        break;
+                    } else if ("ping".equals(msg.toLowerCase())) {
+                        heartbeat();
+                    } else if (msg.toLowerCase().startsWith("text")) {
+                        sendTextMsg(msg);
+                    } else {
+                        GeneratedMessageV3 protobuf = ProtobufTestMsg.protobuf(msg);
+                        sendProtobufMsg(protobuf, MagicNum.GAME);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                protobuf.forEach(e -> sendProtobufMsg(e, MagicNum.GAME));
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            reconnectServer().run();
         }
     }
 

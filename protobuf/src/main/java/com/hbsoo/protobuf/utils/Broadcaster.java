@@ -17,14 +17,14 @@ import java.util.Objects;
 public final class Broadcaster {
 
     /** 全服管道 */
-    private static final ChannelGroup allChannel = new DefaultChannelGroup(new DefaultEventExecutor());
+    private static final ChannelGroup ALL_CHANNEL = new DefaultChannelGroup(new DefaultEventExecutor());
 
     /**
      * 订阅全服广播
      * @param channels 管道
      */
     public static void subscribe(Channel... channels) {
-        allChannel.addAll(Arrays.asList(channels));
+        ALL_CHANNEL.addAll(Arrays.asList(channels));
     }
 
     /**
@@ -32,7 +32,7 @@ public final class Broadcaster {
      * @param channels 管道
      */
     public static void unsubscribe(Channel... channels) {
-        allChannel.removeAll(Arrays.asList(channels));
+        ALL_CHANNEL.removeAll(Arrays.asList(channels));
     }
 
     /**
@@ -41,7 +41,7 @@ public final class Broadcaster {
      * @param <T> google protobuf 消息类型
      */
     public static <T extends GeneratedMessageV3> void broadcastMessage(WebSocketMessage<T> webSocketMessage) {
-        allChannel.writeAndFlush(webSocketMessage);
+        ALL_CHANNEL.writeAndFlush(webSocketMessage);
     }
 
     /**
@@ -52,7 +52,7 @@ public final class Broadcaster {
      */
     public static <T extends GeneratedMessageV3> void broadcastMessage(WebSocketMessage<T> webSocketMessage, Channel... channels) {
         for (Channel channel : channels) {
-            Channel ch = allChannel.find(channel.id());
+            Channel ch = ALL_CHANNEL.find(channel.id());
             if (Objects.nonNull(ch)) {
                 ch.writeAndFlush(webSocketMessage);
             }

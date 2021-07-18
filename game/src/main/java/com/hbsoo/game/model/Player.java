@@ -42,6 +42,11 @@ public class Player implements Serializable {
     private Long goldNum;
 
     /**
+     * 角色
+     */
+    private Role role;
+
+    /**
      * 手上的牌
      */
     private List<Card> handCards;
@@ -63,13 +68,6 @@ public class Player implements Serializable {
      * 托管
      */
     public void trusteeshipCard() {
-
-    }
-
-    /**
-     * 摸牌
-     */
-    public void moCard() {
 
     }
 
