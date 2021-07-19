@@ -2,12 +2,21 @@ syntax = "proto3";
 option java_package = "com.hbsoo.game.protocol";
 option java_outer_classname = "GameProtocol";
 
-
+// 消息类型
 enum MessageType {
   LOGIN_CMD = 0;
   LOGIN_CMD_RESP = 1;
+  CREATE_ROOM_CMD = 2;
+  CREATE_ROOM_CMD_RESP = 3;
+  JOIN_ROOM_CMD = 4;
+  JOIN_ROOM_CMD_RESP = 5;
+  READY_GAME_CMD = 6;
+  READY_GAME_CMD_RESP = 7;
+  PLAY_CARD_CMD = 8;
+  PLAY_CARD_CMD_RESP = 9;
 }
 
+// 登录
 message LoginCmd {
   uint64 uid = 1;
   string userName = 2;
@@ -15,16 +24,54 @@ message LoginCmd {
 
 }
 message LoginCmdResp {
-    CommonResp result = 1;
+  CommonResp result = 1;
 }
 
+// 创建房间
+message CreateRoomCmd{
+  string name = 1;
+}
+message CreateRoomCmdResp{
+  CommonResp result = 1;
+  uint64 roomId = 2;
+  string name = 3;
+  uint64 roomer = 4;
+}
 
+// 加入房间
+message JoinRoomCmd{
+  uint64 roomId = 1;
+}
+message JoinRoomCmdResp{
+  CommonResp result = 1;
+  uint64 roomId = 2;
+  string name = 3;
+  string roomer = 4;
+}
 
+//准备游戏
+message ReadyGameCmd {
+  uint64 roomId = 1;
+}
+message ReadyGameCmdResp{
+  CommonResp result = 1;
+}
 
+//出牌
+message PlayCardCmd {
+  repeated string cards = 1;
+  uint64 roomId = 2;
+}
+message PlayCardCmdResp {
+  repeated string cards = 1;
+}
+
+// 通用返回值
 message CommonResp {
   string message = 1;
   RespCode  code = 2;
 }
+// 返回值代码
 enum RespCode {
   SUCCESS = 0;
   FAIL = 1;

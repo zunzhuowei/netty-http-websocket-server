@@ -3,10 +3,12 @@ package com.hbsoo.game.message;
 import com.hbsoo.game.holder.SceneHolder;
 import com.hbsoo.game.model.User;
 import com.hbsoo.game.protocol.GameProtocol;
+import com.hbsoo.game.utils.ChannelAttrUtil;
 import com.hbsoo.protobuf.message.IWebSocketMessageHandler;
 import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import com.hbsoo.protobuf.utils.Broadcaster;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.util.AttributeKey;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -31,6 +33,8 @@ public class LoginCmdHandler implements IWebSocketMessageHandler<GameProtocol.Lo
         builder.setResult(GameProtocol.CommonResp.newBuilder().setCode(GameProtocol.RespCode.SUCCESS).setMessage("ok").build());
         resp.setProtobuf(builder.build());
 
+        // 往管道中写入用户id属性
+        ChannelAttrUtil.saveUserId2Channel(uid, ctx.channel());
         // 广播消息回用户
         Broadcaster.broadcastMessage(resp, ctx.channel());
     }

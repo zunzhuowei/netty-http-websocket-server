@@ -5,6 +5,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 游戏房间
@@ -27,7 +28,8 @@ public class GameRoom implements Serializable {
     /**
      * 玩家
      */
-    private Set<Player> players;
+    private Map<Long, Player> players = new ConcurrentHashMap<>(6);
+    //private Set<Player> players = new HashSet<>(8);
 
     /**
      * 牌
@@ -85,6 +87,27 @@ public class GameRoom implements Serializable {
      */
     public void playerCard() {
 
+    }
+
+    /**
+     * 添加玩家
+     * @param player 玩家
+     * @return 错误码
+     */
+    public synchronized byte addPlayer(Player player) {
+        if (Objects.isNull(player)) {
+            return 0x01;
+        }
+        if (players.size() >= 3) {
+            return 0x02;
+        }
+        final Long id = player.getId();
+        final boolean containsKey = players.containsKey(id);
+        if (containsKey) {
+            return 0x03;
+        }
+        players.putIfAbsent(id, player);
+        return 0x00;
     }
 
     @Override

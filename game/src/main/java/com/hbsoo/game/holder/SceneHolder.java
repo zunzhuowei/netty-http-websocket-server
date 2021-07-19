@@ -2,8 +2,8 @@ package com.hbsoo.game.holder;
 
 import com.hbsoo.game.model.User;
 import com.hbsoo.game.scenes.MainScene;
+import io.netty.channel.Channel;
 
-import java.nio.channels.Channel;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;

@@ -23,19 +23,19 @@ public class MainScene implements Serializable {
     public Set<User> users = new HashSet<>();
 
 
-    /**
-     * 创建房间
-     */
-    public boolean createRoom(User user, String roomName) {
-        return user.createRoom(roomName);
-    }
-
-    /**
-     * 加入房间
-     */
-    public void joinRoom(User user) {
-        user.joinRoom();
-    }
+//    /**
+//     * 创建房间
+//     */
+//    public boolean createRoom(User user, String roomName) {
+//        return user.createRoom(roomName);
+//    }
+//
+//    /**
+//     * 加入房间
+//     */
+//    public void joinRoom(User user) {
+//        user.joinRoom();
+//    }
 
 
 }

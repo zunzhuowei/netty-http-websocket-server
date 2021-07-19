@@ -54,16 +54,25 @@ public class User implements Serializable {
     /**
      * 创建房间
      */
-    public boolean createRoom(String roomName) {
+    public Long createRoom(String roomName) {
         long no = new Random().nextLong();
         GameRoom gameRoom = new GameRoom(no, roomName);
-        return GameRoomHall.createGameRoom(gameRoom);
+        boolean b = GameRoomHall.createGameRoom(gameRoom);
+        if (b) {
+            return no;
+        }
+        return null;
     }
 
     /**
      * 加入房间
      */
-    public void joinRoom() {
+    public void joinRoom(Long roomNo) {
+        Player player = new Player();
+        player.setId(this.id).setChannel(this.channel)
+                .setIcon(this.icon).setName(this.name)
+                .setGoldNum(100L);
+        final boolean b = GameRoomHall.joinGameRoom(roomNo, player);
 
     }
 
