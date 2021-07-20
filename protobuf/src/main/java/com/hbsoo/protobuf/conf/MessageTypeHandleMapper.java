@@ -85,7 +85,7 @@ public final class MessageTypeHandleMapper {
                 strMsgCode = strMsgCode.replaceAll("_", "");
                 strMsgCode = strMsgCode.toLowerCase();
 
-                if (!strMsgCode.startsWith(clazzName)) {
+                if (!strMsgCode.equals(clazzName)) {
                     continue;
                 }
 

@@ -14,9 +14,9 @@ import lombok.Data;
 public class WebSocketMessage<T extends GeneratedMessageV3> {
 
     // 消息格式 【header + body】
-    // 【header】 = magicNum(short) + messageLength(short) + messageType(short);
+    // 【header】 = magicNum(short) + messageLength(int) + messageType(short);
     // 【body】 = protobufData(byte[])
-    //  messageLength = headerLength(6byte) + protobufDataLength(byte[])
+    //  messageLength = headerLength(8byte) + protobufDataLength(byte[])
 
     //short magicNum = 0xf9f; //= byteBuf.readShort();
     //short messageLength; // = byteBuf.readShort();

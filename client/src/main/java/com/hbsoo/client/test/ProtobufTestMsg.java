@@ -20,15 +20,19 @@ import java.util.stream.Collectors;
  */
 public final class ProtobufTestMsg {
 
-//    public static final List<MessageDefinition> messages = new ArrayList<>();
-//
-//    public static void addMsgs(MessageDefinition... messageDefinitions) {
-//        messages.addAll(Arrays.asList(messageDefinitions));
-//    }
-//
-//    public static <T extends GeneratedMessageV3> MessageDefinition<T> msg(String msgNo, T t) {
-//        return new MessageDefinition().setMsgNo(msgNo).setMessage(t);
-//    }
+    /**
+     * 打印测试 json
+     * @param type 消息类型
+     * @param message protobuf 消息
+     * @throws IOException
+     */
+    public static void p(String type, Message message) throws IOException {
+        String s = ProtoJsonUtils.toJson(message);
+        String s1 = s.replaceAll("\n", "");
+        MsgTypeBuilder m = new MsgTypeBuilder().setJson(s1).setType(type);
+        String string = JSON.toJSONString(m);
+        System.out.println(string);
+    }
 
     /**
      * 获取 protobuf消息
@@ -43,31 +47,30 @@ public final class ProtobufTestMsg {
         return ProtoJsonUtils.toProtoBean(builder, msgTypeBuilder.getJson());
     }
 
-//    static {
-//        addMsgs(
-//                msg("1", ),
-//                msg("2", )
-//        );
-//    }
+    static {
+        MsgTypeBuilder.typeBuilderMapping.put("1", ProtoBufMessage.UserReq::newBuilder);
+        MsgTypeBuilder.typeBuilderMapping.put("2", GameProtocol.LoginCmd::newBuilder);
+        MsgTypeBuilder.typeBuilderMapping.put("3", GameProtocol.CreateRoomCmd::newBuilder);
+        MsgTypeBuilder.typeBuilderMapping.put("4", GameProtocol.JoinRoomCmd::newBuilder);
+        MsgTypeBuilder.typeBuilderMapping.put("5", GameProtocol.ReadyGameCmd::newBuilder);
+    }
+
 
     public static void main(String[] args) throws IOException {
         p("1", ProtoBufMessage.UserReq.newBuilder().setUid(111).setJob("coder").build());
         p("2", GameProtocol.LoginCmd.newBuilder().setUid(123).setUserName("张三").setSessionKey("zzzzzzzzzzzz").build());
+        p("3", GameProtocol.CreateRoomCmd.newBuilder().setName("这个是房间名称").build());
+        p("4", GameProtocol.JoinRoomCmd.newBuilder().setRoomId(110).build());
 
     }
 
     /*
-    {"builder":{},"json":"{  \"uid\": \"111\",  \"job\": \"coder\"}","type":"1"}
-    {"builder":{},"json":"{  \"uid\": \"123\",  \"userName\": \"张三\",  \"sessionKey\": \"zzzzzzzzzzzz\"}","type":"2"}
+{"builder":{},"json":"{\"uid\": 111,\"job\": \"coder\"}","type":"1"}
+{"builder":{},"json":"{\"uid\": 123,\"userName\": \"张三\",\"sessionKey\": \"zzzzzzzzzzzz\"}","type":"2"}
+{"builder":{},"json":"{\"name\": \"这个是房间名称\"}","type":"3"}
+{"builder":{},"json":"{\"roomId\": 7837127444958494331}","type":"4"}
      */
 
-    public static void p(String type, Message message) throws IOException {
-        String s = ProtoJsonUtils.toJson(message);
-        String s1 = s.replaceAll("\n", "");
-        MsgTypeBuilder m = new MsgTypeBuilder().setJson(s1).setType(type);
-        String string = JSON.toJSONString(m);
-        System.out.println(string);
-    }
 
 
 }

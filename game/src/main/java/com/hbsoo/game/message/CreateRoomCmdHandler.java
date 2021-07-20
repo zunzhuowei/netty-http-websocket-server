@@ -1,9 +1,8 @@
 package com.hbsoo.game.message;
 
-import com.hbsoo.game.holder.SceneHolder;
+import com.hbsoo.game.holder.SceneMainHolder;
 import com.hbsoo.game.model.User;
 import com.hbsoo.game.protocol.GameProtocol;
-import com.hbsoo.game.scenes.MainScene;
 import com.hbsoo.game.utils.ChannelAttrUtil;
 import com.hbsoo.game.utils.MessageUtils;
 import com.hbsoo.protobuf.message.IWebSocketMessageHandler;
@@ -11,13 +10,16 @@ import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import com.hbsoo.protobuf.utils.Broadcaster;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
 import java.util.Optional;
 
 /**
  * Created by zun.wei on 2021/7/19.
+ * 创建房间
  */
+@Slf4j
 public class CreateRoomCmdHandler implements IWebSocketMessageHandler<GameProtocol.CreateRoomCmd> {
 
 
@@ -28,10 +30,10 @@ public class CreateRoomCmdHandler implements IWebSocketMessageHandler<GameProtoc
         final Channel channel = ctx.channel();
         final Long userId = ChannelAttrUtil.getUserIdFromChannel(channel);
 
-        final Optional<User> userOptional = SceneHolder.getUserFromMainScene(channel);
+        final Optional<User> userOptional = SceneMainHolder.getUserFromScene(channel);
         if (!userOptional.isPresent()) {
             // 广播消息回用户
-            Broadcaster.broadcastMessage(getFailResp("不在主场景"), channel);
+            Broadcaster.broadcastMessage(getFailResp("用户不在主场景"), channel);
             return;
         }
         final User user = userOptional.get();
@@ -46,12 +48,17 @@ public class CreateRoomCmdHandler implements IWebSocketMessageHandler<GameProtoc
         user.joinRoom(roomNo);
 
         // 返回创建者
-        final WebSocketMessage<GameProtocol.CreateRoomCmdResp> resp = MessageUtils.resp(GameProtocol.CreateRoomCmdResp.class, GameProtocol.CreateRoomCmdResp.newBuilder(),
+        final WebSocketMessage<GameProtocol.CreateRoomCmdResp> resp
+                = MessageUtils.resp(GameProtocol.CreateRoomCmdResp.class,
+                GameProtocol.CreateRoomCmdResp.newBuilder(),
                 builder -> builder.setResult(MessageUtils.commonResp(GameProtocol.RespCode.SUCCESS))
                         .setRoomId(roomNo).setName(name).setRoomer(userId).build());
 
         // 广播消息回用户
         Broadcaster.broadcastMessage(resp, channel);
+        // 退出主场景
+        SceneMainHolder.removeScene(user);
+
         return;
     }
 

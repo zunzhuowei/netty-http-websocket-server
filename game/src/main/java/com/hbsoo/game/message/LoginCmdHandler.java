@@ -1,6 +1,6 @@
 package com.hbsoo.game.message;
 
-import com.hbsoo.game.holder.SceneHolder;
+import com.hbsoo.game.holder.SceneMainHolder;
 import com.hbsoo.game.model.User;
 import com.hbsoo.game.protocol.GameProtocol;
 import com.hbsoo.game.utils.ChannelAttrUtil;
@@ -8,7 +8,6 @@ import com.hbsoo.protobuf.message.IWebSocketMessageHandler;
 import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import com.hbsoo.protobuf.utils.Broadcaster;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.util.AttributeKey;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -26,7 +25,7 @@ public class LoginCmdHandler implements IWebSocketMessageHandler<GameProtocol.Lo
         long uid = loginCmd.getUid();
         String userName = loginCmd.getUserName();
         // 进入主场景
-        SceneHolder.joinMainScene(new User().setChannel(ctx.channel()).setId(uid).setName(userName).setSessionKey(sessionKey));
+        SceneMainHolder.joinScene(new User().setChannel(ctx.channel()).setId(uid).setName(userName).setSessionKey(sessionKey));
 
         WebSocketMessage<GameProtocol.LoginCmdResp> resp = WebSocketMessage.newGameMessage(GameProtocol.LoginCmdResp.class);
         GameProtocol.LoginCmdResp.Builder builder = GameProtocol.LoginCmdResp.newBuilder();

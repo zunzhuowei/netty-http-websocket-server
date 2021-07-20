@@ -63,6 +63,30 @@ public final class GameProtocol {
      * <code>PLAY_CARD_CMD_RESP = 9;</code>
      */
     PLAY_CARD_CMD_RESP(9),
+    /**
+     * <code>LOGOUT_CMD = 10;</code>
+     */
+    LOGOUT_CMD(10),
+    /**
+     * <code>LOGOUT_CMD_RESP = 11;</code>
+     */
+    LOGOUT_CMD_RESP(11),
+    /**
+     * <code>EXIT_ROOM_CMD = 12;</code>
+     */
+    EXIT_ROOM_CMD(12),
+    /**
+     * <code>EXIT_ROOM_CMD_RESP = 13;</code>
+     */
+    EXIT_ROOM_CMD_RESP(13),
+    /**
+     * <code>TRUSTEESHIP_CMD = 14;</code>
+     */
+    TRUSTEESHIP_CMD(14),
+    /**
+     * <code>TRUSTEESHIP_CMD_RESP = 15;</code>
+     */
+    TRUSTEESHIP_CMD_RESP(15),
     UNRECOGNIZED(-1),
     ;
 
@@ -106,6 +130,30 @@ public final class GameProtocol {
      * <code>PLAY_CARD_CMD_RESP = 9;</code>
      */
     public static final int PLAY_CARD_CMD_RESP_VALUE = 9;
+    /**
+     * <code>LOGOUT_CMD = 10;</code>
+     */
+    public static final int LOGOUT_CMD_VALUE = 10;
+    /**
+     * <code>LOGOUT_CMD_RESP = 11;</code>
+     */
+    public static final int LOGOUT_CMD_RESP_VALUE = 11;
+    /**
+     * <code>EXIT_ROOM_CMD = 12;</code>
+     */
+    public static final int EXIT_ROOM_CMD_VALUE = 12;
+    /**
+     * <code>EXIT_ROOM_CMD_RESP = 13;</code>
+     */
+    public static final int EXIT_ROOM_CMD_RESP_VALUE = 13;
+    /**
+     * <code>TRUSTEESHIP_CMD = 14;</code>
+     */
+    public static final int TRUSTEESHIP_CMD_VALUE = 14;
+    /**
+     * <code>TRUSTEESHIP_CMD_RESP = 15;</code>
+     */
+    public static final int TRUSTEESHIP_CMD_RESP_VALUE = 15;
 
 
     public final int getNumber() {
@@ -136,6 +184,12 @@ public final class GameProtocol {
         case 7: return READY_GAME_CMD_RESP;
         case 8: return PLAY_CARD_CMD;
         case 9: return PLAY_CARD_CMD_RESP;
+        case 10: return LOGOUT_CMD;
+        case 11: return LOGOUT_CMD_RESP;
+        case 12: return EXIT_ROOM_CMD;
+        case 13: return EXIT_ROOM_CMD_RESP;
+        case 14: return TRUSTEESHIP_CMD;
+        case 15: return TRUSTEESHIP_CMD_RESP;
         default: return null;
       }
     }
@@ -1651,6 +1705,1235 @@ public final class GameProtocol {
 
     @java.lang.Override
     public com.hbsoo.game.protocol.GameProtocol.LoginCmdResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LogoutCmdOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:LogoutCmd)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>uint64 uid = 1;</code>
+     */
+    long getUid();
+
+    /**
+     * <code>string sessionKey = 3;</code>
+     */
+    java.lang.String getSessionKey();
+    /**
+     * <code>string sessionKey = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getSessionKeyBytes();
+  }
+  /**
+   * <pre>
+   * 退出登录
+   * </pre>
+   *
+   * Protobuf type {@code LogoutCmd}
+   */
+  public  static final class LogoutCmd extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:LogoutCmd)
+      LogoutCmdOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use LogoutCmd.newBuilder() to construct.
+    private LogoutCmd(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private LogoutCmd() {
+      uid_ = 0L;
+      sessionKey_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private LogoutCmd(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              uid_ = input.readUInt64();
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              sessionKey_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_LogoutCmd_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_LogoutCmd_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hbsoo.game.protocol.GameProtocol.LogoutCmd.class, com.hbsoo.game.protocol.GameProtocol.LogoutCmd.Builder.class);
+    }
+
+    public static final int UID_FIELD_NUMBER = 1;
+    private long uid_;
+    /**
+     * <code>uint64 uid = 1;</code>
+     */
+    public long getUid() {
+      return uid_;
+    }
+
+    public static final int SESSIONKEY_FIELD_NUMBER = 3;
+    private volatile java.lang.Object sessionKey_;
+    /**
+     * <code>string sessionKey = 3;</code>
+     */
+    public java.lang.String getSessionKey() {
+      java.lang.Object ref = sessionKey_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sessionKey_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string sessionKey = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSessionKeyBytes() {
+      java.lang.Object ref = sessionKey_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sessionKey_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (uid_ != 0L) {
+        output.writeUInt64(1, uid_);
+      }
+      if (!getSessionKeyBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, sessionKey_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (uid_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, uid_);
+      }
+      if (!getSessionKeyBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, sessionKey_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.hbsoo.game.protocol.GameProtocol.LogoutCmd)) {
+        return super.equals(obj);
+      }
+      com.hbsoo.game.protocol.GameProtocol.LogoutCmd other = (com.hbsoo.game.protocol.GameProtocol.LogoutCmd) obj;
+
+      boolean result = true;
+      result = result && (getUid()
+          == other.getUid());
+      result = result && getSessionKey()
+          .equals(other.getSessionKey());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + UID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUid());
+      hash = (37 * hash) + SESSIONKEY_FIELD_NUMBER;
+      hash = (53 * hash) + getSessionKey().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.hbsoo.game.protocol.GameProtocol.LogoutCmd prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 退出登录
+     * </pre>
+     *
+     * Protobuf type {@code LogoutCmd}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:LogoutCmd)
+        com.hbsoo.game.protocol.GameProtocol.LogoutCmdOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_LogoutCmd_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_LogoutCmd_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hbsoo.game.protocol.GameProtocol.LogoutCmd.class, com.hbsoo.game.protocol.GameProtocol.LogoutCmd.Builder.class);
+      }
+
+      // Construct using com.hbsoo.game.protocol.GameProtocol.LogoutCmd.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        uid_ = 0L;
+
+        sessionKey_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_LogoutCmd_descriptor;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.LogoutCmd getDefaultInstanceForType() {
+        return com.hbsoo.game.protocol.GameProtocol.LogoutCmd.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.LogoutCmd build() {
+        com.hbsoo.game.protocol.GameProtocol.LogoutCmd result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.LogoutCmd buildPartial() {
+        com.hbsoo.game.protocol.GameProtocol.LogoutCmd result = new com.hbsoo.game.protocol.GameProtocol.LogoutCmd(this);
+        result.uid_ = uid_;
+        result.sessionKey_ = sessionKey_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hbsoo.game.protocol.GameProtocol.LogoutCmd) {
+          return mergeFrom((com.hbsoo.game.protocol.GameProtocol.LogoutCmd)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hbsoo.game.protocol.GameProtocol.LogoutCmd other) {
+        if (other == com.hbsoo.game.protocol.GameProtocol.LogoutCmd.getDefaultInstance()) return this;
+        if (other.getUid() != 0L) {
+          setUid(other.getUid());
+        }
+        if (!other.getSessionKey().isEmpty()) {
+          sessionKey_ = other.sessionKey_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hbsoo.game.protocol.GameProtocol.LogoutCmd parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hbsoo.game.protocol.GameProtocol.LogoutCmd) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long uid_ ;
+      /**
+       * <code>uint64 uid = 1;</code>
+       */
+      public long getUid() {
+        return uid_;
+      }
+      /**
+       * <code>uint64 uid = 1;</code>
+       */
+      public Builder setUid(long value) {
+        
+        uid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 uid = 1;</code>
+       */
+      public Builder clearUid() {
+        
+        uid_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object sessionKey_ = "";
+      /**
+       * <code>string sessionKey = 3;</code>
+       */
+      public java.lang.String getSessionKey() {
+        java.lang.Object ref = sessionKey_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sessionKey_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string sessionKey = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSessionKeyBytes() {
+        java.lang.Object ref = sessionKey_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sessionKey_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string sessionKey = 3;</code>
+       */
+      public Builder setSessionKey(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        sessionKey_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string sessionKey = 3;</code>
+       */
+      public Builder clearSessionKey() {
+        
+        sessionKey_ = getDefaultInstance().getSessionKey();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string sessionKey = 3;</code>
+       */
+      public Builder setSessionKeyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        sessionKey_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:LogoutCmd)
+    }
+
+    // @@protoc_insertion_point(class_scope:LogoutCmd)
+    private static final com.hbsoo.game.protocol.GameProtocol.LogoutCmd DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.hbsoo.game.protocol.GameProtocol.LogoutCmd();
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmd getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<LogoutCmd>
+        PARSER = new com.google.protobuf.AbstractParser<LogoutCmd>() {
+      @java.lang.Override
+      public LogoutCmd parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new LogoutCmd(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<LogoutCmd> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LogoutCmd> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.hbsoo.game.protocol.GameProtocol.LogoutCmd getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LogoutCmdRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:LogoutCmdResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    boolean hasResult();
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.CommonResp getResult();
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder();
+  }
+  /**
+   * Protobuf type {@code LogoutCmdResp}
+   */
+  public  static final class LogoutCmdResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:LogoutCmdResp)
+      LogoutCmdRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use LogoutCmdResp.newBuilder() to construct.
+    private LogoutCmdResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private LogoutCmdResp() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private LogoutCmdResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder subBuilder = null;
+              if (result_ != null) {
+                subBuilder = result_.toBuilder();
+              }
+              result_ = input.readMessage(com.hbsoo.game.protocol.GameProtocol.CommonResp.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(result_);
+                result_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_LogoutCmdResp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_LogoutCmdResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp.class, com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp.Builder.class);
+    }
+
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private com.hbsoo.game.protocol.GameProtocol.CommonResp result_;
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public boolean hasResult() {
+      return result_ != null;
+    }
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.CommonResp getResult() {
+      return result_ == null ? com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+    }
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder() {
+      return getResult();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (result_ != null) {
+        output.writeMessage(1, getResult());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (result_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getResult());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp)) {
+        return super.equals(obj);
+      }
+      com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp other = (com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp) obj;
+
+      boolean result = true;
+      result = result && (hasResult() == other.hasResult());
+      if (hasResult()) {
+        result = result && getResult()
+            .equals(other.getResult());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasResult()) {
+        hash = (37 * hash) + RESULT_FIELD_NUMBER;
+        hash = (53 * hash) + getResult().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code LogoutCmdResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:LogoutCmdResp)
+        com.hbsoo.game.protocol.GameProtocol.LogoutCmdRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_LogoutCmdResp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_LogoutCmdResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp.class, com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp.Builder.class);
+      }
+
+      // Construct using com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (resultBuilder_ == null) {
+          result_ = null;
+        } else {
+          result_ = null;
+          resultBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_LogoutCmdResp_descriptor;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp getDefaultInstanceForType() {
+        return com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp build() {
+        com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp buildPartial() {
+        com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp result = new com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp(this);
+        if (resultBuilder_ == null) {
+          result.result_ = result_;
+        } else {
+          result.result_ = resultBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp) {
+          return mergeFrom((com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp other) {
+        if (other == com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp.getDefaultInstance()) return this;
+        if (other.hasResult()) {
+          mergeResult(other.getResult());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.hbsoo.game.protocol.GameProtocol.CommonResp result_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder> resultBuilder_;
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public boolean hasResult() {
+        return resultBuilder_ != null || result_ != null;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonResp getResult() {
+        if (resultBuilder_ == null) {
+          return result_ == null ? com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+        } else {
+          return resultBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder setResult(com.hbsoo.game.protocol.GameProtocol.CommonResp value) {
+        if (resultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          result_ = value;
+          onChanged();
+        } else {
+          resultBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder setResult(
+          com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder builderForValue) {
+        if (resultBuilder_ == null) {
+          result_ = builderForValue.build();
+          onChanged();
+        } else {
+          resultBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder mergeResult(com.hbsoo.game.protocol.GameProtocol.CommonResp value) {
+        if (resultBuilder_ == null) {
+          if (result_ != null) {
+            result_ =
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.newBuilder(result_).mergeFrom(value).buildPartial();
+          } else {
+            result_ = value;
+          }
+          onChanged();
+        } else {
+          resultBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder clearResult() {
+        if (resultBuilder_ == null) {
+          result_ = null;
+          onChanged();
+        } else {
+          result_ = null;
+          resultBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder getResultBuilder() {
+        
+        onChanged();
+        return getResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder() {
+        if (resultBuilder_ != null) {
+          return resultBuilder_.getMessageOrBuilder();
+        } else {
+          return result_ == null ?
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+        }
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder> 
+          getResultFieldBuilder() {
+        if (resultBuilder_ == null) {
+          resultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder>(
+                  getResult(),
+                  getParentForChildren(),
+                  isClean());
+          result_ = null;
+        }
+        return resultBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:LogoutCmdResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:LogoutCmdResp)
+    private static final com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp();
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<LogoutCmdResp>
+        PARSER = new com.google.protobuf.AbstractParser<LogoutCmdResp>() {
+      @java.lang.Override
+      public LogoutCmdResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new LogoutCmdResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<LogoutCmdResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LogoutCmdResp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.hbsoo.game.protocol.GameProtocol.LogoutCmdResp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4516,6 +5799,2190 @@ public final class GameProtocol {
 
   }
 
+  public interface ExitRoomCmdOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ExitRoomCmd)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>uint64 roomId = 1;</code>
+     */
+    long getRoomId();
+  }
+  /**
+   * <pre>
+   * 退出房间
+   * </pre>
+   *
+   * Protobuf type {@code ExitRoomCmd}
+   */
+  public  static final class ExitRoomCmd extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ExitRoomCmd)
+      ExitRoomCmdOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ExitRoomCmd.newBuilder() to construct.
+    private ExitRoomCmd(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ExitRoomCmd() {
+      roomId_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ExitRoomCmd(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              roomId_ = input.readUInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_ExitRoomCmd_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_ExitRoomCmd_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd.class, com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd.Builder.class);
+    }
+
+    public static final int ROOMID_FIELD_NUMBER = 1;
+    private long roomId_;
+    /**
+     * <code>uint64 roomId = 1;</code>
+     */
+    public long getRoomId() {
+      return roomId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (roomId_ != 0L) {
+        output.writeUInt64(1, roomId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (roomId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, roomId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd)) {
+        return super.equals(obj);
+      }
+      com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd other = (com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd) obj;
+
+      boolean result = true;
+      result = result && (getRoomId()
+          == other.getRoomId());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ROOMID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getRoomId());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 退出房间
+     * </pre>
+     *
+     * Protobuf type {@code ExitRoomCmd}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ExitRoomCmd)
+        com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ExitRoomCmd_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ExitRoomCmd_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd.class, com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd.Builder.class);
+      }
+
+      // Construct using com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        roomId_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ExitRoomCmd_descriptor;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd getDefaultInstanceForType() {
+        return com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd build() {
+        com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd buildPartial() {
+        com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd result = new com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd(this);
+        result.roomId_ = roomId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd) {
+          return mergeFrom((com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd other) {
+        if (other == com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd.getDefaultInstance()) return this;
+        if (other.getRoomId() != 0L) {
+          setRoomId(other.getRoomId());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long roomId_ ;
+      /**
+       * <code>uint64 roomId = 1;</code>
+       */
+      public long getRoomId() {
+        return roomId_;
+      }
+      /**
+       * <code>uint64 roomId = 1;</code>
+       */
+      public Builder setRoomId(long value) {
+        
+        roomId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 roomId = 1;</code>
+       */
+      public Builder clearRoomId() {
+        
+        roomId_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ExitRoomCmd)
+    }
+
+    // @@protoc_insertion_point(class_scope:ExitRoomCmd)
+    private static final com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd();
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ExitRoomCmd>
+        PARSER = new com.google.protobuf.AbstractParser<ExitRoomCmd>() {
+      @java.lang.Override
+      public ExitRoomCmd parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ExitRoomCmd(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ExitRoomCmd> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ExitRoomCmd> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.hbsoo.game.protocol.GameProtocol.ExitRoomCmd getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ExitRoomCmdRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ExitRoomCmdResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    boolean hasResult();
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.CommonResp getResult();
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder();
+  }
+  /**
+   * Protobuf type {@code ExitRoomCmdResp}
+   */
+  public  static final class ExitRoomCmdResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ExitRoomCmdResp)
+      ExitRoomCmdRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ExitRoomCmdResp.newBuilder() to construct.
+    private ExitRoomCmdResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ExitRoomCmdResp() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ExitRoomCmdResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder subBuilder = null;
+              if (result_ != null) {
+                subBuilder = result_.toBuilder();
+              }
+              result_ = input.readMessage(com.hbsoo.game.protocol.GameProtocol.CommonResp.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(result_);
+                result_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_ExitRoomCmdResp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_ExitRoomCmdResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp.class, com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp.Builder.class);
+    }
+
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private com.hbsoo.game.protocol.GameProtocol.CommonResp result_;
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public boolean hasResult() {
+      return result_ != null;
+    }
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.CommonResp getResult() {
+      return result_ == null ? com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+    }
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder() {
+      return getResult();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (result_ != null) {
+        output.writeMessage(1, getResult());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (result_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getResult());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp)) {
+        return super.equals(obj);
+      }
+      com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp other = (com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp) obj;
+
+      boolean result = true;
+      result = result && (hasResult() == other.hasResult());
+      if (hasResult()) {
+        result = result && getResult()
+            .equals(other.getResult());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasResult()) {
+        hash = (37 * hash) + RESULT_FIELD_NUMBER;
+        hash = (53 * hash) + getResult().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ExitRoomCmdResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ExitRoomCmdResp)
+        com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ExitRoomCmdResp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ExitRoomCmdResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp.class, com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp.Builder.class);
+      }
+
+      // Construct using com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (resultBuilder_ == null) {
+          result_ = null;
+        } else {
+          result_ = null;
+          resultBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ExitRoomCmdResp_descriptor;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp getDefaultInstanceForType() {
+        return com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp build() {
+        com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp buildPartial() {
+        com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp result = new com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp(this);
+        if (resultBuilder_ == null) {
+          result.result_ = result_;
+        } else {
+          result.result_ = resultBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp) {
+          return mergeFrom((com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp other) {
+        if (other == com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp.getDefaultInstance()) return this;
+        if (other.hasResult()) {
+          mergeResult(other.getResult());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.hbsoo.game.protocol.GameProtocol.CommonResp result_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder> resultBuilder_;
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public boolean hasResult() {
+        return resultBuilder_ != null || result_ != null;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonResp getResult() {
+        if (resultBuilder_ == null) {
+          return result_ == null ? com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+        } else {
+          return resultBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder setResult(com.hbsoo.game.protocol.GameProtocol.CommonResp value) {
+        if (resultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          result_ = value;
+          onChanged();
+        } else {
+          resultBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder setResult(
+          com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder builderForValue) {
+        if (resultBuilder_ == null) {
+          result_ = builderForValue.build();
+          onChanged();
+        } else {
+          resultBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder mergeResult(com.hbsoo.game.protocol.GameProtocol.CommonResp value) {
+        if (resultBuilder_ == null) {
+          if (result_ != null) {
+            result_ =
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.newBuilder(result_).mergeFrom(value).buildPartial();
+          } else {
+            result_ = value;
+          }
+          onChanged();
+        } else {
+          resultBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder clearResult() {
+        if (resultBuilder_ == null) {
+          result_ = null;
+          onChanged();
+        } else {
+          result_ = null;
+          resultBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder getResultBuilder() {
+        
+        onChanged();
+        return getResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder() {
+        if (resultBuilder_ != null) {
+          return resultBuilder_.getMessageOrBuilder();
+        } else {
+          return result_ == null ?
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+        }
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder> 
+          getResultFieldBuilder() {
+        if (resultBuilder_ == null) {
+          resultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder>(
+                  getResult(),
+                  getParentForChildren(),
+                  isClean());
+          result_ = null;
+        }
+        return resultBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ExitRoomCmdResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:ExitRoomCmdResp)
+    private static final com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp();
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ExitRoomCmdResp>
+        PARSER = new com.google.protobuf.AbstractParser<ExitRoomCmdResp>() {
+      @java.lang.Override
+      public ExitRoomCmdResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ExitRoomCmdResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ExitRoomCmdResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ExitRoomCmdResp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.hbsoo.game.protocol.GameProtocol.ExitRoomCmdResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ReleaseRoomCmdOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ReleaseRoomCmd)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>uint64 roomId = 1;</code>
+     */
+    long getRoomId();
+  }
+  /**
+   * <pre>
+   * 解散房间
+   * </pre>
+   *
+   * Protobuf type {@code ReleaseRoomCmd}
+   */
+  public  static final class ReleaseRoomCmd extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ReleaseRoomCmd)
+      ReleaseRoomCmdOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReleaseRoomCmd.newBuilder() to construct.
+    private ReleaseRoomCmd(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReleaseRoomCmd() {
+      roomId_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ReleaseRoomCmd(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              roomId_ = input.readUInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_ReleaseRoomCmd_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_ReleaseRoomCmd_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd.class, com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd.Builder.class);
+    }
+
+    public static final int ROOMID_FIELD_NUMBER = 1;
+    private long roomId_;
+    /**
+     * <code>uint64 roomId = 1;</code>
+     */
+    public long getRoomId() {
+      return roomId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (roomId_ != 0L) {
+        output.writeUInt64(1, roomId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (roomId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, roomId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd)) {
+        return super.equals(obj);
+      }
+      com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd other = (com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd) obj;
+
+      boolean result = true;
+      result = result && (getRoomId()
+          == other.getRoomId());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ROOMID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getRoomId());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 解散房间
+     * </pre>
+     *
+     * Protobuf type {@code ReleaseRoomCmd}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ReleaseRoomCmd)
+        com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ReleaseRoomCmd_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ReleaseRoomCmd_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd.class, com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd.Builder.class);
+      }
+
+      // Construct using com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        roomId_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ReleaseRoomCmd_descriptor;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd getDefaultInstanceForType() {
+        return com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd build() {
+        com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd buildPartial() {
+        com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd result = new com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd(this);
+        result.roomId_ = roomId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd) {
+          return mergeFrom((com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd other) {
+        if (other == com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd.getDefaultInstance()) return this;
+        if (other.getRoomId() != 0L) {
+          setRoomId(other.getRoomId());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long roomId_ ;
+      /**
+       * <code>uint64 roomId = 1;</code>
+       */
+      public long getRoomId() {
+        return roomId_;
+      }
+      /**
+       * <code>uint64 roomId = 1;</code>
+       */
+      public Builder setRoomId(long value) {
+        
+        roomId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 roomId = 1;</code>
+       */
+      public Builder clearRoomId() {
+        
+        roomId_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ReleaseRoomCmd)
+    }
+
+    // @@protoc_insertion_point(class_scope:ReleaseRoomCmd)
+    private static final com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd();
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReleaseRoomCmd>
+        PARSER = new com.google.protobuf.AbstractParser<ReleaseRoomCmd>() {
+      @java.lang.Override
+      public ReleaseRoomCmd parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ReleaseRoomCmd(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReleaseRoomCmd> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReleaseRoomCmd> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmd getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ReleaseRoomCmdRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ReleaseRoomCmdResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    boolean hasResult();
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.CommonResp getResult();
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder();
+  }
+  /**
+   * Protobuf type {@code ReleaseRoomCmdResp}
+   */
+  public  static final class ReleaseRoomCmdResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ReleaseRoomCmdResp)
+      ReleaseRoomCmdRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReleaseRoomCmdResp.newBuilder() to construct.
+    private ReleaseRoomCmdResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReleaseRoomCmdResp() {
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ReleaseRoomCmdResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder subBuilder = null;
+              if (result_ != null) {
+                subBuilder = result_.toBuilder();
+              }
+              result_ = input.readMessage(com.hbsoo.game.protocol.GameProtocol.CommonResp.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(result_);
+                result_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_ReleaseRoomCmdResp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_ReleaseRoomCmdResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp.class, com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp.Builder.class);
+    }
+
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private com.hbsoo.game.protocol.GameProtocol.CommonResp result_;
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public boolean hasResult() {
+      return result_ != null;
+    }
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.CommonResp getResult() {
+      return result_ == null ? com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+    }
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder() {
+      return getResult();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (result_ != null) {
+        output.writeMessage(1, getResult());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (result_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getResult());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp)) {
+        return super.equals(obj);
+      }
+      com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp other = (com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp) obj;
+
+      boolean result = true;
+      result = result && (hasResult() == other.hasResult());
+      if (hasResult()) {
+        result = result && getResult()
+            .equals(other.getResult());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasResult()) {
+        hash = (37 * hash) + RESULT_FIELD_NUMBER;
+        hash = (53 * hash) + getResult().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ReleaseRoomCmdResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ReleaseRoomCmdResp)
+        com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ReleaseRoomCmdResp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ReleaseRoomCmdResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp.class, com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp.Builder.class);
+      }
+
+      // Construct using com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (resultBuilder_ == null) {
+          result_ = null;
+        } else {
+          result_ = null;
+          resultBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_ReleaseRoomCmdResp_descriptor;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp getDefaultInstanceForType() {
+        return com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp build() {
+        com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp buildPartial() {
+        com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp result = new com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp(this);
+        if (resultBuilder_ == null) {
+          result.result_ = result_;
+        } else {
+          result.result_ = resultBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp) {
+          return mergeFrom((com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp other) {
+        if (other == com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp.getDefaultInstance()) return this;
+        if (other.hasResult()) {
+          mergeResult(other.getResult());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.hbsoo.game.protocol.GameProtocol.CommonResp result_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder> resultBuilder_;
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public boolean hasResult() {
+        return resultBuilder_ != null || result_ != null;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonResp getResult() {
+        if (resultBuilder_ == null) {
+          return result_ == null ? com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+        } else {
+          return resultBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder setResult(com.hbsoo.game.protocol.GameProtocol.CommonResp value) {
+        if (resultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          result_ = value;
+          onChanged();
+        } else {
+          resultBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder setResult(
+          com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder builderForValue) {
+        if (resultBuilder_ == null) {
+          result_ = builderForValue.build();
+          onChanged();
+        } else {
+          resultBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder mergeResult(com.hbsoo.game.protocol.GameProtocol.CommonResp value) {
+        if (resultBuilder_ == null) {
+          if (result_ != null) {
+            result_ =
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.newBuilder(result_).mergeFrom(value).buildPartial();
+          } else {
+            result_ = value;
+          }
+          onChanged();
+        } else {
+          resultBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder clearResult() {
+        if (resultBuilder_ == null) {
+          result_ = null;
+          onChanged();
+        } else {
+          result_ = null;
+          resultBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder getResultBuilder() {
+        
+        onChanged();
+        return getResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder() {
+        if (resultBuilder_ != null) {
+          return resultBuilder_.getMessageOrBuilder();
+        } else {
+          return result_ == null ?
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+        }
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder> 
+          getResultFieldBuilder() {
+        if (resultBuilder_ == null) {
+          resultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder>(
+                  getResult(),
+                  getParentForChildren(),
+                  isClean());
+          result_ = null;
+        }
+        return resultBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ReleaseRoomCmdResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:ReleaseRoomCmdResp)
+    private static final com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp();
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReleaseRoomCmdResp>
+        PARSER = new com.google.protobuf.AbstractParser<ReleaseRoomCmdResp>() {
+      @java.lang.Override
+      public ReleaseRoomCmdResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ReleaseRoomCmdResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReleaseRoomCmdResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReleaseRoomCmdResp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.hbsoo.game.protocol.GameProtocol.ReleaseRoomCmdResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface ReadyGameCmdOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ReadyGameCmd)
       com.google.protobuf.MessageOrBuilder {
@@ -5603,6 +9070,1181 @@ public final class GameProtocol {
 
     @java.lang.Override
     public com.hbsoo.game.protocol.GameProtocol.ReadyGameCmdResp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TrusteeshipCmdOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TrusteeshipCmd)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>uint64 roomId = 1;</code>
+     */
+    long getRoomId();
+  }
+  /**
+   * <pre>
+   *托管
+   * </pre>
+   *
+   * Protobuf type {@code TrusteeshipCmd}
+   */
+  public  static final class TrusteeshipCmd extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:TrusteeshipCmd)
+      TrusteeshipCmdOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TrusteeshipCmd.newBuilder() to construct.
+    private TrusteeshipCmd(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TrusteeshipCmd() {
+      roomId_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TrusteeshipCmd(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              roomId_ = input.readUInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_TrusteeshipCmd_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_TrusteeshipCmd_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd.class, com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd.Builder.class);
+    }
+
+    public static final int ROOMID_FIELD_NUMBER = 1;
+    private long roomId_;
+    /**
+     * <code>uint64 roomId = 1;</code>
+     */
+    public long getRoomId() {
+      return roomId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (roomId_ != 0L) {
+        output.writeUInt64(1, roomId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (roomId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, roomId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd)) {
+        return super.equals(obj);
+      }
+      com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd other = (com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd) obj;
+
+      boolean result = true;
+      result = result && (getRoomId()
+          == other.getRoomId());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ROOMID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getRoomId());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *托管
+     * </pre>
+     *
+     * Protobuf type {@code TrusteeshipCmd}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:TrusteeshipCmd)
+        com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_TrusteeshipCmd_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_TrusteeshipCmd_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd.class, com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd.Builder.class);
+      }
+
+      // Construct using com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        roomId_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_TrusteeshipCmd_descriptor;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd getDefaultInstanceForType() {
+        return com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd build() {
+        com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd buildPartial() {
+        com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd result = new com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd(this);
+        result.roomId_ = roomId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd) {
+          return mergeFrom((com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd other) {
+        if (other == com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd.getDefaultInstance()) return this;
+        if (other.getRoomId() != 0L) {
+          setRoomId(other.getRoomId());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long roomId_ ;
+      /**
+       * <code>uint64 roomId = 1;</code>
+       */
+      public long getRoomId() {
+        return roomId_;
+      }
+      /**
+       * <code>uint64 roomId = 1;</code>
+       */
+      public Builder setRoomId(long value) {
+        
+        roomId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 roomId = 1;</code>
+       */
+      public Builder clearRoomId() {
+        
+        roomId_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:TrusteeshipCmd)
+    }
+
+    // @@protoc_insertion_point(class_scope:TrusteeshipCmd)
+    private static final com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd();
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TrusteeshipCmd>
+        PARSER = new com.google.protobuf.AbstractParser<TrusteeshipCmd>() {
+      @java.lang.Override
+      public TrusteeshipCmd parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TrusteeshipCmd(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TrusteeshipCmd> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TrusteeshipCmd> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmd getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TrusteeshipCmdRespOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:TrusteeshipCmdResp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    boolean hasResult();
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.CommonResp getResult();
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder();
+
+    /**
+     * <pre>
+     * 是否强制托管
+     * </pre>
+     *
+     * <code>uint32 force = 2;</code>
+     */
+    int getForce();
+  }
+  /**
+   * Protobuf type {@code TrusteeshipCmdResp}
+   */
+  public  static final class TrusteeshipCmdResp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:TrusteeshipCmdResp)
+      TrusteeshipCmdRespOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TrusteeshipCmdResp.newBuilder() to construct.
+    private TrusteeshipCmdResp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TrusteeshipCmdResp() {
+      force_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TrusteeshipCmdResp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder subBuilder = null;
+              if (result_ != null) {
+                subBuilder = result_.toBuilder();
+              }
+              result_ = input.readMessage(com.hbsoo.game.protocol.GameProtocol.CommonResp.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(result_);
+                result_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 16: {
+
+              force_ = input.readUInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_TrusteeshipCmdResp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_TrusteeshipCmdResp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp.class, com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp.Builder.class);
+    }
+
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private com.hbsoo.game.protocol.GameProtocol.CommonResp result_;
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public boolean hasResult() {
+      return result_ != null;
+    }
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.CommonResp getResult() {
+      return result_ == null ? com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+    }
+    /**
+     * <code>.CommonResp result = 1;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder() {
+      return getResult();
+    }
+
+    public static final int FORCE_FIELD_NUMBER = 2;
+    private int force_;
+    /**
+     * <pre>
+     * 是否强制托管
+     * </pre>
+     *
+     * <code>uint32 force = 2;</code>
+     */
+    public int getForce() {
+      return force_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (result_ != null) {
+        output.writeMessage(1, getResult());
+      }
+      if (force_ != 0) {
+        output.writeUInt32(2, force_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (result_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getResult());
+      }
+      if (force_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, force_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp)) {
+        return super.equals(obj);
+      }
+      com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp other = (com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp) obj;
+
+      boolean result = true;
+      result = result && (hasResult() == other.hasResult());
+      if (hasResult()) {
+        result = result && getResult()
+            .equals(other.getResult());
+      }
+      result = result && (getForce()
+          == other.getForce());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasResult()) {
+        hash = (37 * hash) + RESULT_FIELD_NUMBER;
+        hash = (53 * hash) + getResult().hashCode();
+      }
+      hash = (37 * hash) + FORCE_FIELD_NUMBER;
+      hash = (53 * hash) + getForce();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code TrusteeshipCmdResp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:TrusteeshipCmdResp)
+        com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdRespOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_TrusteeshipCmdResp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_TrusteeshipCmdResp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp.class, com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp.Builder.class);
+      }
+
+      // Construct using com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (resultBuilder_ == null) {
+          result_ = null;
+        } else {
+          result_ = null;
+          resultBuilder_ = null;
+        }
+        force_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_TrusteeshipCmdResp_descriptor;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp getDefaultInstanceForType() {
+        return com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp build() {
+        com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp buildPartial() {
+        com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp result = new com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp(this);
+        if (resultBuilder_ == null) {
+          result.result_ = result_;
+        } else {
+          result.result_ = resultBuilder_.build();
+        }
+        result.force_ = force_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp) {
+          return mergeFrom((com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp other) {
+        if (other == com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp.getDefaultInstance()) return this;
+        if (other.hasResult()) {
+          mergeResult(other.getResult());
+        }
+        if (other.getForce() != 0) {
+          setForce(other.getForce());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.hbsoo.game.protocol.GameProtocol.CommonResp result_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder> resultBuilder_;
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public boolean hasResult() {
+        return resultBuilder_ != null || result_ != null;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonResp getResult() {
+        if (resultBuilder_ == null) {
+          return result_ == null ? com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+        } else {
+          return resultBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder setResult(com.hbsoo.game.protocol.GameProtocol.CommonResp value) {
+        if (resultBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          result_ = value;
+          onChanged();
+        } else {
+          resultBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder setResult(
+          com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder builderForValue) {
+        if (resultBuilder_ == null) {
+          result_ = builderForValue.build();
+          onChanged();
+        } else {
+          resultBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder mergeResult(com.hbsoo.game.protocol.GameProtocol.CommonResp value) {
+        if (resultBuilder_ == null) {
+          if (result_ != null) {
+            result_ =
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.newBuilder(result_).mergeFrom(value).buildPartial();
+          } else {
+            result_ = value;
+          }
+          onChanged();
+        } else {
+          resultBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public Builder clearResult() {
+        if (resultBuilder_ == null) {
+          result_ = null;
+          onChanged();
+        } else {
+          result_ = null;
+          resultBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder getResultBuilder() {
+        
+        onChanged();
+        return getResultFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder getResultOrBuilder() {
+        if (resultBuilder_ != null) {
+          return resultBuilder_.getMessageOrBuilder();
+        } else {
+          return result_ == null ?
+              com.hbsoo.game.protocol.GameProtocol.CommonResp.getDefaultInstance() : result_;
+        }
+      }
+      /**
+       * <code>.CommonResp result = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder> 
+          getResultFieldBuilder() {
+        if (resultBuilder_ == null) {
+          resultBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.hbsoo.game.protocol.GameProtocol.CommonResp, com.hbsoo.game.protocol.GameProtocol.CommonResp.Builder, com.hbsoo.game.protocol.GameProtocol.CommonRespOrBuilder>(
+                  getResult(),
+                  getParentForChildren(),
+                  isClean());
+          result_ = null;
+        }
+        return resultBuilder_;
+      }
+
+      private int force_ ;
+      /**
+       * <pre>
+       * 是否强制托管
+       * </pre>
+       *
+       * <code>uint32 force = 2;</code>
+       */
+      public int getForce() {
+        return force_;
+      }
+      /**
+       * <pre>
+       * 是否强制托管
+       * </pre>
+       *
+       * <code>uint32 force = 2;</code>
+       */
+      public Builder setForce(int value) {
+        
+        force_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 是否强制托管
+       * </pre>
+       *
+       * <code>uint32 force = 2;</code>
+       */
+      public Builder clearForce() {
+        
+        force_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:TrusteeshipCmdResp)
+    }
+
+    // @@protoc_insertion_point(class_scope:TrusteeshipCmdResp)
+    private static final com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp();
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TrusteeshipCmdResp>
+        PARSER = new com.google.protobuf.AbstractParser<TrusteeshipCmdResp>() {
+      @java.lang.Override
+      public TrusteeshipCmdResp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TrusteeshipCmdResp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TrusteeshipCmdResp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TrusteeshipCmdResp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.hbsoo.game.protocol.GameProtocol.TrusteeshipCmdResp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -7554,6 +12196,16 @@ public final class GameProtocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_LoginCmdResp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_LogoutCmd_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_LogoutCmd_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_LogoutCmdResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_LogoutCmdResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_CreateRoomCmd_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -7574,6 +12226,26 @@ public final class GameProtocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_JoinRoomCmdResp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ExitRoomCmd_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ExitRoomCmd_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ExitRoomCmdResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ExitRoomCmdResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ReleaseRoomCmd_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ReleaseRoomCmd_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ReleaseRoomCmdResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ReleaseRoomCmdResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ReadyGameCmd_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -7583,6 +12255,16 @@ public final class GameProtocol {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_ReadyGameCmdResp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TrusteeshipCmd_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TrusteeshipCmd_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TrusteeshipCmdResp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TrusteeshipCmdResp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_PlayCardCmd_descriptor;
   private static final 
@@ -7610,26 +12292,38 @@ public final class GameProtocol {
       "\n\rMessage.proto\"=\n\010LoginCmd\022\013\n\003uid\030\001 \001(\004" +
       "\022\020\n\010userName\030\002 \001(\t\022\022\n\nsessionKey\030\003 \001(\t\"+" +
       "\n\014LoginCmdResp\022\033\n\006result\030\001 \001(\0132\013.CommonR" +
-      "esp\"\035\n\rCreateRoomCmd\022\014\n\004name\030\001 \001(\t\"^\n\021Cr" +
-      "eateRoomCmdResp\022\033\n\006result\030\001 \001(\0132\013.Common" +
-      "Resp\022\016\n\006roomId\030\002 \001(\004\022\014\n\004name\030\003 \001(\t\022\016\n\006ro" +
-      "omer\030\004 \001(\004\"\035\n\013JoinRoomCmd\022\016\n\006roomId\030\001 \001(" +
-      "\004\"\\\n\017JoinRoomCmdResp\022\033\n\006result\030\001 \001(\0132\013.C" +
-      "ommonResp\022\016\n\006roomId\030\002 \001(\004\022\014\n\004name\030\003 \001(\t\022" +
-      "\016\n\006roomer\030\004 \001(\t\"\036\n\014ReadyGameCmd\022\016\n\006roomI" +
-      "d\030\001 \001(\004\"/\n\020ReadyGameCmdResp\022\033\n\006result\030\001 " +
-      "\001(\0132\013.CommonResp\",\n\013PlayCardCmd\022\r\n\005cards" +
-      "\030\001 \003(\t\022\016\n\006roomId\030\002 \001(\004\" \n\017PlayCardCmdRes" +
-      "p\022\r\n\005cards\030\001 \003(\t\"6\n\nCommonResp\022\017\n\007messag" +
-      "e\030\001 \001(\t\022\027\n\004code\030\002 \001(\0162\t.RespCode*\342\001\n\013Mes" +
-      "sageType\022\r\n\tLOGIN_CMD\020\000\022\022\n\016LOGIN_CMD_RES" +
-      "P\020\001\022\023\n\017CREATE_ROOM_CMD\020\002\022\030\n\024CREATE_ROOM_" +
-      "CMD_RESP\020\003\022\021\n\rJOIN_ROOM_CMD\020\004\022\026\n\022JOIN_RO" +
-      "OM_CMD_RESP\020\005\022\022\n\016READY_GAME_CMD\020\006\022\027\n\023REA" +
-      "DY_GAME_CMD_RESP\020\007\022\021\n\rPLAY_CARD_CMD\020\010\022\026\n" +
-      "\022PLAY_CARD_CMD_RESP\020\t*!\n\010RespCode\022\013\n\007SUC" +
-      "CESS\020\000\022\010\n\004FAIL\020\001B\'\n\027com.hbsoo.game.proto" +
-      "colB\014GameProtocolb\006proto3"
+      "esp\",\n\tLogoutCmd\022\013\n\003uid\030\001 \001(\004\022\022\n\nsession" +
+      "Key\030\003 \001(\t\",\n\rLogoutCmdResp\022\033\n\006result\030\001 \001" +
+      "(\0132\013.CommonResp\"\035\n\rCreateRoomCmd\022\014\n\004name" +
+      "\030\001 \001(\t\"^\n\021CreateRoomCmdResp\022\033\n\006result\030\001 " +
+      "\001(\0132\013.CommonResp\022\016\n\006roomId\030\002 \001(\004\022\014\n\004name" +
+      "\030\003 \001(\t\022\016\n\006roomer\030\004 \001(\004\"\035\n\013JoinRoomCmd\022\016\n" +
+      "\006roomId\030\001 \001(\004\"\\\n\017JoinRoomCmdResp\022\033\n\006resu" +
+      "lt\030\001 \001(\0132\013.CommonResp\022\016\n\006roomId\030\002 \001(\004\022\014\n" +
+      "\004name\030\003 \001(\t\022\016\n\006roomer\030\004 \001(\t\"\035\n\013ExitRoomC" +
+      "md\022\016\n\006roomId\030\001 \001(\004\".\n\017ExitRoomCmdResp\022\033\n" +
+      "\006result\030\001 \001(\0132\013.CommonResp\" \n\016ReleaseRoo" +
+      "mCmd\022\016\n\006roomId\030\001 \001(\004\"1\n\022ReleaseRoomCmdRe" +
+      "sp\022\033\n\006result\030\001 \001(\0132\013.CommonResp\"\036\n\014Ready" +
+      "GameCmd\022\016\n\006roomId\030\001 \001(\004\"/\n\020ReadyGameCmdR" +
+      "esp\022\033\n\006result\030\001 \001(\0132\013.CommonResp\" \n\016Trus" +
+      "teeshipCmd\022\016\n\006roomId\030\001 \001(\004\"@\n\022Trusteeshi" +
+      "pCmdResp\022\033\n\006result\030\001 \001(\0132\013.CommonResp\022\r\n" +
+      "\005force\030\002 \001(\r\",\n\013PlayCardCmd\022\r\n\005cards\030\001 \003" +
+      "(\t\022\016\n\006roomId\030\002 \001(\004\" \n\017PlayCardCmdResp\022\r\n" +
+      "\005cards\030\001 \003(\t\"6\n\nCommonResp\022\017\n\007message\030\001 " +
+      "\001(\t\022\027\n\004code\030\002 \001(\0162\t.RespCode*\341\002\n\013Message" +
+      "Type\022\r\n\tLOGIN_CMD\020\000\022\022\n\016LOGIN_CMD_RESP\020\001\022" +
+      "\023\n\017CREATE_ROOM_CMD\020\002\022\030\n\024CREATE_ROOM_CMD_" +
+      "RESP\020\003\022\021\n\rJOIN_ROOM_CMD\020\004\022\026\n\022JOIN_ROOM_C" +
+      "MD_RESP\020\005\022\022\n\016READY_GAME_CMD\020\006\022\027\n\023READY_G" +
+      "AME_CMD_RESP\020\007\022\021\n\rPLAY_CARD_CMD\020\010\022\026\n\022PLA" +
+      "Y_CARD_CMD_RESP\020\t\022\016\n\nLOGOUT_CMD\020\n\022\023\n\017LOG" +
+      "OUT_CMD_RESP\020\013\022\021\n\rEXIT_ROOM_CMD\020\014\022\026\n\022EXI" +
+      "T_ROOM_CMD_RESP\020\r\022\023\n\017TRUSTEESHIP_CMD\020\016\022\030" +
+      "\n\024TRUSTEESHIP_CMD_RESP\020\017*!\n\010RespCode\022\013\n\007" +
+      "SUCCESS\020\000\022\010\n\004FAIL\020\001B\'\n\027com.hbsoo.game.pr" +
+      "otocolB\014GameProtocolb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -7655,56 +12349,104 @@ public final class GameProtocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoginCmdResp_descriptor,
         new java.lang.String[] { "Result", });
-    internal_static_CreateRoomCmd_descriptor =
+    internal_static_LogoutCmd_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_LogoutCmd_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_LogoutCmd_descriptor,
+        new java.lang.String[] { "Uid", "SessionKey", });
+    internal_static_LogoutCmdResp_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_LogoutCmdResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_LogoutCmdResp_descriptor,
+        new java.lang.String[] { "Result", });
+    internal_static_CreateRoomCmd_descriptor =
+      getDescriptor().getMessageTypes().get(4);
     internal_static_CreateRoomCmd_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CreateRoomCmd_descriptor,
         new java.lang.String[] { "Name", });
     internal_static_CreateRoomCmdResp_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_CreateRoomCmdResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CreateRoomCmdResp_descriptor,
         new java.lang.String[] { "Result", "RoomId", "Name", "Roomer", });
     internal_static_JoinRoomCmd_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_JoinRoomCmd_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JoinRoomCmd_descriptor,
         new java.lang.String[] { "RoomId", });
     internal_static_JoinRoomCmdResp_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_JoinRoomCmdResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JoinRoomCmdResp_descriptor,
         new java.lang.String[] { "Result", "RoomId", "Name", "Roomer", });
+    internal_static_ExitRoomCmd_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_ExitRoomCmd_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ExitRoomCmd_descriptor,
+        new java.lang.String[] { "RoomId", });
+    internal_static_ExitRoomCmdResp_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_ExitRoomCmdResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ExitRoomCmdResp_descriptor,
+        new java.lang.String[] { "Result", });
+    internal_static_ReleaseRoomCmd_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_ReleaseRoomCmd_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ReleaseRoomCmd_descriptor,
+        new java.lang.String[] { "RoomId", });
+    internal_static_ReleaseRoomCmdResp_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_ReleaseRoomCmdResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ReleaseRoomCmdResp_descriptor,
+        new java.lang.String[] { "Result", });
     internal_static_ReadyGameCmd_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_ReadyGameCmd_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ReadyGameCmd_descriptor,
         new java.lang.String[] { "RoomId", });
     internal_static_ReadyGameCmdResp_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_ReadyGameCmdResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ReadyGameCmdResp_descriptor,
         new java.lang.String[] { "Result", });
+    internal_static_TrusteeshipCmd_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_TrusteeshipCmd_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TrusteeshipCmd_descriptor,
+        new java.lang.String[] { "RoomId", });
+    internal_static_TrusteeshipCmdResp_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_TrusteeshipCmdResp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TrusteeshipCmdResp_descriptor,
+        new java.lang.String[] { "Result", "Force", });
     internal_static_PlayCardCmd_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_PlayCardCmd_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PlayCardCmd_descriptor,
         new java.lang.String[] { "Cards", "RoomId", });
     internal_static_PlayCardCmdResp_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_PlayCardCmdResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PlayCardCmdResp_descriptor,
         new java.lang.String[] { "Cards", });
     internal_static_CommonResp_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_CommonResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CommonResp_descriptor,

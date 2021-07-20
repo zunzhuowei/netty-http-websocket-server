@@ -57,6 +57,10 @@ public class Player implements Serializable {
     private List<Card> discardCards;
 
 
+    public Player(Long id) {
+        this.id = id;
+    }
+
     /**
      * 出牌
      */

@@ -1,5 +1,6 @@
 package com.hbsoo.game.model;
 
+import com.hbsoo.game.holder.GameRoomHallHolder;
 import io.netty.channel.Channel;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -57,7 +58,7 @@ public class User implements Serializable {
     public Long createRoom(String roomName) {
         long no = new Random().nextLong();
         GameRoom gameRoom = new GameRoom(no, roomName);
-        boolean b = GameRoomHall.createGameRoom(gameRoom);
+        boolean b = GameRoomHallHolder.createGameRoom(gameRoom);
         if (b) {
             return no;
         }
@@ -72,7 +73,7 @@ public class User implements Serializable {
         player.setId(this.id).setChannel(this.channel)
                 .setIcon(this.icon).setName(this.name)
                 .setGoldNum(100L);
-        final boolean b = GameRoomHall.joinGameRoom(roomNo, player);
+        final boolean b = GameRoomHallHolder.joinGameRoom(roomNo, player);
 
     }
 

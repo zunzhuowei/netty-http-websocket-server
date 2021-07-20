@@ -4,6 +4,7 @@ import com.hbsoo.game.model.User;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *  主场景
@@ -20,7 +21,7 @@ public class MainScene implements Serializable {
     /**
      * 在该场景的玩家
      */
-    public Set<User> users = new HashSet<>();
+    public Map<Long,User> users = new ConcurrentHashMap<>();
 
 
 //    /**

@@ -48,5 +48,18 @@ public final class MessageUtils {
         return GameProtocol.CommonResp.newBuilder().setCode(code).build();
     }
 
+    /**
+     * 公共返回值
+     * @param code
+     * @param reason
+     * @return
+     */
+    public static WebSocketMessage<GameProtocol.CommonResp> commonWebSocketResp(GameProtocol.RespCode code, String... reason) {
+        final GameProtocol.CommonResp resp = commonResp(code, reason);
+        final WebSocketMessage<GameProtocol.CommonResp> message = WebSocketMessage.newGameMessage(GameProtocol.CommonResp.class);
+        message.setProtobuf(resp);
+        return message;
+    }
+
 
 }

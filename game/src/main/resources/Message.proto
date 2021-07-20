@@ -14,6 +14,12 @@ enum MessageType {
   READY_GAME_CMD_RESP = 7;
   PLAY_CARD_CMD = 8;
   PLAY_CARD_CMD_RESP = 9;
+  LOGOUT_CMD = 10;
+  LOGOUT_CMD_RESP = 11;
+  EXIT_ROOM_CMD = 12;
+  EXIT_ROOM_CMD_RESP = 13;
+  TRUSTEESHIP_CMD = 14;
+  TRUSTEESHIP_CMD_RESP = 15;
 }
 
 // 登录
@@ -24,6 +30,15 @@ message LoginCmd {
 
 }
 message LoginCmdResp {
+  CommonResp result = 1;
+}
+
+// 退出登录
+message LogoutCmd{
+  uint64 uid = 1;
+  string sessionKey = 3;
+}
+message LogoutCmdResp{
   CommonResp result = 1;
 }
 
@@ -49,12 +64,38 @@ message JoinRoomCmdResp{
   string roomer = 4;
 }
 
+// 退出房间
+message ExitRoomCmd{
+  uint64 roomId = 1;
+}
+message ExitRoomCmdResp{
+  CommonResp result = 1;
+}
+
+// 解散房间
+message ReleaseRoomCmd{
+  uint64 roomId = 1;
+}
+message ReleaseRoomCmdResp{
+  CommonResp result = 1;
+}
+
 //准备游戏
 message ReadyGameCmd {
   uint64 roomId = 1;
 }
 message ReadyGameCmdResp{
   CommonResp result = 1;
+}
+
+//托管
+message TrusteeshipCmd{
+  uint64 roomId = 1;
+}
+message TrusteeshipCmdResp{
+  CommonResp result = 1;
+  uint32 force = 2;// 是否强制托管
+
 }
 
 //出牌

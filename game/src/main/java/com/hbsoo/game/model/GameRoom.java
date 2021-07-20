@@ -1,5 +1,8 @@
 package com.hbsoo.game.model;
 
+import com.hbsoo.game.protocol.GameProtocol;
+import com.hbsoo.game.utils.MessageUtils;
+import com.hbsoo.protobuf.exception.GlobalExceptionProcessor;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -26,10 +29,9 @@ public class GameRoom implements Serializable {
     private String name;
 
     /**
-     * 玩家
+     * 玩家，key 玩家id（用户id），value 玩家
      */
-    private Map<Long, Player> players = new ConcurrentHashMap<>(6);
-    //private Set<Player> players = new HashSet<>(8);
+    private Map<Long, Player> players = new ConcurrentHashMap<>(8);
 
     /**
      * 牌
@@ -60,6 +62,8 @@ public class GameRoom implements Serializable {
     private GameRoom(){}
 
     public GameRoom(Long no, String name) {
+        this.no = no;
+        this.name = name;
         this.cardSender = new CardSender();
         this.cards = new ArrayList<>(60);
         this.cards.addAll(Arrays.asList(
@@ -94,20 +98,23 @@ public class GameRoom implements Serializable {
      * @param player 玩家
      * @return 错误码
      */
-    public synchronized byte addPlayer(Player player) {
+    public synchronized boolean addPlayer(Player player) {
         if (Objects.isNull(player)) {
-            return 0x01;
+            throw GlobalExceptionProcessor.getInstance
+                    (MessageUtils.commonWebSocketResp(GameProtocol.RespCode.FAIL, "玩家为空"));
         }
         if (players.size() >= 3) {
-            return 0x02;
+            throw GlobalExceptionProcessor.getInstance
+                    (MessageUtils.commonWebSocketResp(GameProtocol.RespCode.FAIL, "房间已经满了"));
         }
         final Long id = player.getId();
         final boolean containsKey = players.containsKey(id);
         if (containsKey) {
-            return 0x03;
+            throw GlobalExceptionProcessor.getInstance
+                    (MessageUtils.commonWebSocketResp(GameProtocol.RespCode.FAIL, "玩家已经在房间中"));
         }
         players.putIfAbsent(id, player);
-        return 0x00;
+        return true;
     }
 
     @Override

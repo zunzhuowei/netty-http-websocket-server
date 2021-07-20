@@ -37,7 +37,7 @@ public final class SendMessage {
         this.channel = channel;
         this.executor = new ScheduledThreadPoolExecutor(1);
         // heartbeat
-        this.executor.scheduleAtFixedRate(this::heartbeat, 10, 10, TimeUnit.SECONDS);
+        this.executor.scheduleAtFixedRate(this::heartbeat, 100, 100, TimeUnit.SECONDS);
     }
 
     /**
