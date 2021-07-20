@@ -244,6 +244,124 @@ public final class GameProtocol {
 
   /**
    * <pre>
+   * 角色
+   * </pre>
+   *
+   * Protobuf enum {@code Role}
+   */
+  public enum Role
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     *农民
+     * </pre>
+     *
+     * <code>FARMER = 0;</code>
+     */
+    FARMER(0),
+    /**
+     * <pre>
+     *地主
+     * </pre>
+     *
+     * <code>LANDLORD = 1;</code>
+     */
+    LANDLORD(1),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     *农民
+     * </pre>
+     *
+     * <code>FARMER = 0;</code>
+     */
+    public static final int FARMER_VALUE = 0;
+    /**
+     * <pre>
+     *地主
+     * </pre>
+     *
+     * <code>LANDLORD = 1;</code>
+     */
+    public static final int LANDLORD_VALUE = 1;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static Role valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static Role forNumber(int value) {
+      switch (value) {
+        case 0: return FARMER;
+        case 1: return LANDLORD;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<Role>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        Role> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<Role>() {
+            public Role findValueByNumber(int number) {
+              return Role.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.getDescriptor().getEnumTypes().get(1);
+    }
+
+    private static final Role[] VALUES = values();
+
+    public static Role valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private Role(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:Role)
+  }
+
+  /**
+   * <pre>
    * 返回值代码
    * </pre>
    *
@@ -318,7 +436,7 @@ public final class GameProtocol {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return com.hbsoo.game.protocol.GameProtocol.getDescriptor().getEnumTypes().get(1);
+      return com.hbsoo.game.protocol.GameProtocol.getDescriptor().getEnumTypes().get(2);
     }
 
     private static final RespCode[] VALUES = values();
@@ -4887,14 +5005,33 @@ public final class GameProtocol {
         getNameBytes();
 
     /**
-     * <code>string roomer = 4;</code>
+     * <code>uint64 roomer = 4;</code>
      */
-    java.lang.String getRoomer();
+    long getRoomer();
+
     /**
-     * <code>string roomer = 4;</code>
+     * <code>repeated .Player players = 5;</code>
      */
-    com.google.protobuf.ByteString
-        getRoomerBytes();
+    java.util.List<com.hbsoo.game.protocol.GameProtocol.Player> 
+        getPlayersList();
+    /**
+     * <code>repeated .Player players = 5;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.Player getPlayers(int index);
+    /**
+     * <code>repeated .Player players = 5;</code>
+     */
+    int getPlayersCount();
+    /**
+     * <code>repeated .Player players = 5;</code>
+     */
+    java.util.List<? extends com.hbsoo.game.protocol.GameProtocol.PlayerOrBuilder> 
+        getPlayersOrBuilderList();
+    /**
+     * <code>repeated .Player players = 5;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.PlayerOrBuilder getPlayersOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code JoinRoomCmdResp}
@@ -4911,7 +5048,8 @@ public final class GameProtocol {
     private JoinRoomCmdResp() {
       roomId_ = 0L;
       name_ = "";
-      roomer_ = "";
+      roomer_ = 0L;
+      players_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -4962,10 +5100,18 @@ public final class GameProtocol {
               name_ = s;
               break;
             }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 32: {
 
-              roomer_ = s;
+              roomer_ = input.readUInt64();
+              break;
+            }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                players_ = new java.util.ArrayList<com.hbsoo.game.protocol.GameProtocol.Player>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              players_.add(
+                  input.readMessage(com.hbsoo.game.protocol.GameProtocol.Player.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -4983,6 +5129,9 @@ public final class GameProtocol {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          players_ = java.util.Collections.unmodifiableList(players_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -5000,6 +5149,7 @@ public final class GameProtocol {
               com.hbsoo.game.protocol.GameProtocol.JoinRoomCmdResp.class, com.hbsoo.game.protocol.GameProtocol.JoinRoomCmdResp.Builder.class);
     }
 
+    private int bitField0_;
     public static final int RESULT_FIELD_NUMBER = 1;
     private com.hbsoo.game.protocol.GameProtocol.CommonResp result_;
     /**
@@ -5065,37 +5215,47 @@ public final class GameProtocol {
     }
 
     public static final int ROOMER_FIELD_NUMBER = 4;
-    private volatile java.lang.Object roomer_;
+    private long roomer_;
     /**
-     * <code>string roomer = 4;</code>
+     * <code>uint64 roomer = 4;</code>
      */
-    public java.lang.String getRoomer() {
-      java.lang.Object ref = roomer_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        roomer_ = s;
-        return s;
-      }
+    public long getRoomer() {
+      return roomer_;
+    }
+
+    public static final int PLAYERS_FIELD_NUMBER = 5;
+    private java.util.List<com.hbsoo.game.protocol.GameProtocol.Player> players_;
+    /**
+     * <code>repeated .Player players = 5;</code>
+     */
+    public java.util.List<com.hbsoo.game.protocol.GameProtocol.Player> getPlayersList() {
+      return players_;
     }
     /**
-     * <code>string roomer = 4;</code>
+     * <code>repeated .Player players = 5;</code>
      */
-    public com.google.protobuf.ByteString
-        getRoomerBytes() {
-      java.lang.Object ref = roomer_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        roomer_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public java.util.List<? extends com.hbsoo.game.protocol.GameProtocol.PlayerOrBuilder> 
+        getPlayersOrBuilderList() {
+      return players_;
+    }
+    /**
+     * <code>repeated .Player players = 5;</code>
+     */
+    public int getPlayersCount() {
+      return players_.size();
+    }
+    /**
+     * <code>repeated .Player players = 5;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.Player getPlayers(int index) {
+      return players_.get(index);
+    }
+    /**
+     * <code>repeated .Player players = 5;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.PlayerOrBuilder getPlayersOrBuilder(
+        int index) {
+      return players_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5121,8 +5281,11 @@ public final class GameProtocol {
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, name_);
       }
-      if (!getRoomerBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, roomer_);
+      if (roomer_ != 0L) {
+        output.writeUInt64(4, roomer_);
+      }
+      for (int i = 0; i < players_.size(); i++) {
+        output.writeMessage(5, players_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -5144,8 +5307,13 @@ public final class GameProtocol {
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, name_);
       }
-      if (!getRoomerBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, roomer_);
+      if (roomer_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(4, roomer_);
+      }
+      for (int i = 0; i < players_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, players_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5172,8 +5340,10 @@ public final class GameProtocol {
           == other.getRoomId());
       result = result && getName()
           .equals(other.getName());
-      result = result && getRoomer()
-          .equals(other.getRoomer());
+      result = result && (getRoomer()
+          == other.getRoomer());
+      result = result && getPlayersList()
+          .equals(other.getPlayersList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -5195,7 +5365,12 @@ public final class GameProtocol {
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + ROOMER_FIELD_NUMBER;
-      hash = (53 * hash) + getRoomer().hashCode();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getRoomer());
+      if (getPlayersCount() > 0) {
+        hash = (37 * hash) + PLAYERS_FIELD_NUMBER;
+        hash = (53 * hash) + getPlayersList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5324,6 +5499,7 @@ public final class GameProtocol {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getPlayersFieldBuilder();
         }
       }
       @java.lang.Override
@@ -5339,8 +5515,14 @@ public final class GameProtocol {
 
         name_ = "";
 
-        roomer_ = "";
+        roomer_ = 0L;
 
+        if (playersBuilder_ == null) {
+          players_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        } else {
+          playersBuilder_.clear();
+        }
         return this;
       }
 
@@ -5367,6 +5549,8 @@ public final class GameProtocol {
       @java.lang.Override
       public com.hbsoo.game.protocol.GameProtocol.JoinRoomCmdResp buildPartial() {
         com.hbsoo.game.protocol.GameProtocol.JoinRoomCmdResp result = new com.hbsoo.game.protocol.GameProtocol.JoinRoomCmdResp(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         if (resultBuilder_ == null) {
           result.result_ = result_;
         } else {
@@ -5375,6 +5559,16 @@ public final class GameProtocol {
         result.roomId_ = roomId_;
         result.name_ = name_;
         result.roomer_ = roomer_;
+        if (playersBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+            players_ = java.util.Collections.unmodifiableList(players_);
+            bitField0_ = (bitField0_ & ~0x00000010);
+          }
+          result.players_ = players_;
+        } else {
+          result.players_ = playersBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -5433,9 +5627,34 @@ public final class GameProtocol {
           name_ = other.name_;
           onChanged();
         }
-        if (!other.getRoomer().isEmpty()) {
-          roomer_ = other.roomer_;
-          onChanged();
+        if (other.getRoomer() != 0L) {
+          setRoomer(other.getRoomer());
+        }
+        if (playersBuilder_ == null) {
+          if (!other.players_.isEmpty()) {
+            if (players_.isEmpty()) {
+              players_ = other.players_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+            } else {
+              ensurePlayersIsMutable();
+              players_.addAll(other.players_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.players_.isEmpty()) {
+            if (playersBuilder_.isEmpty()) {
+              playersBuilder_.dispose();
+              playersBuilder_ = null;
+              players_ = other.players_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+              playersBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getPlayersFieldBuilder() : null;
+            } else {
+              playersBuilder_.addAllMessages(other.players_);
+            }
+          }
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5465,6 +5684,7 @@ public final class GameProtocol {
         }
         return this;
       }
+      private int bitField0_;
 
       private com.hbsoo.game.protocol.GameProtocol.CommonResp result_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -5678,73 +5898,270 @@ public final class GameProtocol {
         return this;
       }
 
-      private java.lang.Object roomer_ = "";
+      private long roomer_ ;
       /**
-       * <code>string roomer = 4;</code>
+       * <code>uint64 roomer = 4;</code>
        */
-      public java.lang.String getRoomer() {
-        java.lang.Object ref = roomer_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          roomer_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public long getRoomer() {
+        return roomer_;
       }
       /**
-       * <code>string roomer = 4;</code>
+       * <code>uint64 roomer = 4;</code>
        */
-      public com.google.protobuf.ByteString
-          getRoomerBytes() {
-        java.lang.Object ref = roomer_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          roomer_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string roomer = 4;</code>
-       */
-      public Builder setRoomer(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setRoomer(long value) {
+        
         roomer_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string roomer = 4;</code>
+       * <code>uint64 roomer = 4;</code>
        */
       public Builder clearRoomer() {
         
-        roomer_ = getDefaultInstance().getRoomer();
+        roomer_ = 0L;
         onChanged();
         return this;
       }
+
+      private java.util.List<com.hbsoo.game.protocol.GameProtocol.Player> players_ =
+        java.util.Collections.emptyList();
+      private void ensurePlayersIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          players_ = new java.util.ArrayList<com.hbsoo.game.protocol.GameProtocol.Player>(players_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.Player, com.hbsoo.game.protocol.GameProtocol.Player.Builder, com.hbsoo.game.protocol.GameProtocol.PlayerOrBuilder> playersBuilder_;
+
       /**
-       * <code>string roomer = 4;</code>
+       * <code>repeated .Player players = 5;</code>
        */
-      public Builder setRoomerBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        roomer_ = value;
-        onChanged();
+      public java.util.List<com.hbsoo.game.protocol.GameProtocol.Player> getPlayersList() {
+        if (playersBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(players_);
+        } else {
+          return playersBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public int getPlayersCount() {
+        if (playersBuilder_ == null) {
+          return players_.size();
+        } else {
+          return playersBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Player getPlayers(int index) {
+        if (playersBuilder_ == null) {
+          return players_.get(index);
+        } else {
+          return playersBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public Builder setPlayers(
+          int index, com.hbsoo.game.protocol.GameProtocol.Player value) {
+        if (playersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayersIsMutable();
+          players_.set(index, value);
+          onChanged();
+        } else {
+          playersBuilder_.setMessage(index, value);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public Builder setPlayers(
+          int index, com.hbsoo.game.protocol.GameProtocol.Player.Builder builderForValue) {
+        if (playersBuilder_ == null) {
+          ensurePlayersIsMutable();
+          players_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          playersBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public Builder addPlayers(com.hbsoo.game.protocol.GameProtocol.Player value) {
+        if (playersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayersIsMutable();
+          players_.add(value);
+          onChanged();
+        } else {
+          playersBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public Builder addPlayers(
+          int index, com.hbsoo.game.protocol.GameProtocol.Player value) {
+        if (playersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePlayersIsMutable();
+          players_.add(index, value);
+          onChanged();
+        } else {
+          playersBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public Builder addPlayers(
+          com.hbsoo.game.protocol.GameProtocol.Player.Builder builderForValue) {
+        if (playersBuilder_ == null) {
+          ensurePlayersIsMutable();
+          players_.add(builderForValue.build());
+          onChanged();
+        } else {
+          playersBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public Builder addPlayers(
+          int index, com.hbsoo.game.protocol.GameProtocol.Player.Builder builderForValue) {
+        if (playersBuilder_ == null) {
+          ensurePlayersIsMutable();
+          players_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          playersBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public Builder addAllPlayers(
+          java.lang.Iterable<? extends com.hbsoo.game.protocol.GameProtocol.Player> values) {
+        if (playersBuilder_ == null) {
+          ensurePlayersIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, players_);
+          onChanged();
+        } else {
+          playersBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public Builder clearPlayers() {
+        if (playersBuilder_ == null) {
+          players_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+          onChanged();
+        } else {
+          playersBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public Builder removePlayers(int index) {
+        if (playersBuilder_ == null) {
+          ensurePlayersIsMutable();
+          players_.remove(index);
+          onChanged();
+        } else {
+          playersBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Player.Builder getPlayersBuilder(
+          int index) {
+        return getPlayersFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.PlayerOrBuilder getPlayersOrBuilder(
+          int index) {
+        if (playersBuilder_ == null) {
+          return players_.get(index);  } else {
+          return playersBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public java.util.List<? extends com.hbsoo.game.protocol.GameProtocol.PlayerOrBuilder> 
+           getPlayersOrBuilderList() {
+        if (playersBuilder_ != null) {
+          return playersBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(players_);
+        }
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Player.Builder addPlayersBuilder() {
+        return getPlayersFieldBuilder().addBuilder(
+            com.hbsoo.game.protocol.GameProtocol.Player.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Player.Builder addPlayersBuilder(
+          int index) {
+        return getPlayersFieldBuilder().addBuilder(
+            index, com.hbsoo.game.protocol.GameProtocol.Player.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Player players = 5;</code>
+       */
+      public java.util.List<com.hbsoo.game.protocol.GameProtocol.Player.Builder> 
+           getPlayersBuilderList() {
+        return getPlayersFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.Player, com.hbsoo.game.protocol.GameProtocol.Player.Builder, com.hbsoo.game.protocol.GameProtocol.PlayerOrBuilder> 
+          getPlayersFieldBuilder() {
+        if (playersBuilder_ == null) {
+          playersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.hbsoo.game.protocol.GameProtocol.Player, com.hbsoo.game.protocol.GameProtocol.Player.Builder, com.hbsoo.game.protocol.GameProtocol.PlayerOrBuilder>(
+                  players_,
+                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  getParentForChildren(),
+                  isClean());
+          players_ = null;
+        }
+        return playersBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -11533,6 +11950,2738 @@ public final class GameProtocol {
 
   }
 
+  public interface PlayerOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Player)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *玩家id
+     * </pre>
+     *
+     * <code>uint64 id = 1;</code>
+     */
+    long getId();
+
+    /**
+     * <pre>
+     *昵称
+     * </pre>
+     *
+     * <code>string name = 2;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <pre>
+     *昵称
+     * </pre>
+     *
+     * <code>string name = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <pre>
+     *头像
+     * </pre>
+     *
+     * <code>string icon = 3;</code>
+     */
+    java.lang.String getIcon();
+    /**
+     * <pre>
+     *头像
+     * </pre>
+     *
+     * <code>string icon = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getIconBytes();
+
+    /**
+     * <pre>
+     *金币数量
+     * </pre>
+     *
+     * <code>uint64 goldNum = 4;</code>
+     */
+    long getGoldNum();
+
+    /**
+     * <pre>
+     *角色
+     * </pre>
+     *
+     * <code>.Role role = 5;</code>
+     */
+    int getRoleValue();
+    /**
+     * <pre>
+     *角色
+     * </pre>
+     *
+     * <code>.Role role = 5;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.Role getRole();
+
+    /**
+     * <pre>
+     *手上的牌
+     * </pre>
+     *
+     * <code>repeated .Card handCards = 6;</code>
+     */
+    java.util.List<com.hbsoo.game.protocol.GameProtocol.Card> 
+        getHandCardsList();
+    /**
+     * <pre>
+     *手上的牌
+     * </pre>
+     *
+     * <code>repeated .Card handCards = 6;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.Card getHandCards(int index);
+    /**
+     * <pre>
+     *手上的牌
+     * </pre>
+     *
+     * <code>repeated .Card handCards = 6;</code>
+     */
+    int getHandCardsCount();
+    /**
+     * <pre>
+     *手上的牌
+     * </pre>
+     *
+     * <code>repeated .Card handCards = 6;</code>
+     */
+    java.util.List<? extends com.hbsoo.game.protocol.GameProtocol.CardOrBuilder> 
+        getHandCardsOrBuilderList();
+    /**
+     * <pre>
+     *手上的牌
+     * </pre>
+     *
+     * <code>repeated .Card handCards = 6;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.CardOrBuilder getHandCardsOrBuilder(
+        int index);
+
+    /**
+     * <pre>
+     *已打出的牌
+     * </pre>
+     *
+     * <code>repeated .Card discardCards = 7;</code>
+     */
+    java.util.List<com.hbsoo.game.protocol.GameProtocol.Card> 
+        getDiscardCardsList();
+    /**
+     * <pre>
+     *已打出的牌
+     * </pre>
+     *
+     * <code>repeated .Card discardCards = 7;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.Card getDiscardCards(int index);
+    /**
+     * <pre>
+     *已打出的牌
+     * </pre>
+     *
+     * <code>repeated .Card discardCards = 7;</code>
+     */
+    int getDiscardCardsCount();
+    /**
+     * <pre>
+     *已打出的牌
+     * </pre>
+     *
+     * <code>repeated .Card discardCards = 7;</code>
+     */
+    java.util.List<? extends com.hbsoo.game.protocol.GameProtocol.CardOrBuilder> 
+        getDiscardCardsOrBuilderList();
+    /**
+     * <pre>
+     *已打出的牌
+     * </pre>
+     *
+     * <code>repeated .Card discardCards = 7;</code>
+     */
+    com.hbsoo.game.protocol.GameProtocol.CardOrBuilder getDiscardCardsOrBuilder(
+        int index);
+
+    /**
+     * <pre>
+     *是否已经准备
+     * </pre>
+     *
+     * <code>int32 ready = 8;</code>
+     */
+    int getReady();
+  }
+  /**
+   * <pre>
+   * 玩家
+   * </pre>
+   *
+   * Protobuf type {@code Player}
+   */
+  public  static final class Player extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Player)
+      PlayerOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Player.newBuilder() to construct.
+    private Player(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Player() {
+      id_ = 0L;
+      name_ = "";
+      icon_ = "";
+      goldNum_ = 0L;
+      role_ = 0;
+      handCards_ = java.util.Collections.emptyList();
+      discardCards_ = java.util.Collections.emptyList();
+      ready_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Player(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              id_ = input.readUInt64();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              icon_ = s;
+              break;
+            }
+            case 32: {
+
+              goldNum_ = input.readUInt64();
+              break;
+            }
+            case 40: {
+              int rawValue = input.readEnum();
+
+              role_ = rawValue;
+              break;
+            }
+            case 50: {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+                handCards_ = new java.util.ArrayList<com.hbsoo.game.protocol.GameProtocol.Card>();
+                mutable_bitField0_ |= 0x00000020;
+              }
+              handCards_.add(
+                  input.readMessage(com.hbsoo.game.protocol.GameProtocol.Card.parser(), extensionRegistry));
+              break;
+            }
+            case 58: {
+              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+                discardCards_ = new java.util.ArrayList<com.hbsoo.game.protocol.GameProtocol.Card>();
+                mutable_bitField0_ |= 0x00000040;
+              }
+              discardCards_.add(
+                  input.readMessage(com.hbsoo.game.protocol.GameProtocol.Card.parser(), extensionRegistry));
+              break;
+            }
+            case 64: {
+
+              ready_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+          handCards_ = java.util.Collections.unmodifiableList(handCards_);
+        }
+        if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+          discardCards_ = java.util.Collections.unmodifiableList(discardCards_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_Player_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_Player_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hbsoo.game.protocol.GameProtocol.Player.class, com.hbsoo.game.protocol.GameProtocol.Player.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private long id_;
+    /**
+     * <pre>
+     *玩家id
+     * </pre>
+     *
+     * <code>uint64 id = 1;</code>
+     */
+    public long getId() {
+      return id_;
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    private volatile java.lang.Object name_;
+    /**
+     * <pre>
+     *昵称
+     * </pre>
+     *
+     * <code>string name = 2;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *昵称
+     * </pre>
+     *
+     * <code>string name = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ICON_FIELD_NUMBER = 3;
+    private volatile java.lang.Object icon_;
+    /**
+     * <pre>
+     *头像
+     * </pre>
+     *
+     * <code>string icon = 3;</code>
+     */
+    public java.lang.String getIcon() {
+      java.lang.Object ref = icon_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        icon_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *头像
+     * </pre>
+     *
+     * <code>string icon = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIconBytes() {
+      java.lang.Object ref = icon_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        icon_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int GOLDNUM_FIELD_NUMBER = 4;
+    private long goldNum_;
+    /**
+     * <pre>
+     *金币数量
+     * </pre>
+     *
+     * <code>uint64 goldNum = 4;</code>
+     */
+    public long getGoldNum() {
+      return goldNum_;
+    }
+
+    public static final int ROLE_FIELD_NUMBER = 5;
+    private int role_;
+    /**
+     * <pre>
+     *角色
+     * </pre>
+     *
+     * <code>.Role role = 5;</code>
+     */
+    public int getRoleValue() {
+      return role_;
+    }
+    /**
+     * <pre>
+     *角色
+     * </pre>
+     *
+     * <code>.Role role = 5;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.Role getRole() {
+      @SuppressWarnings("deprecation")
+      com.hbsoo.game.protocol.GameProtocol.Role result = com.hbsoo.game.protocol.GameProtocol.Role.valueOf(role_);
+      return result == null ? com.hbsoo.game.protocol.GameProtocol.Role.UNRECOGNIZED : result;
+    }
+
+    public static final int HANDCARDS_FIELD_NUMBER = 6;
+    private java.util.List<com.hbsoo.game.protocol.GameProtocol.Card> handCards_;
+    /**
+     * <pre>
+     *手上的牌
+     * </pre>
+     *
+     * <code>repeated .Card handCards = 6;</code>
+     */
+    public java.util.List<com.hbsoo.game.protocol.GameProtocol.Card> getHandCardsList() {
+      return handCards_;
+    }
+    /**
+     * <pre>
+     *手上的牌
+     * </pre>
+     *
+     * <code>repeated .Card handCards = 6;</code>
+     */
+    public java.util.List<? extends com.hbsoo.game.protocol.GameProtocol.CardOrBuilder> 
+        getHandCardsOrBuilderList() {
+      return handCards_;
+    }
+    /**
+     * <pre>
+     *手上的牌
+     * </pre>
+     *
+     * <code>repeated .Card handCards = 6;</code>
+     */
+    public int getHandCardsCount() {
+      return handCards_.size();
+    }
+    /**
+     * <pre>
+     *手上的牌
+     * </pre>
+     *
+     * <code>repeated .Card handCards = 6;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.Card getHandCards(int index) {
+      return handCards_.get(index);
+    }
+    /**
+     * <pre>
+     *手上的牌
+     * </pre>
+     *
+     * <code>repeated .Card handCards = 6;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.CardOrBuilder getHandCardsOrBuilder(
+        int index) {
+      return handCards_.get(index);
+    }
+
+    public static final int DISCARDCARDS_FIELD_NUMBER = 7;
+    private java.util.List<com.hbsoo.game.protocol.GameProtocol.Card> discardCards_;
+    /**
+     * <pre>
+     *已打出的牌
+     * </pre>
+     *
+     * <code>repeated .Card discardCards = 7;</code>
+     */
+    public java.util.List<com.hbsoo.game.protocol.GameProtocol.Card> getDiscardCardsList() {
+      return discardCards_;
+    }
+    /**
+     * <pre>
+     *已打出的牌
+     * </pre>
+     *
+     * <code>repeated .Card discardCards = 7;</code>
+     */
+    public java.util.List<? extends com.hbsoo.game.protocol.GameProtocol.CardOrBuilder> 
+        getDiscardCardsOrBuilderList() {
+      return discardCards_;
+    }
+    /**
+     * <pre>
+     *已打出的牌
+     * </pre>
+     *
+     * <code>repeated .Card discardCards = 7;</code>
+     */
+    public int getDiscardCardsCount() {
+      return discardCards_.size();
+    }
+    /**
+     * <pre>
+     *已打出的牌
+     * </pre>
+     *
+     * <code>repeated .Card discardCards = 7;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.Card getDiscardCards(int index) {
+      return discardCards_.get(index);
+    }
+    /**
+     * <pre>
+     *已打出的牌
+     * </pre>
+     *
+     * <code>repeated .Card discardCards = 7;</code>
+     */
+    public com.hbsoo.game.protocol.GameProtocol.CardOrBuilder getDiscardCardsOrBuilder(
+        int index) {
+      return discardCards_.get(index);
+    }
+
+    public static final int READY_FIELD_NUMBER = 8;
+    private int ready_;
+    /**
+     * <pre>
+     *是否已经准备
+     * </pre>
+     *
+     * <code>int32 ready = 8;</code>
+     */
+    public int getReady() {
+      return ready_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0L) {
+        output.writeUInt64(1, id_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
+      }
+      if (!getIconBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, icon_);
+      }
+      if (goldNum_ != 0L) {
+        output.writeUInt64(4, goldNum_);
+      }
+      if (role_ != com.hbsoo.game.protocol.GameProtocol.Role.FARMER.getNumber()) {
+        output.writeEnum(5, role_);
+      }
+      for (int i = 0; i < handCards_.size(); i++) {
+        output.writeMessage(6, handCards_.get(i));
+      }
+      for (int i = 0; i < discardCards_.size(); i++) {
+        output.writeMessage(7, discardCards_.get(i));
+      }
+      if (ready_ != 0) {
+        output.writeInt32(8, ready_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, id_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+      }
+      if (!getIconBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, icon_);
+      }
+      if (goldNum_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(4, goldNum_);
+      }
+      if (role_ != com.hbsoo.game.protocol.GameProtocol.Role.FARMER.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(5, role_);
+      }
+      for (int i = 0; i < handCards_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, handCards_.get(i));
+      }
+      for (int i = 0; i < discardCards_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, discardCards_.get(i));
+      }
+      if (ready_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(8, ready_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.hbsoo.game.protocol.GameProtocol.Player)) {
+        return super.equals(obj);
+      }
+      com.hbsoo.game.protocol.GameProtocol.Player other = (com.hbsoo.game.protocol.GameProtocol.Player) obj;
+
+      boolean result = true;
+      result = result && (getId()
+          == other.getId());
+      result = result && getName()
+          .equals(other.getName());
+      result = result && getIcon()
+          .equals(other.getIcon());
+      result = result && (getGoldNum()
+          == other.getGoldNum());
+      result = result && role_ == other.role_;
+      result = result && getHandCardsList()
+          .equals(other.getHandCardsList());
+      result = result && getDiscardCardsList()
+          .equals(other.getDiscardCardsList());
+      result = result && (getReady()
+          == other.getReady());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getId());
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + ICON_FIELD_NUMBER;
+      hash = (53 * hash) + getIcon().hashCode();
+      hash = (37 * hash) + GOLDNUM_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getGoldNum());
+      hash = (37 * hash) + ROLE_FIELD_NUMBER;
+      hash = (53 * hash) + role_;
+      if (getHandCardsCount() > 0) {
+        hash = (37 * hash) + HANDCARDS_FIELD_NUMBER;
+        hash = (53 * hash) + getHandCardsList().hashCode();
+      }
+      if (getDiscardCardsCount() > 0) {
+        hash = (37 * hash) + DISCARDCARDS_FIELD_NUMBER;
+        hash = (53 * hash) + getDiscardCardsList().hashCode();
+      }
+      hash = (37 * hash) + READY_FIELD_NUMBER;
+      hash = (53 * hash) + getReady();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Player parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.hbsoo.game.protocol.GameProtocol.Player prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 玩家
+     * </pre>
+     *
+     * Protobuf type {@code Player}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Player)
+        com.hbsoo.game.protocol.GameProtocol.PlayerOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_Player_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_Player_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hbsoo.game.protocol.GameProtocol.Player.class, com.hbsoo.game.protocol.GameProtocol.Player.Builder.class);
+      }
+
+      // Construct using com.hbsoo.game.protocol.GameProtocol.Player.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getHandCardsFieldBuilder();
+          getDiscardCardsFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        id_ = 0L;
+
+        name_ = "";
+
+        icon_ = "";
+
+        goldNum_ = 0L;
+
+        role_ = 0;
+
+        if (handCardsBuilder_ == null) {
+          handCards_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+        } else {
+          handCardsBuilder_.clear();
+        }
+        if (discardCardsBuilder_ == null) {
+          discardCards_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+        } else {
+          discardCardsBuilder_.clear();
+        }
+        ready_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_Player_descriptor;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.Player getDefaultInstanceForType() {
+        return com.hbsoo.game.protocol.GameProtocol.Player.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.Player build() {
+        com.hbsoo.game.protocol.GameProtocol.Player result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.Player buildPartial() {
+        com.hbsoo.game.protocol.GameProtocol.Player result = new com.hbsoo.game.protocol.GameProtocol.Player(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.id_ = id_;
+        result.name_ = name_;
+        result.icon_ = icon_;
+        result.goldNum_ = goldNum_;
+        result.role_ = role_;
+        if (handCardsBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) == 0x00000020)) {
+            handCards_ = java.util.Collections.unmodifiableList(handCards_);
+            bitField0_ = (bitField0_ & ~0x00000020);
+          }
+          result.handCards_ = handCards_;
+        } else {
+          result.handCards_ = handCardsBuilder_.build();
+        }
+        if (discardCardsBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040)) {
+            discardCards_ = java.util.Collections.unmodifiableList(discardCards_);
+            bitField0_ = (bitField0_ & ~0x00000040);
+          }
+          result.discardCards_ = discardCards_;
+        } else {
+          result.discardCards_ = discardCardsBuilder_.build();
+        }
+        result.ready_ = ready_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hbsoo.game.protocol.GameProtocol.Player) {
+          return mergeFrom((com.hbsoo.game.protocol.GameProtocol.Player)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hbsoo.game.protocol.GameProtocol.Player other) {
+        if (other == com.hbsoo.game.protocol.GameProtocol.Player.getDefaultInstance()) return this;
+        if (other.getId() != 0L) {
+          setId(other.getId());
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (!other.getIcon().isEmpty()) {
+          icon_ = other.icon_;
+          onChanged();
+        }
+        if (other.getGoldNum() != 0L) {
+          setGoldNum(other.getGoldNum());
+        }
+        if (other.role_ != 0) {
+          setRoleValue(other.getRoleValue());
+        }
+        if (handCardsBuilder_ == null) {
+          if (!other.handCards_.isEmpty()) {
+            if (handCards_.isEmpty()) {
+              handCards_ = other.handCards_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+            } else {
+              ensureHandCardsIsMutable();
+              handCards_.addAll(other.handCards_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.handCards_.isEmpty()) {
+            if (handCardsBuilder_.isEmpty()) {
+              handCardsBuilder_.dispose();
+              handCardsBuilder_ = null;
+              handCards_ = other.handCards_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+              handCardsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getHandCardsFieldBuilder() : null;
+            } else {
+              handCardsBuilder_.addAllMessages(other.handCards_);
+            }
+          }
+        }
+        if (discardCardsBuilder_ == null) {
+          if (!other.discardCards_.isEmpty()) {
+            if (discardCards_.isEmpty()) {
+              discardCards_ = other.discardCards_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+            } else {
+              ensureDiscardCardsIsMutable();
+              discardCards_.addAll(other.discardCards_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.discardCards_.isEmpty()) {
+            if (discardCardsBuilder_.isEmpty()) {
+              discardCardsBuilder_.dispose();
+              discardCardsBuilder_ = null;
+              discardCards_ = other.discardCards_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+              discardCardsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getDiscardCardsFieldBuilder() : null;
+            } else {
+              discardCardsBuilder_.addAllMessages(other.discardCards_);
+            }
+          }
+        }
+        if (other.getReady() != 0) {
+          setReady(other.getReady());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hbsoo.game.protocol.GameProtocol.Player parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hbsoo.game.protocol.GameProtocol.Player) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private long id_ ;
+      /**
+       * <pre>
+       *玩家id
+       * </pre>
+       *
+       * <code>uint64 id = 1;</code>
+       */
+      public long getId() {
+        return id_;
+      }
+      /**
+       * <pre>
+       *玩家id
+       * </pre>
+       *
+       * <code>uint64 id = 1;</code>
+       */
+      public Builder setId(long value) {
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *玩家id
+       * </pre>
+       *
+       * <code>uint64 id = 1;</code>
+       */
+      public Builder clearId() {
+        
+        id_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <pre>
+       *昵称
+       * </pre>
+       *
+       * <code>string name = 2;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *昵称
+       * </pre>
+       *
+       * <code>string name = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *昵称
+       * </pre>
+       *
+       * <code>string name = 2;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *昵称
+       * </pre>
+       *
+       * <code>string name = 2;</code>
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *昵称
+       * </pre>
+       *
+       * <code>string name = 2;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object icon_ = "";
+      /**
+       * <pre>
+       *头像
+       * </pre>
+       *
+       * <code>string icon = 3;</code>
+       */
+      public java.lang.String getIcon() {
+        java.lang.Object ref = icon_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          icon_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *头像
+       * </pre>
+       *
+       * <code>string icon = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIconBytes() {
+        java.lang.Object ref = icon_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          icon_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *头像
+       * </pre>
+       *
+       * <code>string icon = 3;</code>
+       */
+      public Builder setIcon(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        icon_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *头像
+       * </pre>
+       *
+       * <code>string icon = 3;</code>
+       */
+      public Builder clearIcon() {
+        
+        icon_ = getDefaultInstance().getIcon();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *头像
+       * </pre>
+       *
+       * <code>string icon = 3;</code>
+       */
+      public Builder setIconBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        icon_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long goldNum_ ;
+      /**
+       * <pre>
+       *金币数量
+       * </pre>
+       *
+       * <code>uint64 goldNum = 4;</code>
+       */
+      public long getGoldNum() {
+        return goldNum_;
+      }
+      /**
+       * <pre>
+       *金币数量
+       * </pre>
+       *
+       * <code>uint64 goldNum = 4;</code>
+       */
+      public Builder setGoldNum(long value) {
+        
+        goldNum_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *金币数量
+       * </pre>
+       *
+       * <code>uint64 goldNum = 4;</code>
+       */
+      public Builder clearGoldNum() {
+        
+        goldNum_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int role_ = 0;
+      /**
+       * <pre>
+       *角色
+       * </pre>
+       *
+       * <code>.Role role = 5;</code>
+       */
+      public int getRoleValue() {
+        return role_;
+      }
+      /**
+       * <pre>
+       *角色
+       * </pre>
+       *
+       * <code>.Role role = 5;</code>
+       */
+      public Builder setRoleValue(int value) {
+        role_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *角色
+       * </pre>
+       *
+       * <code>.Role role = 5;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Role getRole() {
+        @SuppressWarnings("deprecation")
+        com.hbsoo.game.protocol.GameProtocol.Role result = com.hbsoo.game.protocol.GameProtocol.Role.valueOf(role_);
+        return result == null ? com.hbsoo.game.protocol.GameProtocol.Role.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       *角色
+       * </pre>
+       *
+       * <code>.Role role = 5;</code>
+       */
+      public Builder setRole(com.hbsoo.game.protocol.GameProtocol.Role value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        role_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *角色
+       * </pre>
+       *
+       * <code>.Role role = 5;</code>
+       */
+      public Builder clearRole() {
+        
+        role_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.hbsoo.game.protocol.GameProtocol.Card> handCards_ =
+        java.util.Collections.emptyList();
+      private void ensureHandCardsIsMutable() {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+          handCards_ = new java.util.ArrayList<com.hbsoo.game.protocol.GameProtocol.Card>(handCards_);
+          bitField0_ |= 0x00000020;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.Card, com.hbsoo.game.protocol.GameProtocol.Card.Builder, com.hbsoo.game.protocol.GameProtocol.CardOrBuilder> handCardsBuilder_;
+
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public java.util.List<com.hbsoo.game.protocol.GameProtocol.Card> getHandCardsList() {
+        if (handCardsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(handCards_);
+        } else {
+          return handCardsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public int getHandCardsCount() {
+        if (handCardsBuilder_ == null) {
+          return handCards_.size();
+        } else {
+          return handCardsBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Card getHandCards(int index) {
+        if (handCardsBuilder_ == null) {
+          return handCards_.get(index);
+        } else {
+          return handCardsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public Builder setHandCards(
+          int index, com.hbsoo.game.protocol.GameProtocol.Card value) {
+        if (handCardsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHandCardsIsMutable();
+          handCards_.set(index, value);
+          onChanged();
+        } else {
+          handCardsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public Builder setHandCards(
+          int index, com.hbsoo.game.protocol.GameProtocol.Card.Builder builderForValue) {
+        if (handCardsBuilder_ == null) {
+          ensureHandCardsIsMutable();
+          handCards_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          handCardsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public Builder addHandCards(com.hbsoo.game.protocol.GameProtocol.Card value) {
+        if (handCardsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHandCardsIsMutable();
+          handCards_.add(value);
+          onChanged();
+        } else {
+          handCardsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public Builder addHandCards(
+          int index, com.hbsoo.game.protocol.GameProtocol.Card value) {
+        if (handCardsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureHandCardsIsMutable();
+          handCards_.add(index, value);
+          onChanged();
+        } else {
+          handCardsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public Builder addHandCards(
+          com.hbsoo.game.protocol.GameProtocol.Card.Builder builderForValue) {
+        if (handCardsBuilder_ == null) {
+          ensureHandCardsIsMutable();
+          handCards_.add(builderForValue.build());
+          onChanged();
+        } else {
+          handCardsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public Builder addHandCards(
+          int index, com.hbsoo.game.protocol.GameProtocol.Card.Builder builderForValue) {
+        if (handCardsBuilder_ == null) {
+          ensureHandCardsIsMutable();
+          handCards_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          handCardsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public Builder addAllHandCards(
+          java.lang.Iterable<? extends com.hbsoo.game.protocol.GameProtocol.Card> values) {
+        if (handCardsBuilder_ == null) {
+          ensureHandCardsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, handCards_);
+          onChanged();
+        } else {
+          handCardsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public Builder clearHandCards() {
+        if (handCardsBuilder_ == null) {
+          handCards_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+          onChanged();
+        } else {
+          handCardsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public Builder removeHandCards(int index) {
+        if (handCardsBuilder_ == null) {
+          ensureHandCardsIsMutable();
+          handCards_.remove(index);
+          onChanged();
+        } else {
+          handCardsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Card.Builder getHandCardsBuilder(
+          int index) {
+        return getHandCardsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CardOrBuilder getHandCardsOrBuilder(
+          int index) {
+        if (handCardsBuilder_ == null) {
+          return handCards_.get(index);  } else {
+          return handCardsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public java.util.List<? extends com.hbsoo.game.protocol.GameProtocol.CardOrBuilder> 
+           getHandCardsOrBuilderList() {
+        if (handCardsBuilder_ != null) {
+          return handCardsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(handCards_);
+        }
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Card.Builder addHandCardsBuilder() {
+        return getHandCardsFieldBuilder().addBuilder(
+            com.hbsoo.game.protocol.GameProtocol.Card.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Card.Builder addHandCardsBuilder(
+          int index) {
+        return getHandCardsFieldBuilder().addBuilder(
+            index, com.hbsoo.game.protocol.GameProtocol.Card.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *手上的牌
+       * </pre>
+       *
+       * <code>repeated .Card handCards = 6;</code>
+       */
+      public java.util.List<com.hbsoo.game.protocol.GameProtocol.Card.Builder> 
+           getHandCardsBuilderList() {
+        return getHandCardsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.Card, com.hbsoo.game.protocol.GameProtocol.Card.Builder, com.hbsoo.game.protocol.GameProtocol.CardOrBuilder> 
+          getHandCardsFieldBuilder() {
+        if (handCardsBuilder_ == null) {
+          handCardsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.hbsoo.game.protocol.GameProtocol.Card, com.hbsoo.game.protocol.GameProtocol.Card.Builder, com.hbsoo.game.protocol.GameProtocol.CardOrBuilder>(
+                  handCards_,
+                  ((bitField0_ & 0x00000020) == 0x00000020),
+                  getParentForChildren(),
+                  isClean());
+          handCards_ = null;
+        }
+        return handCardsBuilder_;
+      }
+
+      private java.util.List<com.hbsoo.game.protocol.GameProtocol.Card> discardCards_ =
+        java.util.Collections.emptyList();
+      private void ensureDiscardCardsIsMutable() {
+        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+          discardCards_ = new java.util.ArrayList<com.hbsoo.game.protocol.GameProtocol.Card>(discardCards_);
+          bitField0_ |= 0x00000040;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.Card, com.hbsoo.game.protocol.GameProtocol.Card.Builder, com.hbsoo.game.protocol.GameProtocol.CardOrBuilder> discardCardsBuilder_;
+
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public java.util.List<com.hbsoo.game.protocol.GameProtocol.Card> getDiscardCardsList() {
+        if (discardCardsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(discardCards_);
+        } else {
+          return discardCardsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public int getDiscardCardsCount() {
+        if (discardCardsBuilder_ == null) {
+          return discardCards_.size();
+        } else {
+          return discardCardsBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Card getDiscardCards(int index) {
+        if (discardCardsBuilder_ == null) {
+          return discardCards_.get(index);
+        } else {
+          return discardCardsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public Builder setDiscardCards(
+          int index, com.hbsoo.game.protocol.GameProtocol.Card value) {
+        if (discardCardsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDiscardCardsIsMutable();
+          discardCards_.set(index, value);
+          onChanged();
+        } else {
+          discardCardsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public Builder setDiscardCards(
+          int index, com.hbsoo.game.protocol.GameProtocol.Card.Builder builderForValue) {
+        if (discardCardsBuilder_ == null) {
+          ensureDiscardCardsIsMutable();
+          discardCards_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          discardCardsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public Builder addDiscardCards(com.hbsoo.game.protocol.GameProtocol.Card value) {
+        if (discardCardsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDiscardCardsIsMutable();
+          discardCards_.add(value);
+          onChanged();
+        } else {
+          discardCardsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public Builder addDiscardCards(
+          int index, com.hbsoo.game.protocol.GameProtocol.Card value) {
+        if (discardCardsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDiscardCardsIsMutable();
+          discardCards_.add(index, value);
+          onChanged();
+        } else {
+          discardCardsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public Builder addDiscardCards(
+          com.hbsoo.game.protocol.GameProtocol.Card.Builder builderForValue) {
+        if (discardCardsBuilder_ == null) {
+          ensureDiscardCardsIsMutable();
+          discardCards_.add(builderForValue.build());
+          onChanged();
+        } else {
+          discardCardsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public Builder addDiscardCards(
+          int index, com.hbsoo.game.protocol.GameProtocol.Card.Builder builderForValue) {
+        if (discardCardsBuilder_ == null) {
+          ensureDiscardCardsIsMutable();
+          discardCards_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          discardCardsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public Builder addAllDiscardCards(
+          java.lang.Iterable<? extends com.hbsoo.game.protocol.GameProtocol.Card> values) {
+        if (discardCardsBuilder_ == null) {
+          ensureDiscardCardsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, discardCards_);
+          onChanged();
+        } else {
+          discardCardsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public Builder clearDiscardCards() {
+        if (discardCardsBuilder_ == null) {
+          discardCards_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+          onChanged();
+        } else {
+          discardCardsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public Builder removeDiscardCards(int index) {
+        if (discardCardsBuilder_ == null) {
+          ensureDiscardCardsIsMutable();
+          discardCards_.remove(index);
+          onChanged();
+        } else {
+          discardCardsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Card.Builder getDiscardCardsBuilder(
+          int index) {
+        return getDiscardCardsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.CardOrBuilder getDiscardCardsOrBuilder(
+          int index) {
+        if (discardCardsBuilder_ == null) {
+          return discardCards_.get(index);  } else {
+          return discardCardsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public java.util.List<? extends com.hbsoo.game.protocol.GameProtocol.CardOrBuilder> 
+           getDiscardCardsOrBuilderList() {
+        if (discardCardsBuilder_ != null) {
+          return discardCardsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(discardCards_);
+        }
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Card.Builder addDiscardCardsBuilder() {
+        return getDiscardCardsFieldBuilder().addBuilder(
+            com.hbsoo.game.protocol.GameProtocol.Card.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public com.hbsoo.game.protocol.GameProtocol.Card.Builder addDiscardCardsBuilder(
+          int index) {
+        return getDiscardCardsFieldBuilder().addBuilder(
+            index, com.hbsoo.game.protocol.GameProtocol.Card.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *已打出的牌
+       * </pre>
+       *
+       * <code>repeated .Card discardCards = 7;</code>
+       */
+      public java.util.List<com.hbsoo.game.protocol.GameProtocol.Card.Builder> 
+           getDiscardCardsBuilderList() {
+        return getDiscardCardsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.hbsoo.game.protocol.GameProtocol.Card, com.hbsoo.game.protocol.GameProtocol.Card.Builder, com.hbsoo.game.protocol.GameProtocol.CardOrBuilder> 
+          getDiscardCardsFieldBuilder() {
+        if (discardCardsBuilder_ == null) {
+          discardCardsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.hbsoo.game.protocol.GameProtocol.Card, com.hbsoo.game.protocol.GameProtocol.Card.Builder, com.hbsoo.game.protocol.GameProtocol.CardOrBuilder>(
+                  discardCards_,
+                  ((bitField0_ & 0x00000040) == 0x00000040),
+                  getParentForChildren(),
+                  isClean());
+          discardCards_ = null;
+        }
+        return discardCardsBuilder_;
+      }
+
+      private int ready_ ;
+      /**
+       * <pre>
+       *是否已经准备
+       * </pre>
+       *
+       * <code>int32 ready = 8;</code>
+       */
+      public int getReady() {
+        return ready_;
+      }
+      /**
+       * <pre>
+       *是否已经准备
+       * </pre>
+       *
+       * <code>int32 ready = 8;</code>
+       */
+      public Builder setReady(int value) {
+        
+        ready_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *是否已经准备
+       * </pre>
+       *
+       * <code>int32 ready = 8;</code>
+       */
+      public Builder clearReady() {
+        
+        ready_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Player)
+    }
+
+    // @@protoc_insertion_point(class_scope:Player)
+    private static final com.hbsoo.game.protocol.GameProtocol.Player DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.hbsoo.game.protocol.GameProtocol.Player();
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.Player getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Player>
+        PARSER = new com.google.protobuf.AbstractParser<Player>() {
+      @java.lang.Override
+      public Player parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Player(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Player> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Player> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.hbsoo.game.protocol.GameProtocol.Player getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CardOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Card)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string name = 1;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>int32 order = 2;</code>
+     */
+    int getOrder();
+  }
+  /**
+   * <pre>
+   * 牌
+   * </pre>
+   *
+   * Protobuf type {@code Card}
+   */
+  public  static final class Card extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Card)
+      CardOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Card.newBuilder() to construct.
+    private Card(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Card() {
+      name_ = "";
+      order_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Card(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 16: {
+
+              order_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_Card_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hbsoo.game.protocol.GameProtocol.internal_static_Card_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hbsoo.game.protocol.GameProtocol.Card.class, com.hbsoo.game.protocol.GameProtocol.Card.Builder.class);
+    }
+
+    public static final int NAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>string name = 1;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ORDER_FIELD_NUMBER = 2;
+    private int order_;
+    /**
+     * <code>int32 order = 2;</code>
+     */
+    public int getOrder() {
+      return order_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+      }
+      if (order_ != 0) {
+        output.writeInt32(2, order_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+      }
+      if (order_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, order_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.hbsoo.game.protocol.GameProtocol.Card)) {
+        return super.equals(obj);
+      }
+      com.hbsoo.game.protocol.GameProtocol.Card other = (com.hbsoo.game.protocol.GameProtocol.Card) obj;
+
+      boolean result = true;
+      result = result && getName()
+          .equals(other.getName());
+      result = result && (getOrder()
+          == other.getOrder());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + ORDER_FIELD_NUMBER;
+      hash = (53 * hash) + getOrder();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.hbsoo.game.protocol.GameProtocol.Card parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.hbsoo.game.protocol.GameProtocol.Card prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 牌
+     * </pre>
+     *
+     * Protobuf type {@code Card}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Card)
+        com.hbsoo.game.protocol.GameProtocol.CardOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_Card_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_Card_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hbsoo.game.protocol.GameProtocol.Card.class, com.hbsoo.game.protocol.GameProtocol.Card.Builder.class);
+      }
+
+      // Construct using com.hbsoo.game.protocol.GameProtocol.Card.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        name_ = "";
+
+        order_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hbsoo.game.protocol.GameProtocol.internal_static_Card_descriptor;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.Card getDefaultInstanceForType() {
+        return com.hbsoo.game.protocol.GameProtocol.Card.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.Card build() {
+        com.hbsoo.game.protocol.GameProtocol.Card result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.hbsoo.game.protocol.GameProtocol.Card buildPartial() {
+        com.hbsoo.game.protocol.GameProtocol.Card result = new com.hbsoo.game.protocol.GameProtocol.Card(this);
+        result.name_ = name_;
+        result.order_ = order_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hbsoo.game.protocol.GameProtocol.Card) {
+          return mergeFrom((com.hbsoo.game.protocol.GameProtocol.Card)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hbsoo.game.protocol.GameProtocol.Card other) {
+        if (other == com.hbsoo.game.protocol.GameProtocol.Card.getDefaultInstance()) return this;
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.getOrder() != 0) {
+          setOrder(other.getOrder());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hbsoo.game.protocol.GameProtocol.Card parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hbsoo.game.protocol.GameProtocol.Card) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 1;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 1;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 1;</code>
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 1;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int order_ ;
+      /**
+       * <code>int32 order = 2;</code>
+       */
+      public int getOrder() {
+        return order_;
+      }
+      /**
+       * <code>int32 order = 2;</code>
+       */
+      public Builder setOrder(int value) {
+        
+        order_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 order = 2;</code>
+       */
+      public Builder clearOrder() {
+        
+        order_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Card)
+    }
+
+    // @@protoc_insertion_point(class_scope:Card)
+    private static final com.hbsoo.game.protocol.GameProtocol.Card DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.hbsoo.game.protocol.GameProtocol.Card();
+    }
+
+    public static com.hbsoo.game.protocol.GameProtocol.Card getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Card>
+        PARSER = new com.google.protobuf.AbstractParser<Card>() {
+      @java.lang.Override
+      public Card parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Card(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Card> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Card> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.hbsoo.game.protocol.GameProtocol.Card getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface CommonRespOrBuilder extends
       // @@protoc_insertion_point(interface_extends:CommonResp)
       com.google.protobuf.MessageOrBuilder {
@@ -12276,6 +15425,16 @@ public final class GameProtocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_PlayCardCmdResp_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Player_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Player_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Card_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Card_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_CommonResp_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -12298,32 +15457,39 @@ public final class GameProtocol {
       "\030\001 \001(\t\"^\n\021CreateRoomCmdResp\022\033\n\006result\030\001 " +
       "\001(\0132\013.CommonResp\022\016\n\006roomId\030\002 \001(\004\022\014\n\004name" +
       "\030\003 \001(\t\022\016\n\006roomer\030\004 \001(\004\"\035\n\013JoinRoomCmd\022\016\n" +
-      "\006roomId\030\001 \001(\004\"\\\n\017JoinRoomCmdResp\022\033\n\006resu" +
+      "\006roomId\030\001 \001(\004\"v\n\017JoinRoomCmdResp\022\033\n\006resu" +
       "lt\030\001 \001(\0132\013.CommonResp\022\016\n\006roomId\030\002 \001(\004\022\014\n" +
-      "\004name\030\003 \001(\t\022\016\n\006roomer\030\004 \001(\t\"\035\n\013ExitRoomC" +
-      "md\022\016\n\006roomId\030\001 \001(\004\".\n\017ExitRoomCmdResp\022\033\n" +
-      "\006result\030\001 \001(\0132\013.CommonResp\" \n\016ReleaseRoo" +
-      "mCmd\022\016\n\006roomId\030\001 \001(\004\"1\n\022ReleaseRoomCmdRe" +
-      "sp\022\033\n\006result\030\001 \001(\0132\013.CommonResp\"\036\n\014Ready" +
-      "GameCmd\022\016\n\006roomId\030\001 \001(\004\"/\n\020ReadyGameCmdR" +
-      "esp\022\033\n\006result\030\001 \001(\0132\013.CommonResp\" \n\016Trus" +
-      "teeshipCmd\022\016\n\006roomId\030\001 \001(\004\"@\n\022Trusteeshi" +
-      "pCmdResp\022\033\n\006result\030\001 \001(\0132\013.CommonResp\022\r\n" +
-      "\005force\030\002 \001(\r\",\n\013PlayCardCmd\022\r\n\005cards\030\001 \003" +
-      "(\t\022\016\n\006roomId\030\002 \001(\004\" \n\017PlayCardCmdResp\022\r\n" +
-      "\005cards\030\001 \003(\t\"6\n\nCommonResp\022\017\n\007message\030\001 " +
-      "\001(\t\022\027\n\004code\030\002 \001(\0162\t.RespCode*\341\002\n\013Message" +
-      "Type\022\r\n\tLOGIN_CMD\020\000\022\022\n\016LOGIN_CMD_RESP\020\001\022" +
-      "\023\n\017CREATE_ROOM_CMD\020\002\022\030\n\024CREATE_ROOM_CMD_" +
-      "RESP\020\003\022\021\n\rJOIN_ROOM_CMD\020\004\022\026\n\022JOIN_ROOM_C" +
-      "MD_RESP\020\005\022\022\n\016READY_GAME_CMD\020\006\022\027\n\023READY_G" +
-      "AME_CMD_RESP\020\007\022\021\n\rPLAY_CARD_CMD\020\010\022\026\n\022PLA" +
-      "Y_CARD_CMD_RESP\020\t\022\016\n\nLOGOUT_CMD\020\n\022\023\n\017LOG" +
-      "OUT_CMD_RESP\020\013\022\021\n\rEXIT_ROOM_CMD\020\014\022\026\n\022EXI" +
-      "T_ROOM_CMD_RESP\020\r\022\023\n\017TRUSTEESHIP_CMD\020\016\022\030" +
-      "\n\024TRUSTEESHIP_CMD_RESP\020\017*!\n\010RespCode\022\013\n\007" +
-      "SUCCESS\020\000\022\010\n\004FAIL\020\001B\'\n\027com.hbsoo.game.pr" +
-      "otocolB\014GameProtocolb\006proto3"
+      "\004name\030\003 \001(\t\022\016\n\006roomer\030\004 \001(\004\022\030\n\007players\030\005" +
+      " \003(\0132\007.Player\"\035\n\013ExitRoomCmd\022\016\n\006roomId\030\001" +
+      " \001(\004\".\n\017ExitRoomCmdResp\022\033\n\006result\030\001 \001(\0132" +
+      "\013.CommonResp\" \n\016ReleaseRoomCmd\022\016\n\006roomId" +
+      "\030\001 \001(\004\"1\n\022ReleaseRoomCmdResp\022\033\n\006result\030\001" +
+      " \001(\0132\013.CommonResp\"\036\n\014ReadyGameCmd\022\016\n\006roo" +
+      "mId\030\001 \001(\004\"/\n\020ReadyGameCmdResp\022\033\n\006result\030" +
+      "\001 \001(\0132\013.CommonResp\" \n\016TrusteeshipCmd\022\016\n\006" +
+      "roomId\030\001 \001(\004\"@\n\022TrusteeshipCmdResp\022\033\n\006re" +
+      "sult\030\001 \001(\0132\013.CommonResp\022\r\n\005force\030\002 \001(\r\"," +
+      "\n\013PlayCardCmd\022\r\n\005cards\030\001 \003(\t\022\016\n\006roomId\030\002" +
+      " \001(\004\" \n\017PlayCardCmdResp\022\r\n\005cards\030\001 \003(\t\"\234" +
+      "\001\n\006Player\022\n\n\002id\030\001 \001(\004\022\014\n\004name\030\002 \001(\t\022\014\n\004i" +
+      "con\030\003 \001(\t\022\017\n\007goldNum\030\004 \001(\004\022\023\n\004role\030\005 \001(\016" +
+      "2\005.Role\022\030\n\thandCards\030\006 \003(\0132\005.Card\022\033\n\014dis" +
+      "cardCards\030\007 \003(\0132\005.Card\022\r\n\005ready\030\010 \001(\005\"#\n" +
+      "\004Card\022\014\n\004name\030\001 \001(\t\022\r\n\005order\030\002 \001(\005\"6\n\nCo" +
+      "mmonResp\022\017\n\007message\030\001 \001(\t\022\027\n\004code\030\002 \001(\0162" +
+      "\t.RespCode*\341\002\n\013MessageType\022\r\n\tLOGIN_CMD\020" +
+      "\000\022\022\n\016LOGIN_CMD_RESP\020\001\022\023\n\017CREATE_ROOM_CMD" +
+      "\020\002\022\030\n\024CREATE_ROOM_CMD_RESP\020\003\022\021\n\rJOIN_ROO" +
+      "M_CMD\020\004\022\026\n\022JOIN_ROOM_CMD_RESP\020\005\022\022\n\016READY" +
+      "_GAME_CMD\020\006\022\027\n\023READY_GAME_CMD_RESP\020\007\022\021\n\r" +
+      "PLAY_CARD_CMD\020\010\022\026\n\022PLAY_CARD_CMD_RESP\020\t\022" +
+      "\016\n\nLOGOUT_CMD\020\n\022\023\n\017LOGOUT_CMD_RESP\020\013\022\021\n\r" +
+      "EXIT_ROOM_CMD\020\014\022\026\n\022EXIT_ROOM_CMD_RESP\020\r\022" +
+      "\023\n\017TRUSTEESHIP_CMD\020\016\022\030\n\024TRUSTEESHIP_CMD_" +
+      "RESP\020\017* \n\004Role\022\n\n\006FARMER\020\000\022\014\n\010LANDLORD\020\001" +
+      "*!\n\010RespCode\022\013\n\007SUCCESS\020\000\022\010\n\004FAIL\020\001B\'\n\027c" +
+      "om.hbsoo.game.protocolB\014GameProtocolb\006pr" +
+      "oto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -12384,7 +15550,7 @@ public final class GameProtocol {
     internal_static_JoinRoomCmdResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_JoinRoomCmdResp_descriptor,
-        new java.lang.String[] { "Result", "RoomId", "Name", "Roomer", });
+        new java.lang.String[] { "Result", "RoomId", "Name", "Roomer", "Players", });
     internal_static_ExitRoomCmd_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_ExitRoomCmd_fieldAccessorTable = new
@@ -12445,8 +15611,20 @@ public final class GameProtocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PlayCardCmdResp_descriptor,
         new java.lang.String[] { "Cards", });
-    internal_static_CommonResp_descriptor =
+    internal_static_Player_descriptor =
       getDescriptor().getMessageTypes().get(18);
+    internal_static_Player_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Player_descriptor,
+        new java.lang.String[] { "Id", "Name", "Icon", "GoldNum", "Role", "HandCards", "DiscardCards", "Ready", });
+    internal_static_Card_descriptor =
+      getDescriptor().getMessageTypes().get(19);
+    internal_static_Card_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Card_descriptor,
+        new java.lang.String[] { "Name", "Order", });
+    internal_static_CommonResp_descriptor =
+      getDescriptor().getMessageTypes().get(20);
     internal_static_CommonResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CommonResp_descriptor,

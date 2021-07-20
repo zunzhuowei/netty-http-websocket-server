@@ -21,16 +21,24 @@ public class ProtobufHandler extends SimpleChannelInboundHandler<WebSocketMessag
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         if (cause instanceof GlobalExceptionProcessor) {
-            GlobalExceptionProcessor exception = (GlobalExceptionProcessor) cause;
-            final WebSocketMessage<? extends GeneratedMessageV3> message = exception.getWebSocketMessage();
-            if (Objects.isNull(message)) {
-                return;
-            }
-            ctx.channel().writeAndFlush(message);
+            writeGlobalException(ctx, (GlobalExceptionProcessor) cause);
             return;
+        } else if (cause.getCause() instanceof GlobalExceptionProcessor) {
+            writeGlobalException(ctx, (GlobalExceptionProcessor) cause.getCause());
+            return;
+        } else {
+            cause.printStackTrace();
+            log.info(cause.getMessage());
         }
-        cause.printStackTrace();
-        log.info(cause.getMessage());
+    }
+
+    public void writeGlobalException(ChannelHandlerContext ctx, GlobalExceptionProcessor cause) {
+        GlobalExceptionProcessor exception = cause;
+        final WebSocketMessage<? extends GeneratedMessageV3> message = exception.getWebSocketMessage();
+        if (Objects.isNull(message)) {
+           return;
+        }
+        ctx.channel().writeAndFlush(message);
     }
 
     @Override

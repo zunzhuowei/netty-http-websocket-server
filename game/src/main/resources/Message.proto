@@ -61,7 +61,8 @@ message JoinRoomCmdResp{
   CommonResp result = 1;
   uint64 roomId = 2;
   string name = 3;
-  string roomer = 4;
+  uint64 roomer = 4;
+  repeated Player players = 5;
 }
 
 // 退出房间
@@ -105,6 +106,31 @@ message PlayCardCmd {
 }
 message PlayCardCmdResp {
   repeated string cards = 1;
+}
+
+
+// 玩家
+message Player {
+  uint64 id = 1; //玩家id
+  string name = 2; //昵称
+  string icon = 3; //头像
+  uint64 goldNum = 4;//金币数量
+  Role role = 5; //角色
+  repeated Card handCards = 6; //手上的牌
+  repeated Card discardCards = 7; //已打出的牌
+  int32 ready = 8;//是否已经准备
+}
+
+// 牌
+message Card {
+  string name = 1;
+  int32 order = 2;
+}
+
+// 角色
+enum Role {
+  FARMER = 0; //农民
+  LANDLORD = 1; //地主
 }
 
 // 通用返回值

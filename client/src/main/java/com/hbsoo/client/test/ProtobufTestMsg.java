@@ -67,10 +67,17 @@ public final class ProtobufTestMsg {
     /*
 {"builder":{},"json":"{\"uid\": 111,\"job\": \"coder\"}","type":"1"}
 {"builder":{},"json":"{\"uid\": 123,\"userName\": \"张三\",\"sessionKey\": \"zzzzzzzzzzzz\"}","type":"2"}
+{"builder":{},"json":"{\"uid\": 123,\"userName\": \"张三\",\"sessionKey\": \"zzzzzzzzzzzz\"}","type":"2"}
+{"builder":{},"json":"{\"uid\": 123,\"userName\": \"张三\",\"sessionKey\": \"zzzzzzzzzzzz\"}","type":"2"}
 {"builder":{},"json":"{\"name\": \"这个是房间名称\"}","type":"3"}
-{"builder":{},"json":"{\"roomId\": 7837127444958494331}","type":"4"}
+{"builder":{},"json":"{\"roomId\": 15882423573324766903}","type":"4"}
      */
 
+    /*
+{"builder":{},"json":"{\"uid\": 111,\"userName\": \"张三\",\"sessionKey\": \"11111111111\"}","type":"2"}
+{"builder":{},"json":"{\"uid\": 222,\"userName\": \"李四\",\"sessionKey\": \"222222\"}","type":"2"}
+{"builder":{},"json":"{\"uid\": 333,\"userName\": \"wangwu\",\"sessionKey\": \"333333\"}","type":"2"}
+     */
 
 
 }

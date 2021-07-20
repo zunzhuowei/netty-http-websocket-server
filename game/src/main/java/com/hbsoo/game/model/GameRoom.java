@@ -29,6 +29,11 @@ public class GameRoom implements Serializable {
     private String name;
 
     /**
+     * 房间所属用户id
+     */
+    private Long ownerId;
+
+    /**
      * 玩家，key 玩家id（用户id），value 玩家
      */
     private Map<Long, Player> players = new ConcurrentHashMap<>(8);

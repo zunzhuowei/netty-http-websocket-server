@@ -6,6 +6,7 @@ import com.googlecode.protobuf.format.JsonJacksonFormat;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.function.Supplier;
 
 /**
@@ -26,9 +27,8 @@ public final class ProtoJsonUtils {
      * @param sourceMessage
      * @param <T>
      * @return
-     * @throws IOException
      */
-    public static <T extends Message> String toJson(T sourceMessage) throws IOException {
+    public static <T extends Message> String toJson(T sourceMessage) {
         final String string = jsonFormat.printToString(sourceMessage);
         return string;
     }
@@ -42,13 +42,15 @@ public final class ProtoJsonUtils {
      * @return
      * @throws IOException
      */
-    public static <T extends Message, B extends Message.Builder> T toProtoBean(B builder, String json) throws IOException {
+    public static <T extends Message, B extends Message.Builder> T toProtoBean(B builder, String json)  {
         //JsonFormat.parser().merge(json, builder);
-        try (final ByteArrayInputStream inputStream = new ByteArrayInputStream(json.getBytes())){
+        try (final ByteArrayInputStream inputStream = new ByteArrayInputStream(json.getBytes())) {
             jsonFormat.merge(inputStream, builder);
             return (T) builder.build();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        return null;
     }
 
     /**
@@ -58,9 +60,8 @@ public final class ProtoJsonUtils {
      * @param <T>
      * @param <B>
      * @return
-     * @throws IOException
      */
-    public static <T extends Message, B extends Message.Builder> T toProtoBean(Supplier<B> builderSupplier, String json) throws IOException {
+    public static <T extends Message, B extends Message.Builder> T toProtoBean(Supplier<B> builderSupplier, String json) {
         B builder = builderSupplier.get();
         return toProtoBean(builder, json);
     }

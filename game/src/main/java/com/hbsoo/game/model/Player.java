@@ -2,6 +2,8 @@ package com.hbsoo.game.model;
 
 import io.netty.channel.Channel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -12,7 +14,8 @@ import java.util.Objects;
  * 玩家
  * Created by zun.wei on 2021/7/18.
  */
-@Data
+@Getter
+@Setter
 @Accessors(chain = true)
 public class Player implements Serializable {
 
@@ -55,6 +58,11 @@ public class Player implements Serializable {
      * 已打出的牌
      */
     private List<Card> discardCards;
+
+    /**
+     * 是否已经准备，0未准备，1已准备
+     */
+    private int ready;
 
 
     public Player(Long id) {

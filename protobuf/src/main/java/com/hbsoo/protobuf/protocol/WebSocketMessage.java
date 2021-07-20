@@ -71,7 +71,7 @@ public class WebSocketMessage<T extends GeneratedMessageV3> {
      * 设置 protubuf 消息对象
      * @param protobufMsg protubuf 消息对象
      */
-    public void setProtobuf(T protobufMsg) {
+    public WebSocketMessage<T> setProtobuf(T protobufMsg) {
         this.protobuf = protobufMsg;
         // 设置消息类型
         MessageTypeHandleMapper.msgMapping.forEach((key, value) -> {
@@ -82,6 +82,7 @@ public class WebSocketMessage<T extends GeneratedMessageV3> {
             }
         });
         this.header.setMessageLength(this.protobuf.toByteArray().length);
+        return this;
     }
 
 

@@ -58,6 +58,7 @@ public class User implements Serializable {
     public Long createRoom(String roomName) {
         long no = new Random().nextLong();
         GameRoom gameRoom = new GameRoom(no, roomName);
+        gameRoom.setOwnerId(this.id);
         boolean b = GameRoomHallHolder.createGameRoom(gameRoom);
         if (b) {
             return no;
@@ -69,8 +70,8 @@ public class User implements Serializable {
      * 加入房间
      */
     public void joinRoom(Long roomNo) {
-        Player player = new Player();
-        player.setId(this.id).setChannel(this.channel)
+        Player player = new Player(this.id);
+        player.setChannel(this.channel)
                 .setIcon(this.icon).setName(this.name)
                 .setGoldNum(100L);
         final boolean b = GameRoomHallHolder.joinGameRoom(roomNo, player);

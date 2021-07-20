@@ -11,7 +11,7 @@ public enum Role {
      */
     FARMER(0),
     /**
-     * 地址
+     * 地主
      */
     LANDLORD(1),
     ;
