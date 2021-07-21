@@ -1,6 +1,10 @@
 <configuration>
 
     <property name="HOME_LOG" value="logs/app.log"/>
+    <property name="osName" value="${os.name}" />
+    <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %line [%yellow(%X{X-B3-TraceId}),%green(%X{X-B3-SpanId})] [%yellow(%thread)] %green(%logger{30}) %msg%n" />
 
     <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${HOME_LOG}</file>
@@ -16,14 +20,15 @@
         </rollingPolicy>
 
         <encoder>
-            <pattern> %d{HH:mm:ss.SSS} [%t] %-5level %logger{10} - %msg%n</pattern>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf-8</charset>
         </encoder>
     </appender>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
             <layout class="ch.qos.logback.classic.PatternLayout">
                 <Pattern>
-                    %d{HH:mm:ss.SSS} [%t] %-5level %logger{10} - %msg%n
+                    ${CONSOLE_LOG_PATTERN}
                 </Pattern>
             </layout>
     </appender>

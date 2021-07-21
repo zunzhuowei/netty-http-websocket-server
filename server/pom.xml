@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>com.hbsoo</groupId>
-            <artifactId>websocket</artifactId>
+            <artifactId>quick-start</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

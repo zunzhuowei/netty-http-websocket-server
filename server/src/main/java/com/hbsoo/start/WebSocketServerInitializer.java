@@ -5,7 +5,6 @@ import com.hbsoo.protobuf.codec.MyProtobufDecoder;
 import com.hbsoo.protobuf.codec.MyProtobufEncoder;
 import com.hbsoo.protobuf.handler.ProtobufHandler;
 import com.hbsoo.protobuf.handler.WebSocketFrameHandler;
-import com.hbsoo.websocket.protocol.ProtoBufMessage;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;

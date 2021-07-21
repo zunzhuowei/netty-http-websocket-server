@@ -74,7 +74,7 @@ public final class ProtoBufMessage {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -83,7 +83,7 @@ public final class ProtoBufMessage {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static MessageType valueOf(int value) {
       return forNumber(value);
     }
@@ -130,7 +130,7 @@ public final class ProtoBufMessage {
     public static MessageType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -176,7 +176,7 @@ public final class ProtoBufMessage {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -185,7 +185,7 @@ public final class ProtoBufMessage {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static Sex valueOf(int value) {
       return forNumber(value);
     }
@@ -228,7 +228,7 @@ public final class ProtoBufMessage {
     public static Sex valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -274,7 +274,7 @@ public final class ProtoBufMessage {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -283,7 +283,7 @@ public final class ProtoBufMessage {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @java.lang.Deprecated
+    @Deprecated
     public static RespCode valueOf(int value) {
       return forNumber(value);
     }
@@ -326,7 +326,7 @@ public final class ProtoBufMessage {
     public static RespCode valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
+        throw new IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -356,7 +356,7 @@ public final class ProtoBufMessage {
     /**
      * <code>string userName = 2;</code>
      */
-    java.lang.String getUserName();
+    String getUserName();
     /**
      * <code>string userName = 2;</code>
      */
@@ -375,7 +375,7 @@ public final class ProtoBufMessage {
     /**
      * <code>string job = 4;</code>
      */
-    java.lang.String getJob();
+    String getJob();
     /**
      * <code>string job = 4;</code>
      */
@@ -451,7 +451,7 @@ public final class ProtoBufMessage {
       cars_ = java.util.Collections.emptyList();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -462,7 +462,7 @@ public final class ProtoBufMessage {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -481,7 +481,7 @@ public final class ProtoBufMessage {
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               userName_ = s;
               break;
@@ -493,7 +493,7 @@ public final class ProtoBufMessage {
               break;
             }
             case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               job_ = s;
               break;
@@ -543,13 +543,13 @@ public final class ProtoBufMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_UserReq_descriptor;
+      return internal_static_UserReq_descriptor;
     }
 
-    @java.lang.Override
+    @Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_UserReq_fieldAccessorTable
+      return internal_static_UserReq_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq.class, com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq.Builder.class);
     }
@@ -565,18 +565,18 @@ public final class ProtoBufMessage {
     }
 
     public static final int USERNAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object userName_;
+    private volatile Object userName_;
     /**
      * <code>string userName = 2;</code>
      */
-    public java.lang.String getUserName() {
-      java.lang.Object ref = userName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getUserName() {
+      Object ref = userName_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         userName_ = s;
         return s;
       }
@@ -586,11 +586,11 @@ public final class ProtoBufMessage {
      */
     public com.google.protobuf.ByteString
         getUserNameBytes() {
-      java.lang.Object ref = userName_;
-      if (ref instanceof java.lang.String) {
+      Object ref = userName_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         userName_ = b;
         return b;
       } else {
@@ -616,18 +616,18 @@ public final class ProtoBufMessage {
     }
 
     public static final int JOB_FIELD_NUMBER = 4;
-    private volatile java.lang.Object job_;
+    private volatile Object job_;
     /**
      * <code>string job = 4;</code>
      */
-    public java.lang.String getJob() {
-      java.lang.Object ref = job_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getJob() {
+      Object ref = job_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         job_ = s;
         return s;
       }
@@ -637,11 +637,11 @@ public final class ProtoBufMessage {
      */
     public com.google.protobuf.ByteString
         getJobBytes() {
-      java.lang.Object ref = job_;
-      if (ref instanceof java.lang.String) {
+      Object ref = job_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         job_ = b;
         return b;
       } else {
@@ -720,7 +720,7 @@ public final class ProtoBufMessage {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -730,7 +730,7 @@ public final class ProtoBufMessage {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (uid_ != 0L) {
@@ -754,7 +754,7 @@ public final class ProtoBufMessage {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -787,8 +787,8 @@ public final class ProtoBufMessage {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
@@ -813,7 +813,7 @@ public final class ProtoBufMessage {
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -912,7 +912,7 @@ public final class ProtoBufMessage {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -920,13 +920,13 @@ public final class ProtoBufMessage {
     public static Builder newBuilder(com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -941,13 +941,13 @@ public final class ProtoBufMessage {
         com.hbsoo.websocket.protocol.ProtoBufMessage.UserReqOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_UserReq_descriptor;
+        return internal_static_UserReq_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_UserReq_fieldAccessorTable
+        return internal_static_UserReq_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq.class, com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq.Builder.class);
       }
@@ -969,7 +969,7 @@ public final class ProtoBufMessage {
           getCarsFieldBuilder();
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         uid_ = 0L;
@@ -995,18 +995,18 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_UserReq_descriptor;
+        return internal_static_UserReq_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq getDefaultInstanceForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq.getDefaultInstance();
+        return getDefaultInstance();
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq build() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq result = buildPartial();
         if (!result.isInitialized()) {
@@ -1015,7 +1015,7 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq buildPartial() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq result = new com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq(this);
         int from_bitField0_ = bitField0_;
@@ -1047,39 +1047,39 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return (Builder) super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq) {
           return mergeFrom((com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq)other);
@@ -1090,7 +1090,7 @@ public final class ProtoBufMessage {
       }
 
       public Builder mergeFrom(com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq other) {
-        if (other == com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq.getDefaultInstance()) return this;
+        if (other == getDefaultInstance()) return this;
         if (other.getUid() != 0L) {
           setUid(other.getUid());
         }
@@ -1162,12 +1162,12 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1213,20 +1213,20 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      private java.lang.Object userName_ = "";
+      private Object userName_ = "";
       /**
        * <code>string userName = 2;</code>
        */
-      public java.lang.String getUserName() {
-        java.lang.Object ref = userName_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getUserName() {
+        Object ref = userName_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           userName_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -1234,11 +1234,11 @@ public final class ProtoBufMessage {
        */
       public com.google.protobuf.ByteString
           getUserNameBytes() {
-        java.lang.Object ref = userName_;
+        Object ref = userName_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           userName_ = b;
           return b;
         } else {
@@ -1249,7 +1249,7 @@ public final class ProtoBufMessage {
        * <code>string userName = 2;</code>
        */
       public Builder setUserName(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1327,20 +1327,20 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      private java.lang.Object job_ = "";
+      private Object job_ = "";
       /**
        * <code>string job = 4;</code>
        */
-      public java.lang.String getJob() {
-        java.lang.Object ref = job_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getJob() {
+        Object ref = job_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           job_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -1348,11 +1348,11 @@ public final class ProtoBufMessage {
        */
       public com.google.protobuf.ByteString
           getJobBytes() {
-        java.lang.Object ref = job_;
+        Object ref = job_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           job_ = b;
           return b;
         } else {
@@ -1363,7 +1363,7 @@ public final class ProtoBufMessage {
        * <code>string job = 4;</code>
        */
       public Builder setJob(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1534,10 +1534,10 @@ public final class ProtoBufMessage {
        * <code>repeated .BookReq books = 5;</code>
        */
       public Builder addAllBooks(
-          java.lang.Iterable<? extends com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq> values) {
+          Iterable<? extends com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq> values) {
         if (booksBuilder_ == null) {
           ensureBooksIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          addAll(
               values, books_);
           onChanged();
         } else {
@@ -1774,10 +1774,10 @@ public final class ProtoBufMessage {
        * <code>repeated .CarReq cars = 6;</code>
        */
       public Builder addAllCars(
-          java.lang.Iterable<? extends com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq> values) {
+          Iterable<? extends com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq> values) {
         if (carsBuilder_ == null) {
           ensureCarsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          addAll(
               values, cars_);
           onChanged();
         } else {
@@ -1875,13 +1875,13 @@ public final class ProtoBufMessage {
         }
         return carsBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1903,7 +1903,7 @@ public final class ProtoBufMessage {
 
     private static final com.google.protobuf.Parser<UserReq>
         PARSER = new com.google.protobuf.AbstractParser<UserReq>() {
-      @java.lang.Override
+      @Override
       public UserReq parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1916,12 +1916,12 @@ public final class ProtoBufMessage {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<UserReq> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.hbsoo.websocket.protocol.ProtoBufMessage.UserReq getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -1960,7 +1960,7 @@ public final class ProtoBufMessage {
     private UserResp() {
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1971,7 +1971,7 @@ public final class ProtoBufMessage {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -2018,13 +2018,13 @@ public final class ProtoBufMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_UserResp_descriptor;
+      return internal_static_UserResp_descriptor;
     }
 
-    @java.lang.Override
+    @Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_UserResp_fieldAccessorTable
+      return internal_static_UserResp_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp.class, com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp.Builder.class);
     }
@@ -2051,7 +2051,7 @@ public final class ProtoBufMessage {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -2061,7 +2061,7 @@ public final class ProtoBufMessage {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (result_ != null) {
@@ -2070,7 +2070,7 @@ public final class ProtoBufMessage {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -2085,8 +2085,8 @@ public final class ProtoBufMessage {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
@@ -2105,7 +2105,7 @@ public final class ProtoBufMessage {
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -2191,7 +2191,7 @@ public final class ProtoBufMessage {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -2199,13 +2199,13 @@ public final class ProtoBufMessage {
     public static Builder newBuilder(com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -2220,13 +2220,13 @@ public final class ProtoBufMessage {
         com.hbsoo.websocket.protocol.ProtoBufMessage.UserRespOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_UserResp_descriptor;
+        return internal_static_UserResp_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_UserResp_fieldAccessorTable
+        return internal_static_UserResp_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp.class, com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp.Builder.class);
       }
@@ -2246,7 +2246,7 @@ public final class ProtoBufMessage {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         if (resultBuilder_ == null) {
@@ -2258,18 +2258,18 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_UserResp_descriptor;
+        return internal_static_UserResp_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp getDefaultInstanceForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp.getDefaultInstance();
+        return getDefaultInstance();
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp build() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp result = buildPartial();
         if (!result.isInitialized()) {
@@ -2278,7 +2278,7 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp buildPartial() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp result = new com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp(this);
         if (resultBuilder_ == null) {
@@ -2290,39 +2290,39 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return (Builder) super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp) {
           return mergeFrom((com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp)other);
@@ -2333,7 +2333,7 @@ public final class ProtoBufMessage {
       }
 
       public Builder mergeFrom(com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp other) {
-        if (other == com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp.getDefaultInstance()) return this;
+        if (other == getDefaultInstance()) return this;
         if (other.hasResult()) {
           mergeResult(other.getResult());
         }
@@ -2342,12 +2342,12 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2482,13 +2482,13 @@ public final class ProtoBufMessage {
         }
         return resultBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2510,7 +2510,7 @@ public final class ProtoBufMessage {
 
     private static final com.google.protobuf.Parser<UserResp>
         PARSER = new com.google.protobuf.AbstractParser<UserResp>() {
-      @java.lang.Override
+      @Override
       public UserResp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2523,12 +2523,12 @@ public final class ProtoBufMessage {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<UserResp> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.hbsoo.websocket.protocol.ProtoBufMessage.UserResp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -2542,7 +2542,7 @@ public final class ProtoBufMessage {
     /**
      * <code>string name = 1;</code>
      */
-    java.lang.String getName();
+    String getName();
     /**
      * <code>string name = 1;</code>
      */
@@ -2552,7 +2552,7 @@ public final class ProtoBufMessage {
     /**
      * <code>string author = 2;</code>
      */
-    java.lang.String getAuthor();
+    String getAuthor();
     /**
      * <code>string author = 2;</code>
      */
@@ -2562,7 +2562,7 @@ public final class ProtoBufMessage {
     /**
      * <code>repeated uint32 pages = 3;</code>
      */
-    java.util.List<java.lang.Integer> getPagesList();
+    java.util.List<Integer> getPagesList();
     /**
      * <code>repeated uint32 pages = 3;</code>
      */
@@ -2580,31 +2580,31 @@ public final class ProtoBufMessage {
      * <code>map&lt;string, string&gt; ref = 4;</code>
      */
     boolean containsRef(
-        java.lang.String key);
+        String key);
     /**
      * Use {@link #getRefMap()} instead.
      */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, java.lang.String>
+    @Deprecated
+    java.util.Map<String, String>
     getRef();
     /**
      * <code>map&lt;string, string&gt; ref = 4;</code>
      */
-    java.util.Map<java.lang.String, java.lang.String>
+    java.util.Map<String, String>
     getRefMap();
     /**
      * <code>map&lt;string, string&gt; ref = 4;</code>
      */
 
-    java.lang.String getRefOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue);
+    String getRefOrDefault(
+        String key,
+        String defaultValue);
     /**
      * <code>map&lt;string, string&gt; ref = 4;</code>
      */
 
-    java.lang.String getRefOrThrow(
-        java.lang.String key);
+    String getRefOrThrow(
+        String key);
   }
   /**
    * Protobuf type {@code BookReq}
@@ -2624,7 +2624,7 @@ public final class ProtoBufMessage {
       pages_ = java.util.Collections.emptyList();
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2635,7 +2635,7 @@ public final class ProtoBufMessage {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -2649,20 +2649,20 @@ public final class ProtoBufMessage {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               name_ = s;
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               author_ = s;
               break;
             }
             case 24: {
               if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                pages_ = new java.util.ArrayList<java.lang.Integer>();
+                pages_ = new java.util.ArrayList<Integer>();
                 mutable_bitField0_ |= 0x00000004;
               }
               pages_.add(input.readUInt32());
@@ -2672,7 +2672,7 @@ public final class ProtoBufMessage {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000004) == 0x00000004) && input.getBytesUntilLimit() > 0) {
-                pages_ = new java.util.ArrayList<java.lang.Integer>();
+                pages_ = new java.util.ArrayList<Integer>();
                 mutable_bitField0_ |= 0x00000004;
               }
               while (input.getBytesUntilLimit() > 0) {
@@ -2687,7 +2687,7 @@ public final class ProtoBufMessage {
                     RefDefaultEntryHolder.defaultEntry);
                 mutable_bitField0_ |= 0x00000008;
               }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+              com.google.protobuf.MapEntry<String, String>
               ref__ = input.readMessage(
                   RefDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
               ref_.getMutableMap().put(
@@ -2718,11 +2718,11 @@ public final class ProtoBufMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookReq_descriptor;
+      return internal_static_BookReq_descriptor;
     }
 
     @SuppressWarnings({"rawtypes"})
-    @java.lang.Override
+    @Override
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
       switch (number) {
@@ -2733,28 +2733,28 @@ public final class ProtoBufMessage {
               "Invalid map field number: " + number);
       }
     }
-    @java.lang.Override
+    @Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookReq_fieldAccessorTable
+      return internal_static_BookReq_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq.class, com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq.Builder.class);
     }
 
     private int bitField0_;
     public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
+    private volatile Object name_;
     /**
      * <code>string name = 1;</code>
      */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getName() {
+      Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         name_ = s;
         return s;
       }
@@ -2764,11 +2764,11 @@ public final class ProtoBufMessage {
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
+      Object ref = name_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         name_ = b;
         return b;
       } else {
@@ -2777,18 +2777,18 @@ public final class ProtoBufMessage {
     }
 
     public static final int AUTHOR_FIELD_NUMBER = 2;
-    private volatile java.lang.Object author_;
+    private volatile Object author_;
     /**
      * <code>string author = 2;</code>
      */
-    public java.lang.String getAuthor() {
-      java.lang.Object ref = author_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getAuthor() {
+      Object ref = author_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         author_ = s;
         return s;
       }
@@ -2798,11 +2798,11 @@ public final class ProtoBufMessage {
      */
     public com.google.protobuf.ByteString
         getAuthorBytes() {
-      java.lang.Object ref = author_;
-      if (ref instanceof java.lang.String) {
+      Object ref = author_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         author_ = b;
         return b;
       } else {
@@ -2811,11 +2811,11 @@ public final class ProtoBufMessage {
     }
 
     public static final int PAGES_FIELD_NUMBER = 3;
-    private java.util.List<java.lang.Integer> pages_;
+    private java.util.List<Integer> pages_;
     /**
      * <code>repeated uint32 pages = 3;</code>
      */
-    public java.util.List<java.lang.Integer>
+    public java.util.List<Integer>
         getPagesList() {
       return pages_;
     }
@@ -2836,18 +2836,18 @@ public final class ProtoBufMessage {
     public static final int REF_FIELD_NUMBER = 4;
     private static final class RefDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
-          java.lang.String, java.lang.String> defaultEntry =
+          String, String> defaultEntry =
               com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.String>newDefaultInstance(
-                  com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookReq_RefEntry_descriptor, 
+              .<String, String>newDefaultInstance(
+                      internal_static_BookReq_RefEntry_descriptor,
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "",
                   com.google.protobuf.WireFormat.FieldType.STRING,
                   "");
     }
     private com.google.protobuf.MapField<
-        java.lang.String, java.lang.String> ref_;
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+        String, String> ref_;
+    private com.google.protobuf.MapField<String, String>
     internalGetRef() {
       if (ref_ == null) {
         return com.google.protobuf.MapField.emptyMapField(
@@ -2864,33 +2864,33 @@ public final class ProtoBufMessage {
      */
 
     public boolean containsRef(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+        String key) {
+      if (key == null) { throw new NullPointerException(); }
       return internalGetRef().getMap().containsKey(key);
     }
     /**
      * Use {@link #getRefMap()} instead.
      */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.String> getRef() {
+    @Deprecated
+    public java.util.Map<String, String> getRef() {
       return getRefMap();
     }
     /**
      * <code>map&lt;string, string&gt; ref = 4;</code>
      */
 
-    public java.util.Map<java.lang.String, java.lang.String> getRefMap() {
+    public java.util.Map<String, String> getRefMap() {
       return internalGetRef().getMap();
     }
     /**
      * <code>map&lt;string, string&gt; ref = 4;</code>
      */
 
-    public java.lang.String getRefOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
+    public String getRefOrDefault(
+        String key,
+        String defaultValue) {
+      if (key == null) { throw new NullPointerException(); }
+      java.util.Map<String, String> map =
           internalGetRef().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
@@ -2898,19 +2898,19 @@ public final class ProtoBufMessage {
      * <code>map&lt;string, string&gt; ref = 4;</code>
      */
 
-    public java.lang.String getRefOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
+    public String getRefOrThrow(
+        String key) {
+      if (key == null) { throw new NullPointerException(); }
+      java.util.Map<String, String> map =
           internalGetRef().getMap();
       if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
+        throw new IllegalArgumentException();
       }
       return map.get(key);
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -2920,7 +2920,7 @@ public final class ProtoBufMessage {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -2946,7 +2946,7 @@ public final class ProtoBufMessage {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -2972,9 +2972,9 @@ public final class ProtoBufMessage {
         }
         pagesMemoizedSerializedSize = dataSize;
       }
-      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+      for (java.util.Map.Entry<String, String> entry
            : internalGetRef().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+        com.google.protobuf.MapEntry<String, String>
         ref__ = RefDefaultEntryHolder.defaultEntry.newBuilderForType()
             .setKey(entry.getKey())
             .setValue(entry.getValue())
@@ -2987,8 +2987,8 @@ public final class ProtoBufMessage {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
@@ -3010,7 +3010,7 @@ public final class ProtoBufMessage {
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3104,7 +3104,7 @@ public final class ProtoBufMessage {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -3112,13 +3112,13 @@ public final class ProtoBufMessage {
     public static Builder newBuilder(com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -3133,7 +3133,7 @@ public final class ProtoBufMessage {
         com.hbsoo.websocket.protocol.ProtoBufMessage.BookReqOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookReq_descriptor;
+        return internal_static_BookReq_descriptor;
       }
 
       @SuppressWarnings({"rawtypes"})
@@ -3158,10 +3158,10 @@ public final class ProtoBufMessage {
                 "Invalid map field number: " + number);
         }
       }
-      @java.lang.Override
+      @Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookReq_fieldAccessorTable
+        return internal_static_BookReq_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq.class, com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq.Builder.class);
       }
@@ -3181,7 +3181,7 @@ public final class ProtoBufMessage {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         name_ = "";
@@ -3194,18 +3194,18 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookReq_descriptor;
+        return internal_static_BookReq_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq getDefaultInstanceForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq.getDefaultInstance();
+        return getDefaultInstance();
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq build() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq result = buildPartial();
         if (!result.isInitialized()) {
@@ -3214,7 +3214,7 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq buildPartial() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq result = new com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq(this);
         int from_bitField0_ = bitField0_;
@@ -3233,39 +3233,39 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return (Builder) super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq) {
           return mergeFrom((com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq)other);
@@ -3276,7 +3276,7 @@ public final class ProtoBufMessage {
       }
 
       public Builder mergeFrom(com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq other) {
-        if (other == com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq.getDefaultInstance()) return this;
+        if (other == getDefaultInstance()) return this;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
@@ -3302,12 +3302,12 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3327,20 +3327,20 @@ public final class ProtoBufMessage {
       }
       private int bitField0_;
 
-      private java.lang.Object name_ = "";
+      private Object name_ = "";
       /**
        * <code>string name = 1;</code>
        */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getName() {
+        Object ref = name_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -3348,11 +3348,11 @@ public final class ProtoBufMessage {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        java.lang.Object ref = name_;
+        Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           name_ = b;
           return b;
         } else {
@@ -3363,7 +3363,7 @@ public final class ProtoBufMessage {
        * <code>string name = 1;</code>
        */
       public Builder setName(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -3396,20 +3396,20 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      private java.lang.Object author_ = "";
+      private Object author_ = "";
       /**
        * <code>string author = 2;</code>
        */
-      public java.lang.String getAuthor() {
-        java.lang.Object ref = author_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getAuthor() {
+        Object ref = author_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           author_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -3417,11 +3417,11 @@ public final class ProtoBufMessage {
        */
       public com.google.protobuf.ByteString
           getAuthorBytes() {
-        java.lang.Object ref = author_;
+        Object ref = author_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           author_ = b;
           return b;
         } else {
@@ -3432,7 +3432,7 @@ public final class ProtoBufMessage {
        * <code>string author = 2;</code>
        */
       public Builder setAuthor(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -3465,17 +3465,17 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      private java.util.List<java.lang.Integer> pages_ = java.util.Collections.emptyList();
+      private java.util.List<Integer> pages_ = java.util.Collections.emptyList();
       private void ensurePagesIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          pages_ = new java.util.ArrayList<java.lang.Integer>(pages_);
+          pages_ = new java.util.ArrayList<Integer>(pages_);
           bitField0_ |= 0x00000004;
          }
       }
       /**
        * <code>repeated uint32 pages = 3;</code>
        */
-      public java.util.List<java.lang.Integer>
+      public java.util.List<Integer>
           getPagesList() {
         return java.util.Collections.unmodifiableList(pages_);
       }
@@ -3514,7 +3514,7 @@ public final class ProtoBufMessage {
        * <code>repeated uint32 pages = 3;</code>
        */
       public Builder addAllPages(
-          java.lang.Iterable<? extends java.lang.Integer> values) {
+          Iterable<? extends Integer> values) {
         ensurePagesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, pages_);
@@ -3532,8 +3532,8 @@ public final class ProtoBufMessage {
       }
 
       private com.google.protobuf.MapField<
-          java.lang.String, java.lang.String> ref_;
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+          String, String> ref_;
+      private com.google.protobuf.MapField<String, String>
       internalGetRef() {
         if (ref_ == null) {
           return com.google.protobuf.MapField.emptyMapField(
@@ -3541,7 +3541,7 @@ public final class ProtoBufMessage {
         }
         return ref_;
       }
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      private com.google.protobuf.MapField<String, String>
       internalGetMutableRef() {
         onChanged();;
         if (ref_ == null) {
@@ -3562,33 +3562,33 @@ public final class ProtoBufMessage {
        */
 
       public boolean containsRef(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          String key) {
+        if (key == null) { throw new NullPointerException(); }
         return internalGetRef().getMap().containsKey(key);
       }
       /**
        * Use {@link #getRefMap()} instead.
        */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String> getRef() {
+      @Deprecated
+      public java.util.Map<String, String> getRef() {
         return getRefMap();
       }
       /**
        * <code>map&lt;string, string&gt; ref = 4;</code>
        */
 
-      public java.util.Map<java.lang.String, java.lang.String> getRefMap() {
+      public java.util.Map<String, String> getRefMap() {
         return internalGetRef().getMap();
       }
       /**
        * <code>map&lt;string, string&gt; ref = 4;</code>
        */
 
-      public java.lang.String getRefOrDefault(
-          java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
+      public String getRefOrDefault(
+          String key,
+          String defaultValue) {
+        if (key == null) { throw new NullPointerException(); }
+        java.util.Map<String, String> map =
             internalGetRef().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
@@ -3596,13 +3596,13 @@ public final class ProtoBufMessage {
        * <code>map&lt;string, string&gt; ref = 4;</code>
        */
 
-      public java.lang.String getRefOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
+      public String getRefOrThrow(
+          String key) {
+        if (key == null) { throw new NullPointerException(); }
+        java.util.Map<String, String> map =
             internalGetRef().getMap();
         if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
+          throw new IllegalArgumentException();
         }
         return map.get(key);
       }
@@ -3617,8 +3617,8 @@ public final class ProtoBufMessage {
        */
 
       public Builder removeRef(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+          String key) {
+        if (key == null) { throw new NullPointerException(); }
         internalGetMutableRef().getMutableMap()
             .remove(key);
         return this;
@@ -3626,8 +3626,8 @@ public final class ProtoBufMessage {
       /**
        * Use alternate mutation accessors instead.
        */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String>
+      @Deprecated
+      public java.util.Map<String, String>
       getMutableRef() {
         return internalGetMutableRef().getMutableMap();
       }
@@ -3635,10 +3635,10 @@ public final class ProtoBufMessage {
        * <code>map&lt;string, string&gt; ref = 4;</code>
        */
       public Builder putRef(
-          java.lang.String key,
-          java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+          String key,
+          String value) {
+        if (key == null) { throw new NullPointerException(); }
+        if (value == null) { throw new NullPointerException(); }
         internalGetMutableRef().getMutableMap()
             .put(key, value);
         return this;
@@ -3648,18 +3648,18 @@ public final class ProtoBufMessage {
        */
 
       public Builder putAllRef(
-          java.util.Map<java.lang.String, java.lang.String> values) {
+          java.util.Map<String, String> values) {
         internalGetMutableRef().getMutableMap()
             .putAll(values);
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -3681,7 +3681,7 @@ public final class ProtoBufMessage {
 
     private static final com.google.protobuf.Parser<BookReq>
         PARSER = new com.google.protobuf.AbstractParser<BookReq>() {
-      @java.lang.Override
+      @Override
       public BookReq parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3694,12 +3694,12 @@ public final class ProtoBufMessage {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<BookReq> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.hbsoo.websocket.protocol.ProtoBufMessage.BookReq getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -3738,7 +3738,7 @@ public final class ProtoBufMessage {
     private BookResp() {
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -3749,7 +3749,7 @@ public final class ProtoBufMessage {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -3796,13 +3796,13 @@ public final class ProtoBufMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookResp_descriptor;
+      return internal_static_BookResp_descriptor;
     }
 
-    @java.lang.Override
+    @Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookResp_fieldAccessorTable
+      return internal_static_BookResp_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp.class, com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp.Builder.class);
     }
@@ -3829,7 +3829,7 @@ public final class ProtoBufMessage {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -3839,7 +3839,7 @@ public final class ProtoBufMessage {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (result_ != null) {
@@ -3848,7 +3848,7 @@ public final class ProtoBufMessage {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -3863,8 +3863,8 @@ public final class ProtoBufMessage {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
@@ -3883,7 +3883,7 @@ public final class ProtoBufMessage {
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3969,7 +3969,7 @@ public final class ProtoBufMessage {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -3977,13 +3977,13 @@ public final class ProtoBufMessage {
     public static Builder newBuilder(com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -3998,13 +3998,13 @@ public final class ProtoBufMessage {
         com.hbsoo.websocket.protocol.ProtoBufMessage.BookRespOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookResp_descriptor;
+        return internal_static_BookResp_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookResp_fieldAccessorTable
+        return internal_static_BookResp_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp.class, com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp.Builder.class);
       }
@@ -4024,7 +4024,7 @@ public final class ProtoBufMessage {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         if (resultBuilder_ == null) {
@@ -4036,18 +4036,18 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_BookResp_descriptor;
+        return internal_static_BookResp_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp getDefaultInstanceForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp.getDefaultInstance();
+        return getDefaultInstance();
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp build() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp result = buildPartial();
         if (!result.isInitialized()) {
@@ -4056,7 +4056,7 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp buildPartial() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp result = new com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp(this);
         if (resultBuilder_ == null) {
@@ -4068,39 +4068,39 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return (Builder) super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp) {
           return mergeFrom((com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp)other);
@@ -4111,7 +4111,7 @@ public final class ProtoBufMessage {
       }
 
       public Builder mergeFrom(com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp other) {
-        if (other == com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp.getDefaultInstance()) return this;
+        if (other == getDefaultInstance()) return this;
         if (other.hasResult()) {
           mergeResult(other.getResult());
         }
@@ -4120,12 +4120,12 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4260,13 +4260,13 @@ public final class ProtoBufMessage {
         }
         return resultBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -4288,7 +4288,7 @@ public final class ProtoBufMessage {
 
     private static final com.google.protobuf.Parser<BookResp>
         PARSER = new com.google.protobuf.AbstractParser<BookResp>() {
-      @java.lang.Override
+      @Override
       public BookResp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4301,12 +4301,12 @@ public final class ProtoBufMessage {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<BookResp> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.hbsoo.websocket.protocol.ProtoBufMessage.BookResp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -4320,7 +4320,7 @@ public final class ProtoBufMessage {
     /**
      * <code>string name = 1;</code>
      */
-    java.lang.String getName();
+    String getName();
     /**
      * <code>string name = 1;</code>
      */
@@ -4330,7 +4330,7 @@ public final class ProtoBufMessage {
     /**
      * <code>string color = 2;</code>
      */
-    java.lang.String getColor();
+    String getColor();
     /**
      * <code>string color = 2;</code>
      */
@@ -4354,7 +4354,7 @@ public final class ProtoBufMessage {
       color_ = "";
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -4365,7 +4365,7 @@ public final class ProtoBufMessage {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -4379,13 +4379,13 @@ public final class ProtoBufMessage {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               name_ = s;
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               color_ = s;
               break;
@@ -4411,30 +4411,30 @@ public final class ProtoBufMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CarReq_descriptor;
+      return internal_static_CarReq_descriptor;
     }
 
-    @java.lang.Override
+    @Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CarReq_fieldAccessorTable
+      return internal_static_CarReq_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq.class, com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq.Builder.class);
     }
 
     public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
+    private volatile Object name_;
     /**
      * <code>string name = 1;</code>
      */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getName() {
+      Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         name_ = s;
         return s;
       }
@@ -4444,11 +4444,11 @@ public final class ProtoBufMessage {
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
+      Object ref = name_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         name_ = b;
         return b;
       } else {
@@ -4457,18 +4457,18 @@ public final class ProtoBufMessage {
     }
 
     public static final int COLOR_FIELD_NUMBER = 2;
-    private volatile java.lang.Object color_;
+    private volatile Object color_;
     /**
      * <code>string color = 2;</code>
      */
-    public java.lang.String getColor() {
-      java.lang.Object ref = color_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getColor() {
+      Object ref = color_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         color_ = s;
         return s;
       }
@@ -4478,11 +4478,11 @@ public final class ProtoBufMessage {
      */
     public com.google.protobuf.ByteString
         getColorBytes() {
-      java.lang.Object ref = color_;
-      if (ref instanceof java.lang.String) {
+      Object ref = color_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         color_ = b;
         return b;
       } else {
@@ -4491,7 +4491,7 @@ public final class ProtoBufMessage {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -4501,7 +4501,7 @@ public final class ProtoBufMessage {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getNameBytes().isEmpty()) {
@@ -4513,7 +4513,7 @@ public final class ProtoBufMessage {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -4530,8 +4530,8 @@ public final class ProtoBufMessage {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
@@ -4549,7 +4549,7 @@ public final class ProtoBufMessage {
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -4635,7 +4635,7 @@ public final class ProtoBufMessage {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -4643,13 +4643,13 @@ public final class ProtoBufMessage {
     public static Builder newBuilder(com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -4664,13 +4664,13 @@ public final class ProtoBufMessage {
         com.hbsoo.websocket.protocol.ProtoBufMessage.CarReqOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CarReq_descriptor;
+        return internal_static_CarReq_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CarReq_fieldAccessorTable
+        return internal_static_CarReq_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq.class, com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq.Builder.class);
       }
@@ -4690,7 +4690,7 @@ public final class ProtoBufMessage {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         name_ = "";
@@ -4700,18 +4700,18 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CarReq_descriptor;
+        return internal_static_CarReq_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq getDefaultInstanceForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq.getDefaultInstance();
+        return getDefaultInstance();
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq build() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq result = buildPartial();
         if (!result.isInitialized()) {
@@ -4720,7 +4720,7 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq buildPartial() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq result = new com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq(this);
         result.name_ = name_;
@@ -4729,39 +4729,39 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return (Builder) super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq) {
           return mergeFrom((com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq)other);
@@ -4772,7 +4772,7 @@ public final class ProtoBufMessage {
       }
 
       public Builder mergeFrom(com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq other) {
-        if (other == com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq.getDefaultInstance()) return this;
+        if (other == getDefaultInstance()) return this;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
@@ -4786,12 +4786,12 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4810,20 +4810,20 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      private java.lang.Object name_ = "";
+      private Object name_ = "";
       /**
        * <code>string name = 1;</code>
        */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getName() {
+        Object ref = name_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -4831,11 +4831,11 @@ public final class ProtoBufMessage {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        java.lang.Object ref = name_;
+        Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           name_ = b;
           return b;
         } else {
@@ -4846,7 +4846,7 @@ public final class ProtoBufMessage {
        * <code>string name = 1;</code>
        */
       public Builder setName(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4879,20 +4879,20 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      private java.lang.Object color_ = "";
+      private Object color_ = "";
       /**
        * <code>string color = 2;</code>
        */
-      public java.lang.String getColor() {
-        java.lang.Object ref = color_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getColor() {
+        Object ref = color_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           color_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -4900,11 +4900,11 @@ public final class ProtoBufMessage {
        */
       public com.google.protobuf.ByteString
           getColorBytes() {
-        java.lang.Object ref = color_;
+        Object ref = color_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           color_ = b;
           return b;
         } else {
@@ -4915,7 +4915,7 @@ public final class ProtoBufMessage {
        * <code>string color = 2;</code>
        */
       public Builder setColor(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4947,13 +4947,13 @@ public final class ProtoBufMessage {
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -4975,7 +4975,7 @@ public final class ProtoBufMessage {
 
     private static final com.google.protobuf.Parser<CarReq>
         PARSER = new com.google.protobuf.AbstractParser<CarReq>() {
-      @java.lang.Override
+      @Override
       public CarReq parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4988,12 +4988,12 @@ public final class ProtoBufMessage {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<CarReq> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.hbsoo.websocket.protocol.ProtoBufMessage.CarReq getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -5032,7 +5032,7 @@ public final class ProtoBufMessage {
     private CarResp() {
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -5043,7 +5043,7 @@ public final class ProtoBufMessage {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -5090,13 +5090,13 @@ public final class ProtoBufMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CarResp_descriptor;
+      return internal_static_CarResp_descriptor;
     }
 
-    @java.lang.Override
+    @Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CarResp_fieldAccessorTable
+      return internal_static_CarResp_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp.class, com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp.Builder.class);
     }
@@ -5123,7 +5123,7 @@ public final class ProtoBufMessage {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -5133,7 +5133,7 @@ public final class ProtoBufMessage {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (result_ != null) {
@@ -5142,7 +5142,7 @@ public final class ProtoBufMessage {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -5157,8 +5157,8 @@ public final class ProtoBufMessage {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
@@ -5177,7 +5177,7 @@ public final class ProtoBufMessage {
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -5263,7 +5263,7 @@ public final class ProtoBufMessage {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -5271,13 +5271,13 @@ public final class ProtoBufMessage {
     public static Builder newBuilder(com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -5292,13 +5292,13 @@ public final class ProtoBufMessage {
         com.hbsoo.websocket.protocol.ProtoBufMessage.CarRespOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CarResp_descriptor;
+        return internal_static_CarResp_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CarResp_fieldAccessorTable
+        return internal_static_CarResp_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp.class, com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp.Builder.class);
       }
@@ -5318,7 +5318,7 @@ public final class ProtoBufMessage {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         if (resultBuilder_ == null) {
@@ -5330,18 +5330,18 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CarResp_descriptor;
+        return internal_static_CarResp_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp getDefaultInstanceForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp.getDefaultInstance();
+        return getDefaultInstance();
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp build() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp result = buildPartial();
         if (!result.isInitialized()) {
@@ -5350,7 +5350,7 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp buildPartial() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp result = new com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp(this);
         if (resultBuilder_ == null) {
@@ -5362,39 +5362,39 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return (Builder) super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp) {
           return mergeFrom((com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp)other);
@@ -5405,7 +5405,7 @@ public final class ProtoBufMessage {
       }
 
       public Builder mergeFrom(com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp other) {
-        if (other == com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp.getDefaultInstance()) return this;
+        if (other == getDefaultInstance()) return this;
         if (other.hasResult()) {
           mergeResult(other.getResult());
         }
@@ -5414,12 +5414,12 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5554,13 +5554,13 @@ public final class ProtoBufMessage {
         }
         return resultBuilder_;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -5582,7 +5582,7 @@ public final class ProtoBufMessage {
 
     private static final com.google.protobuf.Parser<CarResp>
         PARSER = new com.google.protobuf.AbstractParser<CarResp>() {
-      @java.lang.Override
+      @Override
       public CarResp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5595,12 +5595,12 @@ public final class ProtoBufMessage {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<CarResp> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.hbsoo.websocket.protocol.ProtoBufMessage.CarResp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -5614,7 +5614,7 @@ public final class ProtoBufMessage {
     /**
      * <code>string message = 1;</code>
      */
-    java.lang.String getMessage();
+    String getMessage();
     /**
      * <code>string message = 1;</code>
      */
@@ -5647,7 +5647,7 @@ public final class ProtoBufMessage {
       code_ = 0;
     }
 
-    @java.lang.Override
+    @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -5658,7 +5658,7 @@ public final class ProtoBufMessage {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
+        throw new NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -5672,7 +5672,7 @@ public final class ProtoBufMessage {
               done = true;
               break;
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              String s = input.readStringRequireUtf8();
 
               message_ = s;
               break;
@@ -5704,30 +5704,30 @@ public final class ProtoBufMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CommonResp_descriptor;
+      return internal_static_CommonResp_descriptor;
     }
 
-    @java.lang.Override
+    @Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CommonResp_fieldAccessorTable
+      return internal_static_CommonResp_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp.class, com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp.Builder.class);
     }
 
     public static final int MESSAGE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object message_;
+    private volatile Object message_;
     /**
      * <code>string message = 1;</code>
      */
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
+    public String getMessage() {
+      Object ref = message_;
+      if (ref instanceof String) {
+        return (String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         message_ = s;
         return s;
       }
@@ -5737,11 +5737,11 @@ public final class ProtoBufMessage {
      */
     public com.google.protobuf.ByteString
         getMessageBytes() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
+      Object ref = message_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         message_ = b;
         return b;
       } else {
@@ -5767,7 +5767,7 @@ public final class ProtoBufMessage {
     }
 
     private byte memoizedIsInitialized = -1;
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -5777,7 +5777,7 @@ public final class ProtoBufMessage {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getMessageBytes().isEmpty()) {
@@ -5789,7 +5789,7 @@ public final class ProtoBufMessage {
       unknownFields.writeTo(output);
     }
 
-    @java.lang.Override
+    @Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -5807,8 +5807,8 @@ public final class ProtoBufMessage {
       return size;
     }
 
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
+    @Override
+    public boolean equals(final Object obj) {
       if (obj == this) {
        return true;
       }
@@ -5825,7 +5825,7 @@ public final class ProtoBufMessage {
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -5911,7 +5911,7 @@ public final class ProtoBufMessage {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @java.lang.Override
+    @Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -5919,13 +5919,13 @@ public final class ProtoBufMessage {
     public static Builder newBuilder(com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @java.lang.Override
+    @Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @java.lang.Override
+    @Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -5940,13 +5940,13 @@ public final class ProtoBufMessage {
         com.hbsoo.websocket.protocol.ProtoBufMessage.CommonRespOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CommonResp_descriptor;
+        return internal_static_CommonResp_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CommonResp_fieldAccessorTable
+        return internal_static_CommonResp_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp.class, com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp.Builder.class);
       }
@@ -5966,7 +5966,7 @@ public final class ProtoBufMessage {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @java.lang.Override
+      @Override
       public Builder clear() {
         super.clear();
         message_ = "";
@@ -5976,18 +5976,18 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.internal_static_CommonResp_descriptor;
+        return internal_static_CommonResp_descriptor;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp getDefaultInstanceForType() {
-        return com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp.getDefaultInstance();
+        return getDefaultInstance();
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp build() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp result = buildPartial();
         if (!result.isInitialized()) {
@@ -5996,7 +5996,7 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp buildPartial() {
         com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp result = new com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp(this);
         result.message_ = message_;
@@ -6005,39 +6005,39 @@ public final class ProtoBufMessage {
         return result;
       }
 
-      @java.lang.Override
+      @Override
       public Builder clone() {
         return (Builder) super.clone();
       }
-      @java.lang.Override
+      @Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.setField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
-      @java.lang.Override
+      @Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
-      @java.lang.Override
+      @Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+          int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
-      @java.lang.Override
+      @Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+          Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp) {
           return mergeFrom((com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp)other);
@@ -6048,7 +6048,7 @@ public final class ProtoBufMessage {
       }
 
       public Builder mergeFrom(com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp other) {
-        if (other == com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp.getDefaultInstance()) return this;
+        if (other == getDefaultInstance()) return this;
         if (!other.getMessage().isEmpty()) {
           message_ = other.message_;
           onChanged();
@@ -6061,12 +6061,12 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      @java.lang.Override
+      @Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @java.lang.Override
+      @Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6085,20 +6085,20 @@ public final class ProtoBufMessage {
         return this;
       }
 
-      private java.lang.Object message_ = "";
+      private Object message_ = "";
       /**
        * <code>string message = 1;</code>
        */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
-        if (!(ref instanceof java.lang.String)) {
+      public String getMessage() {
+        Object ref = message_;
+        if (!(ref instanceof String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
+          String s = bs.toStringUtf8();
           message_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
       /**
@@ -6106,11 +6106,11 @@ public final class ProtoBufMessage {
        */
       public com.google.protobuf.ByteString
           getMessageBytes() {
-        java.lang.Object ref = message_;
+        Object ref = message_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+                  (String) ref);
           message_ = b;
           return b;
         } else {
@@ -6121,7 +6121,7 @@ public final class ProtoBufMessage {
        * <code>string message = 1;</code>
        */
       public Builder setMessage(
-          java.lang.String value) {
+          String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -6198,13 +6198,13 @@ public final class ProtoBufMessage {
         onChanged();
         return this;
       }
-      @java.lang.Override
+      @Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
-      @java.lang.Override
+      @Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -6226,7 +6226,7 @@ public final class ProtoBufMessage {
 
     private static final com.google.protobuf.Parser<CommonResp>
         PARSER = new com.google.protobuf.AbstractParser<CommonResp>() {
-      @java.lang.Override
+      @Override
       public CommonResp parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6239,12 +6239,12 @@ public final class ProtoBufMessage {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Parser<CommonResp> getParserForType() {
       return PARSER;
     }
 
-    @java.lang.Override
+    @Override
     public com.hbsoo.websocket.protocol.ProtoBufMessage.CommonResp getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -6299,7 +6299,7 @@ public final class ProtoBufMessage {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    java.lang.String[] descriptorData = {
+    String[] descriptorData = {
       "\n\rMessage.proto\"x\n\007UserReq\022\013\n\003uid\030\001 \001(\004\022" +
       "\020\n\010userName\030\002 \001(\t\022\021\n\003sex\030\003 \001(\0162\004.Sex\022\013\n\003" +
       "job\030\004 \001(\t\022\027\n\005books\030\005 \003(\0132\010.BookReq\022\025\n\004ca" +
@@ -6336,49 +6336,49 @@ public final class ProtoBufMessage {
     internal_static_UserReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UserReq_descriptor,
-        new java.lang.String[] { "Uid", "UserName", "Sex", "Job", "Books", "Cars", });
+        new String[] { "Uid", "UserName", "Sex", "Job", "Books", "Cars", });
     internal_static_UserResp_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_UserResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UserResp_descriptor,
-        new java.lang.String[] { "Result", });
+        new String[] { "Result", });
     internal_static_BookReq_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_BookReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BookReq_descriptor,
-        new java.lang.String[] { "Name", "Author", "Pages", "Ref", });
+        new String[] { "Name", "Author", "Pages", "Ref", });
     internal_static_BookReq_RefEntry_descriptor =
       internal_static_BookReq_descriptor.getNestedTypes().get(0);
     internal_static_BookReq_RefEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BookReq_RefEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
+        new String[] { "Key", "Value", });
     internal_static_BookResp_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_BookResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BookResp_descriptor,
-        new java.lang.String[] { "Result", });
+        new String[] { "Result", });
     internal_static_CarReq_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_CarReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CarReq_descriptor,
-        new java.lang.String[] { "Name", "Color", });
+        new String[] { "Name", "Color", });
     internal_static_CarResp_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_CarResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CarResp_descriptor,
-        new java.lang.String[] { "Result", });
+        new String[] { "Result", });
     internal_static_CommonResp_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_CommonResp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CommonResp_descriptor,
-        new java.lang.String[] { "Message", "Code", });
+        new String[] { "Message", "Code", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
