@@ -21,11 +21,6 @@ public final class MsgTypeBuilder {
      */
     public static final Map<String, Supplier<? extends Message.Builder>> typeBuilderMapping = new HashMap<>();
 
-    static {
-        //typeBuilderMapping.put("1", GameProtocol.LoginCmd::newBuilder);
-        //typeBuilderMapping.put("2", GameProtocol.LoginCmdResp::newBuilder);
-    }
-
     /**
      * 消息类型
      */

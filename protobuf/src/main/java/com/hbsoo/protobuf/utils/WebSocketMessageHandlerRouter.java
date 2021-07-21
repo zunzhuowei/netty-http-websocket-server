@@ -2,7 +2,9 @@ package com.hbsoo.protobuf.utils;
 
 import com.google.protobuf.GeneratedMessageV3;
 import com.hbsoo.protobuf.conf.MessageTypeHandleMapper;
+import com.hbsoo.protobuf.exception.GlobalExceptionWriter;
 import com.hbsoo.protobuf.message.IWebSocketMessageHandler;
+import com.hbsoo.protobuf.processor.HandlerThreadProcessor;
 import com.hbsoo.protobuf.protocol.WebSocketMessage;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
@@ -16,17 +18,7 @@ import java.util.concurrent.*;
 @Slf4j
 public final class WebSocketMessageHandlerRouter {
 
-    /**
-     * 业务处理线程池，用单线程处理，保证线程安全
-     */
-    private static final ExecutorService executorService = Executors.newSingleThreadExecutor(r -> {
-        final Thread thread = new Thread(r);
-        thread.setName("handler-thread");
-        thread.setUncaughtExceptionHandler((t, e) -> {
-            e.printStackTrace();
-        });
-        return thread;
-    });
+
 
     /**
      *  路由处理消息
@@ -40,9 +32,13 @@ public final class WebSocketMessageHandlerRouter {
             log.warn("protobuf message class for {} message handler is not exist!", protobuf.getClass());
             return;
         }
-        final Future<?> future = executorService.submit(() -> messageHandler.handle(ctx, webSocketMessage));
-        // 用于抛出异常
-        future.get();
+        HandlerThreadProcessor.process(() -> {
+            try {
+                messageHandler.handle(ctx, webSocketMessage);
+            } catch (Exception e) {
+                GlobalExceptionWriter.getProcessor().writeGlobalException(ctx, e);
+            }
+        });
     }
 
 }

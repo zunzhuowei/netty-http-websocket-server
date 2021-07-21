@@ -88,6 +88,7 @@ public class MyProtobufDecoder extends MessageToMessageDecoder<BinaryWebSocketFr
         GeneratedMessageV3 messageV31 = parserForType.parseFrom(datas);
         WebSocketMessage webSocketMessage = new WebSocketMessage(MagicNum.getMagicNum(magicNum));
         webSocketMessage.setProtobuf(messageV31);
+        log.debug("MyProtobufDecoder decode --::{}", messageV31);
         out.add(webSocketMessage);
 
     }

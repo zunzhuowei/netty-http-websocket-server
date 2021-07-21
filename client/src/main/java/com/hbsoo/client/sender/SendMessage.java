@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -37,7 +38,7 @@ public final class SendMessage {
         this.channel = channel;
         this.executor = new ScheduledThreadPoolExecutor(1);
         // heartbeat
-        this.executor.scheduleAtFixedRate(this::heartbeat, 10, 10, TimeUnit.SECONDS);
+        this.executor.scheduleAtFixedRate(this::heartbeat, 3, 3, TimeUnit.SECONDS);
     }
 
     /**
@@ -60,7 +61,7 @@ public final class SendMessage {
                 boolean success = channelFuture.isSuccess();
                 if (!success) {
                     final EventLoop loop = channelFuture.channel().eventLoop();
-                    loop.schedule(() -> reconnectServer(), 0, TimeUnit.SECONDS);
+                    loop.schedule(reconnectServer(), 0, TimeUnit.SECONDS);
                 }
             }
         });

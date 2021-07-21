@@ -9,12 +9,14 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
 /**
  * Created by zun.wei on 2021/7/15.
  */
+@Slf4j
 @ChannelHandler.Sharable
 public class MyProtobufEncoder extends MessageToMessageEncoder<WebSocketMessage> {
 
@@ -31,6 +33,7 @@ public class MyProtobufEncoder extends MessageToMessageEncoder<WebSocketMessage>
         buffer.writeShort(magicNum).writeInt(messageLength)
                 .writeShort(messageType).writeBytes(bytes);
         BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(buffer);
+        log.debug("MyProtobufEncoder encode --::{}", binaryWebSocketFrame);
         out.add(binaryWebSocketFrame);
     }
 
