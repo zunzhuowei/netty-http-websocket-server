@@ -39,7 +39,7 @@ public final class AsyncOperationProcessor {
      * 构造器
      */
     public AsyncOperationProcessor() {
-        async = new ExecutorService[CPU_COUNT];
+        async = new ExecutorService[CPU_COUNT * 2];
         AtomicInteger integer = new AtomicInteger();
         for (int i = 0; i < async.length; i++) {
             async[i] = Executors.newSingleThreadExecutor(r -> {
