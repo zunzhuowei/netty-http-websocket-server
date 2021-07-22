@@ -40,3 +40,8 @@ rebel.xml
 *-prod.yml
 *-home.yml
 .rebel.xml.bak
+
+# gradle
+.gradle/
+build/
+*/build/
