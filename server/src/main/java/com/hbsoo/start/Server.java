@@ -35,7 +35,7 @@ public class Server {
                         .setProtoBufClazz(GameProtocol.class)
                         .setProtoMsgTypesValuesFunction(GameProtocol.MessageType::values)
                         .setProtoMsgTypesForNumberFunction(GameProtocol.MessageType::forNumber)
-                        .setScanMessageHandlerPackagePath("com.hbsoo.game.message")
+                        .setScanMessageHandlerPackagePath("com.hbsoo.game.message","com.hbsoo.groovy.message")
         );
 
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);

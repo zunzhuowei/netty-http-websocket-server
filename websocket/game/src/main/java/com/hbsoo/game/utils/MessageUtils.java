@@ -14,12 +14,12 @@ public final class MessageUtils {
 
     /**
      * 获取返回值
-     * @param protobufClass
-     * @param builder
-     * @param buildMessageFun
-     * @param <T>
-     * @param <B>
-     * @return
+     * @param protobufClass protobuf 消息类型
+     * @param builder protobuf 消息类型 builder
+     * @param buildMessageFun builder 构建函数
+     * @param <T> protobuf 消息类型
+     * @param <B> protobuf 构建消息类型
+     * @return WebSocketMessage<T>
      */
     public static <T extends GeneratedMessageV3, B extends Message.Builder> WebSocketMessage<T>
     resp(Class<T> protobufClass, B builder, Function<B, T> buildMessageFun) {
@@ -31,9 +31,9 @@ public final class MessageUtils {
 
     /**
      * 获取公共返回值
-     * @param code
-     * @param reason
-     * @return
+     * @param code 返回状态码
+     * @param reason 理由
+     * @return GameProtocol.CommonResp
      */
     public static GameProtocol.CommonResp commonResp(GameProtocol.RespCode code, String... reason) {
         if (reason.length > 0) {
@@ -50,9 +50,9 @@ public final class MessageUtils {
 
     /**
      * 公共返回值
-     * @param code
-     * @param reason
-     * @return
+     * @param code 返回状态码
+     * @param reason 理由
+     * @return WebSocketMessage<GameProtocol.CommonResp>
      */
     public static WebSocketMessage<GameProtocol.CommonResp> commonWebSocketResp(GameProtocol.RespCode code, String... reason) {
         final GameProtocol.CommonResp resp = commonResp(code, reason);

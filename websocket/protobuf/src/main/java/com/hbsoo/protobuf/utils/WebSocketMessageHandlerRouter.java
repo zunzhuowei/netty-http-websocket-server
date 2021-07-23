@@ -10,6 +10,7 @@ import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.*;
 
 /**
@@ -27,16 +28,18 @@ public final class WebSocketMessageHandlerRouter {
     (ChannelHandlerContext ctx, WebSocketMessage<T> webSocketMessage) throws ExecutionException, InterruptedException {
         log.debug("handleMessage webSocketMessage --::{}", webSocketMessage);
         T protobuf = webSocketMessage.getProtobuf();
-        IWebSocketMessageHandler messageHandler = MessageTypeHandleMapper.msgRouter.get(protobuf.getClass());
-        if (Objects.isNull(messageHandler)) {
+        Set<IWebSocketMessageHandler> messageHandlers = MessageTypeHandleMapper.msgRouter.get(protobuf.getClass());
+        if (Objects.isNull(messageHandlers)) {
             log.warn("protobuf message class for {} message handler is not exist!", protobuf.getClass());
             return;
         }
         HandlerThreadProcessor.process(() -> {
-            try {
-                messageHandler.handle(ctx, webSocketMessage);
-            } catch (Exception e) {
-                GlobalExceptionWriter.getProcessor().writeGlobalException(ctx, e);
+            for (IWebSocketMessageHandler messageHandler : messageHandlers) {
+                try {
+                    messageHandler.handle(ctx, webSocketMessage);
+                } catch (Exception e) {
+                    GlobalExceptionWriter.getProcessor().writeGlobalException(ctx, e);
+                }
             }
         });
     }

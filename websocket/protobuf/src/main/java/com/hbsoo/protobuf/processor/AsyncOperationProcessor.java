@@ -4,6 +4,7 @@ import com.hbsoo.protobuf.async.AsyncOperation;
 import com.hbsoo.protobuf.exception.GlobalExceptionWriter;
 import io.netty.channel.Channel;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -52,7 +53,7 @@ public final class AsyncOperationProcessor {
     /**
      * 构造器
      */
-    public AsyncOperationProcessor() {
+    private AsyncOperationProcessor() {
         async = new ExecutorService[asyncThreads];
         AtomicInteger integer = new AtomicInteger();
         for (int i = 0; i < async.length; i++) {
@@ -114,12 +115,19 @@ public final class AsyncOperationProcessor {
                     try {
                         asyncExecuteAfter.accept(result);
                     } catch (Exception e) {
-                        //e.printStackTrace();
-                        GlobalExceptionWriter.getProcessor().writeGlobalException(channel, e);
+                        if (Objects.nonNull(channel)) {
+                            GlobalExceptionWriter.getProcessor().writeGlobalException(channel, e);
+                        } else {
+                            e.printStackTrace();
+                        }
                     }
                 });
             } catch (Exception e) {
-                GlobalExceptionWriter.getProcessor().writeGlobalException(channel, e);
+                if (Objects.nonNull(channel)) {
+                    GlobalExceptionWriter.getProcessor().writeGlobalException(channel, e);
+                } else {
+                    e.printStackTrace();
+                }
             }
         });
     }

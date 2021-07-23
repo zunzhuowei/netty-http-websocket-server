@@ -53,6 +53,7 @@ public final class ProtobufTestMsg {
         MsgTypeBuilder.typeBuilderMapping.put("3", GameProtocol.CreateRoomCmd::newBuilder);
         MsgTypeBuilder.typeBuilderMapping.put("4", GameProtocol.JoinRoomCmd::newBuilder);
         MsgTypeBuilder.typeBuilderMapping.put("5", GameProtocol.ReadyGameCmd::newBuilder);
+        MsgTypeBuilder.typeBuilderMapping.put("6", GameProtocol.LogoutCmd::newBuilder);
     }
 
 
@@ -62,6 +63,7 @@ public final class ProtobufTestMsg {
         p("3", GameProtocol.CreateRoomCmd.newBuilder().setName("这个是房间名称").build());
         p("4", GameProtocol.JoinRoomCmd.newBuilder().setRoomId(110).build());
 
+        p("6", GameProtocol.LogoutCmd.newBuilder().setUid(123L).setSessionKey("zzzzz").build());
     }
 
     /*
@@ -74,10 +76,15 @@ public final class ProtobufTestMsg {
      */
 
     /*
+    登录
 {"builder":{},"json":"{\"uid\": 111,\"userName\": \"张三\",\"sessionKey\": \"11111111111\"}","type":"2"}
 {"builder":{},"json":"{\"uid\": 222,\"userName\": \"李四\",\"sessionKey\": \"222222\"}","type":"2"}
 {"builder":{},"json":"{\"uid\": 333,\"userName\": \"wangwu\",\"sessionKey\": \"333333\"}","type":"2"}
      */
 
+    /*
+    登出
+{"builder":{},"json":"{\"uid\": 123,\"sessionKey\": \"zzzzz\"}","type":"6"}
+     */
 
 }

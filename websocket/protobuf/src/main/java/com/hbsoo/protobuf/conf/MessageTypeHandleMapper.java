@@ -14,6 +14,9 @@ import java.util.function.Supplier;
 
 /**
  * Created by zun.wei on 2021/7/16.
+ *  消息型类型与处理器映射处理类；
+ *  1. 包括编解码器的消息类型映射；
+ *  2. 包括消息类型处理器映射；
  */
 @Slf4j
 public final class MessageTypeHandleMapper {
@@ -26,7 +29,7 @@ public final class MessageTypeHandleMapper {
     /**
      * 消息路由处理器字典
      */
-    public static final Map<Class<? extends GeneratedMessageV3>, IWebSocketMessageHandler> msgRouter = new HashMap<>();
+    public static final Map<Class<? extends GeneratedMessageV3>, Set<IWebSocketMessageHandler>> msgRouter = new HashMap<>();
     /**
      * 消息魔法头与消息类型 .forNumber(Integer i) 的映射关系
      */
@@ -120,7 +123,9 @@ public final class MessageTypeHandleMapper {
             initMessageRouter(packagePath);
         }
     }
-
+    /**
+     * 消息处理器路由注册
+     */
     private static void initMessageRouter(String scanHandlerPackage) {
         log.info("\n\n==== 开始扫描消息与消息处理器的关联 ====");
 
@@ -190,7 +195,16 @@ public final class MessageTypeHandleMapper {
 
                 log.info("{} <==> {}", cmdClazz.getName(), handlerClazz.getName());
                 // 设置 protobuf 消息类型class 与 protobuf消息处理器的映射关系
-                msgRouter.put((Class) cmdClazz, newHandler);
+                Class key = (Class) cmdClazz;
+                // 允许一个消息有多个处理类
+                Set<IWebSocketMessageHandler> handlers = msgRouter.get(key);
+                if (Objects.isNull(handlers)) {
+                    handlers = new HashSet<>();
+                    handlers.add(newHandler);
+                    msgRouter.put(key, handlers);
+                } else {
+                    handlers.add(newHandler);
+                }
             } catch (Exception ex) {
                 // 记录错误日志
                 log.error(ex.getMessage(), ex);
@@ -200,7 +214,7 @@ public final class MessageTypeHandleMapper {
         log.info("\n\n==== 开始检查消息与消息处理器的关联 ====");
         msgMapping.forEach((k, v) -> {
             Class<? extends GeneratedMessageV3> aClass = v.getClass();
-            IWebSocketMessageHandler handler = msgRouter.get(aClass);
+            Set<IWebSocketMessageHandler> handler = msgRouter.get(aClass);
             if (Objects.isNull(handler)) {
                 log.warn("message handler mapping not fund! message type --:: [{}]", k);
             }

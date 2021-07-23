@@ -16,11 +16,22 @@
         <module>quick-start</module>
         <module>protobuf</module>
         <module>game</module>
+        <module>game-groovy</module>
     </modules>
 
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <!-- groovy-all 包含所有groovy GDK 中的包,
+                 groovy 只包含基础 Groovy 编译需要的包-->
+                <artifactId>groovy-all</artifactId>
+                <!-- any version of Groovy \>= 1.8.2 should work here -->
+                <version>3.0.8</version>
+                <!--指定类型为 pom -->
+                <type>pom</type>
+            </dependency>
             <dependency>
                 <groupId>com.hbsoo</groupId>
                 <artifactId>protobuf</artifactId>
