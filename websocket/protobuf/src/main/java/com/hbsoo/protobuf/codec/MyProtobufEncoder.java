@@ -33,7 +33,7 @@ public class MyProtobufEncoder extends MessageToMessageEncoder<WebSocketMessage>
         buffer.writeShort(magicNum).writeInt(messageLength)
                 .writeShort(messageType).writeBytes(bytes);
         BinaryWebSocketFrame binaryWebSocketFrame = new BinaryWebSocketFrame(buffer);
-        log.debug("MyProtobufEncoder encode --::{}", binaryWebSocketFrame);
+        log.trace("MyProtobufEncoder encode --::{}", binaryWebSocketFrame);
         out.add(binaryWebSocketFrame);
     }
 
