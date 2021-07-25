@@ -54,9 +54,9 @@ final class MultiThreadProcessor implements Processor {
         async = new ExecutorService[asyncThreads];
         AtomicInteger integer = new AtomicInteger();
         for (int i = 0; i < async.length; i++) {
+            final int i1 = integer.incrementAndGet();
             async[i] = Executors.newSingleThreadExecutor(r -> {
                 final Thread thread = new Thread(r);
-                final int i1 = integer.incrementAndGet();
                 thread.setName("multi-thread-" + i1);
                 thread.setUncaughtExceptionHandler((t, e) -> {
                     e.printStackTrace();

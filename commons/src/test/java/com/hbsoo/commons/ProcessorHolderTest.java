@@ -12,28 +12,46 @@ public class ProcessorHolderTest {
 
     public static void main(String[] args) {
         ProcessorHolder.getHolder()
-                .addLast(ItemProcessor.getItem().setType(ProcessorType.MULTI).setLogic(obj -> {
-                    System.out.println("first obj  = " + obj);
+                .addLast(ItemProcessor.getItem().setType(ProcessorType.MULTI)
+                        .setThreadRatioFun(obj -> {
+                            System.out.println("obj1 = " + obj);
+                            return 1;
+                        })
+                        .setLogic(obj -> {
+                    final String name = Thread.currentThread().getName();
+                    System.out.println("first obj  = " + obj + ",thread name:" + name);
                     return 1;
                 }))
                 .addLast(ItemProcessor.getItem().setType(ProcessorType.SINGLE).setLogic(obj -> {
-                    System.out.println("second obj  = " + obj);
+                    final String name = Thread.currentThread().getName();
+                    System.out.println("second obj  = " + obj + ",thread name:" + name);
                     return 2;
                 }))
-                .addLast(ItemProcessor.getItem().setType(ProcessorType.MULTI).setLogic(obj -> {
-                    System.out.println("three obj  = " + obj);
+                .addLast(ItemProcessor.getItem().setType(ProcessorType.MULTI)
+                        .setThreadRatioFun(obj -> {
+                            System.out.println("obj3 = " + obj);
+                            return 1;
+                        })
+                        .setLogic(obj -> {
+                    final String name = Thread.currentThread().getName();
+                    System.out.println("three obj  = " + obj + ",thread name:" + name);
                     return 3;
                 }))
                 .addLast(ItemProcessor.getItem().setType(ProcessorType.SINGLE).setLogic(obj -> {
-                    System.out.println("four obj  = " + obj);
+                    final String name = Thread.currentThread().getName();
+                    System.out.println("four obj  = " + obj + ",thread name:" + name);
                     return 4;
                 }))
-                .addLast(ItemProcessor.getItem().setType(ProcessorType.SINGLE).setLogic(obj -> {
-                    System.out.println("five obj  = " + obj);
+                .addLast(ItemProcessor.getItem().setType(ProcessorType.MULTI).setLogic(obj -> {
+                    final String name = Thread.currentThread().getName();
+                    System.out.println("five obj  = " + obj + ",thread name:" + name);
                     return 5;
                 }))
                 .execute();
         System.out.println("test finish 111111111111111");
+
+        //if (true) return;
+
         ProcessorHolder.getHolder()
                 .addLast(ItemProcessor.getItem().setType(ProcessorType.MULTI).setLogic(obj -> {
                     System.out.println("first obj  = " + obj);

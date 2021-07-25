@@ -3,6 +3,7 @@ package com.hbsoo.commons.processor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
@@ -71,18 +72,30 @@ public final class ProcessorHolder {
         final ProcessorType type = itemProcessor.getType();
         final Function<Object, Object> logic = itemProcessor.getLogic();
         final Integer threadRatio = itemProcessor.getThreadRatio();
+        final Function<Object, Integer> threadRatioFun = itemProcessor.getThreadRatioFun();
 
         if (type == ProcessorType.MULTI) {
             processor = MultiThreadProcessor.getInstance();
         } else {
             processor = SingleThreadProcessor.getInstance();
         }
-        processor.process(threadRatio, inputValue::getInputObj, logic, obj -> {
-            inputValue.setInputObj(obj);
-            if (atomic.incrementAndGet() < size) {
-                execute(inputValue, atomic);
-            }
-        });
+
+        if (Objects.nonNull(threadRatioFun)) {
+            final Integer threadRatio2 = threadRatioFun.apply(inputValue.getInputObj());
+            processor.process(threadRatio2, inputValue::getInputObj, logic, obj -> {
+                inputValue.setInputObj(obj);
+                if (atomic.incrementAndGet() < size) {
+                    execute(inputValue, atomic);
+                }
+            });
+        } else {
+            processor.process(threadRatio, inputValue::getInputObj, logic, obj -> {
+                inputValue.setInputObj(obj);
+                if (atomic.incrementAndGet() < size) {
+                    execute(inputValue, atomic);
+                }
+            });
+        }
     }
 
 

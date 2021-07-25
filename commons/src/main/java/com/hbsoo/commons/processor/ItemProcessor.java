@@ -18,6 +18,12 @@ public final class ItemProcessor {
     private Integer threadRatio;
 
     /**
+     * 多线程，线程选择系数；单线程处理时不用设置;
+     *  输入是上一个处理器的结果，输出是线程选择系数
+     */
+    private Function<Object, Integer> threadRatioFun;
+
+    /**
      * 处理逻辑函数
      */
     private Function<Object, Object> logic;
@@ -58,6 +64,21 @@ public final class ItemProcessor {
 
     public ItemProcessor setThreadRatio(Integer threadRatio) {
         this.threadRatio = threadRatio;
+        return this;
+    }
+
+    Function<Object, Integer> getThreadRatioFun() {
+        return threadRatioFun;
+    }
+
+    /**
+     * Function 函数的输入参数为上一个处理流程的结果值；
+     * 输出参数为 线程选择系数
+     * @param threadRatioFun 线程选择系数函数
+     * @return ItemProcessor
+     */
+    public ItemProcessor setThreadRatioFun(Function<Object, Integer> threadRatioFun) {
+        this.threadRatioFun = threadRatioFun;
         return this;
     }
 }
