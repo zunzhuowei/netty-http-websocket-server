@@ -1,7 +1,9 @@
 package com.hbsoo.commons.utils;
 
+
 import java.io.File;
 import java.io.FileInputStream;
+import java.lang.annotation.Annotation;
 import java.net.URL;
 import java.util.*;
 import java.util.jar.JarEntry;
@@ -27,7 +29,7 @@ public final class PackageUtil {
      * @param superClazz  父类的类型
      * @return 子类集合
      */
-    static public Set<Class<?>> listSubClazz(
+    public static Set<Class<?>> listSubClazz(
             String packageName,
             boolean recursive,
             Class<?> superClazz) {
@@ -36,6 +38,17 @@ public final class PackageUtil {
         } else {
             return listClazz(packageName, recursive, superClazz::isAssignableFrom);
         }
+    }
+
+    /**
+     * 获取直接包下面包含某个 annotation 的类
+     * @param packageName 包名称
+     * @param annotationClazz 作用在类上的注解
+     * @return 包含指定 annotation 的类class
+     */
+    public static Set<Class<?>> listClazz(String packageName, Class<? extends Annotation> annotationClazz) {
+        return listClazz(packageName, true,
+                clazz -> clazz.isAnnotationPresent(annotationClazz));
     }
 
     /**
